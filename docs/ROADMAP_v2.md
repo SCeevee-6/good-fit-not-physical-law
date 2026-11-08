@@ -124,3 +124,15 @@ Gate A is re-decided from A, A-mis (0A results reused) and B-pos. B-fac is repor
 - "Accuracy cost is real on SIR": the 0A SIR numbers come from the defective structure. Measure it again in 0A2.
 - The demo idea (structured SIR stays positive but S rises): only valid with a correct structure, so it waits for 0A2.
 - Category: still decided after 0A2.
+
+
+## Addendum 4, 2026-11-08: Gate A re-decided (0A2)
+
+Protocol 0A2 ran B-pos and B-fac on the same 20 B candidates. Outcome 3 with B-pos (f(C)-f(S) = 0.317, median held-out ratio C 1.000, f(C)-f(Rnd) = 0.017). B-fac also gives outcome 3, at exactly 0.200 on G-A1, all from A and A-mis. Details in `docs/gate_A2_result.md`.
+
+What changes in the plan:
+- The random-counterexample loop is a main arm. This was conditional on 0A2 and now holds.
+- No accuracy cost on SIR with a correct structure (median ratio 1.000, max 1.003). The 0A SIR cost is withdrawn.
+- Only 1 of 60 candidates has a violation that 2000 random points miss. 0B therefore builds needles on purpose and runs sampler budgets 2k / 20k / 200k against violation volume, witness loop as reference. Natural needles are too rare here to carry the comparison.
+- B-fac alone satisfied every SIR law on all 20 candidates. The law taxonomy gets a per-law column for "enforced by which structure" and "satisfied empirically without enforcement".
+- Category decision is unblocked; it still follows the headline demo.

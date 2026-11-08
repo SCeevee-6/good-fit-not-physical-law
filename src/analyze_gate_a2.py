@@ -48,10 +48,16 @@ def summarise(X, group, struct, arm):
 
 
 def gate(rows):
+    # thresholds are compared in exact rational arithmetic: f is a count over N candidates, so a difference of
+    # exactly 0.20 (e.g. 60/60 - 48/60) must pass; float subtraction gives 0.19999... and would fail it.
+    from fractions import Fraction as Fr
     a = {arm: summarise([r for r in rows if r['arm'] == arm], 'all', '', arm) for arm in ARMS}
-    f = {k: a[k]['f_candidate'] for k in ARMS}; fp = {k: a[k]['f_pooled_spec'] for k in ARMS}
-    ga1 = (f['C'] - f['S'] >= 0.20) and (a['C']['med_iid_ratio'] <= 1.10)
-    ga2 = (f['C'] - f['Rnd'] >= 0.20)
+    cnt = {arm: sum(r['nonstruct_all'] for r in rows if r['arm'] == arm) for arm in ARMS}
+    N = len([r for r in rows if r['arm'] == 'C'])
+    fx = {k: Fr(cnt[k], N) for k in ARMS}
+    f = {k: float(fx[k]) for k in ARMS}; fp = {k: a[k]['f_pooled_spec'] for k in ARMS}
+    ga1 = (fx['C'] - fx['S'] >= Fr(1, 5)) and (Fr(a['C']['med_iid_ratio']) <= Fr(11, 10))
+    ga2 = (fx['C'] - fx['Rnd'] >= Fr(1, 5))
     return dict(dCS=f['C'] - f['S'], medC=a['C']['med_iid_ratio'], dCR=f['C'] - f['Rnd'], ga1=ga1, ga2=ga2,
                 outcome=1 if (ga1 and ga2) else (2 if not ga1 else 3), pdCS=fp['C'] - fp['S'], pdCR=fp['C'] - fp['Rnd'],
                 n=len({(r['key'], r['sample_id']) for r in rows}))

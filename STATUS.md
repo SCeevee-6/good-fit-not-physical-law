@@ -1,17 +1,17 @@
-# STATUS (2026-11-08, end of chat 1)
+# STATUS (2026-11-08, chat 2)
 
 ## Decided
-- Gate A (protocol 0A): outcome 3 on record (G-A1 pass, G-A2 fail). Confounded on B: the B structure masked the true term R' = 0.2 I. See `docs/gate_A_result.md` and Addendum 3 in `docs/ROADMAP_v2.md`.
+- Gate A re-decided under protocol 0A2: outcome 3 with B-pos (f(C)-f(S) 0.317, med ratio C 1.000, f(C)-f(Rnd) 0.017); B-fac also outcome 3 (0.200 exactly, 0.000). `docs/gate_A2_result.md`, ROADMAP_v2 Addendum 4.
+- 0A result kept on record, superseded for B by 0A2.
 
 ## Frozen
-- `docs/protocol_0A.md`, `results/0A_sample.csv`, `src/gate_a.py`, raw outputs `results/0A_jobs/`.
+- 0A: `docs/protocol_0A.md`, `results/0A_sample.csv`, `src/gate_a.py`, `results/0A_jobs/`.
+- 0A2: `docs/protocol_0A2.md` (commit f996151e, before the run), `src/gate_a2.py`, `results/0A2_jobs/`, `results/0A2_*.csv`.
 
-## Next (chat 2, before 0B)
-1. Write `docs/protocol_0A2.md` from Addendum 3 (B-pos and B-fac structures, same rule) and commit it.
-2. Before running, check both B structures contain the true model (`tools/check_mask.py` pattern).
-3. Run B only (20 candidates x 2 structures). The full 0A took about 1 min on 6 workers.
-4. Re-decide Gate A, then write protocol 0B (Holling II, needle test with 2k/20k/200k sampler budgets, 20 seeds).
+## Next
+- Draft protocol 0B (Holling II misspecification; constructed needles with sampler budgets 2k/20k/200k vs violation volume; 20 seeds). Freeze before any 0B run.
 
 ## Resume
-- In the ceg-ode kernel: `sys.path.insert(0, 'src'); import run_gate_a; run_gate_a.main(6)` (skips finished JSONs). Tables: `import analyze_gate_a; analyze_gate_a.main()`.
-- No pandas in ceg-ode; use csv and numpy.
+- ceg-ode kernel, cwd repo root: `sys.path.insert(0, 'src'); import run_gate_a; run_gate_a.main(6, protocol='0A2')` (skips finished JSONs; 31 s for 40 jobs). Tables: `import analyze_gate_a2; analyze_gate_a2.main()`.
+- Mask check: `runpy.run_path('tools/check_mask.py')`.
+- No pandas in ceg-ode; use csv and numpy. Gate thresholds are compared as exact fractions.

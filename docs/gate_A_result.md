@@ -48,3 +48,5 @@ What this does to the result:
 - B1S failing in 10/20 is partly the same defect: S' = -(I' + R') inherits the bad R-equation.
 
 The verdict stays outcome 3 as frozen, flagged as confounded on B. Protocol 0A2 reruns B with a correct structure under the same rule.
+
+Re-decided with a correct B structure in `docs/gate_A2_result.md` (protocol 0A2): outcome 3 holds; the SIR accuracy cost and most SIR structure-only failures above were the defect.
