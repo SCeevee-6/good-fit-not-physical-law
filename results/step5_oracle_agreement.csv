@@ -1,0 +1,12 @@
+quantity,count
+SMT violation & local oracle violation,172
+SMT verified & local oracle clean,74
+"SMT violation, local oracle clean",0
+"SMT verified, local oracle violation",0
+SMT violation & trajectory unphysical,169
+"SMT violation, trajectories clean (not exposed by the 60 sampled initial states)",3
+"SMT verified, trajectory unphysical (flags are mostly mass drift and small negative states)",14
+SMT verified & trajectories clean,60
+random falsification n=200: SMT violators flagged,171 / 172
+random falsification n=2000: SMT violators flagged,172 / 172
+random falsification false flags among SMT-verified (n=200 / 2000),0 / 0

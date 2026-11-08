@@ -1,0 +1,11 @@
+test,violated_strong_or_weak,replay_ok,exact_witness,expectations_met,seconds
+A: x leaks to -0.05y (strong),A1x*,2/2,2/2,True,0.04
+A: x leaks to -0.002y (weak only),A1x(w),1/1,1/1,True,0.06
+A: +0.05 x^3 in x' (escape),A2*,2/2,2/2,True,0.03
+A: +0.03 x^3 in x' (mild),-,0/0,0/0,True,0.04
+A: y loses -0.1 at y=0,A1y*,2/2,2/2,True,0.04
+A: y gains +0.05 const (allowed),-,0/0,0/0,True,0.03
+B: S gains +0.05 R,"B2S*,B3p*",4/4,4/4,True,0.13
+B: mass leak R' +0.05 R,B3p*,2/2,2/2,True,0.14
+B: S' +0.004 const (weak only),B2S(w),1/1,1/1,True,0.14
+B: I' -0.1 R at I=0,"B1I*,B3m*",4/4,4/4,True,0.15

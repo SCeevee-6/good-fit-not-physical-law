@@ -1,0 +1,10 @@
+check,result,note
+unit tests (known-good / known-bad hand-built models),10 / 10 pass,"all expected verdicts, exact witnesses and replays met"
+candidates verified,"246 (130 system A, 116 system B)","pilot cell: 2% noise, seed 0"
+queries (spec x level),2404 (1202 strong),weak level only queried when strong passed
+strong queries decided (3 s z3 limit + fallback),1.0000,z3 alone at 10 s limit decided 1176/1202 (97.8%)
+1-D queries: z3 vs exact sympy real-root isolation,"622 checked, 0 disagreements",independent code path
+3-D queries: z3 vs Bernstein branch-and-bound,"438 checked, 0 disagreements",independent code path
+z3 time-outs resolved by Bernstein,"26 of 26 (5 counterexamples, 21 proofs)",all consistent with dense-grid minima
+strong counterexamples with exact rational witness,425 / 425,witness re-evaluated in Fraction arithmetic
+strong counterexamples replay-validated in trajectory,425 / 425,c.x(t) falls below -1e-7 within 0.05 time units

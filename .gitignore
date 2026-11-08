@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+results/cells/
+logs/
+private/
+handoff/
+data/
+src/_test_analyze.py
+src/profile_b.py
+*.tmp

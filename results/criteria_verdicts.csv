@@ -1,0 +1,11 @@
+criterion,quantity,observed,threshold,verdict
+G1,"Violating fraction of accuracy-equivalent set (strong tol.), 6 well-specified (system x noise) groups",6/6 groups >= 20 % (range 42%-82%); n=2898 candidates,>= 20 % in >= 3 of 6 groups,PASS
+G1 (sensitivity),"Same, restricted to parsimonious models (k <= k_true+4)",4/6 groups >= 20 % (range 4%-34%; fails at 0.5 % noise),informational,PARTIAL
+G1 (sensitivity),"Same, AES-strict (5 % error and rollout within 1.25x)",6/6 groups >= 20 % (range 29%-71%),informational,PASS
+G1-mis,"Misspecified library (A without x^2), 3 noise levels",3/3 noise levels >= 20 % (range 93%-100%),>= 20 % in >= 2 of 3,PASS
+G2a,Verifier recall of label / false flags (SMT counterexamples not confirmed),"recall 1.000; 0 false flags in 4,477 flagged; SMT-free oracle agreed on all 4,334 oracle-run candidates (0 missed either way)",TPR >= 0.95 and FPR <= 0.05,PASS (label includes SMT verdict; see caveat)
+G2b,"Best conventional metric, macro AUROC within accuracy-equivalent set (30 well-specified cells)","AIC 0.966 [0.953, 0.977]; held-out error 0.931; rollout 0.906; OOD rollout 0.955",max AUROC <= 0.70,FAIL
+G2b-prime,"Same, practical metrics only (no simulated out-of-range data)",max 0.966 (AIC),max AUROC <= 0.70,FAIL
+G3,Counterexamples replay-validated (strict window 0.05) / decided queries / disagreements with independent procedures,"99.51% strict (8915/8959; 44 misses are all finite-time blow-ups, 100% with amended rule); 99.97% of queries decided (100 % of candidates); 0 disagreements in 4407 exact 1-D and 9805 Bernstein cross-checks",>= 99 %; >= 95 %; 0,PASS
+G4,Violators repaired in <= 15 iterations / median held-out error change / CEG vs random at equal budget,"99.25% repaired (n=2935), median 3 iterations; median error ratio 0.9993; CEG 99.3% vs random 17.4% (+81.8 pp, 2401 vs 0 discordant, p < 1e-300)",>= 80 %; <= +10 %; >= +20 pp and p < 0.05,PASS
+Decision,"Pre-registered rule: GO if G1,G2a,G2b,G3 pass; REVISE if G1 and G3 pass but G2a or G2b fail; NO-GO if G1 or G3 fail","G1, G3, G4 pass; G2b fails",,REVISE

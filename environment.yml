@@ -1,0 +1,13 @@
+name: ceg-ode
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - scipy
+  - pandas
+  - matplotlib
+  - sympy
+  - z3-solver
+  - cvxpy
+  - pytest

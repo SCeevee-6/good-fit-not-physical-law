@@ -1,0 +1,17 @@
+quantity,value
+n_candidates,5553.0
+n_strong_queries,23211.0
+strong_counterexamples,8959.0
+replay_validated_frac,0.9950887375823194
+exact_witness_frac,1.0
+decided_frac,0.9996984188531299
+z3_alone_decided_frac,0.9778984102365258
+fallback_bernstein,478.0
+fallback_split,35.0
+bernstein_cross_checks,9805.0
+bernstein_disagreements,0.0
+exact1d_cross_checks,4407.0
+exact1d_disagreements,0.0
+smt_missed_vs_local_oracle,0.0
+oracle_missed_vs_smt,0.0
+verifier_tpr_vs_label,1.0

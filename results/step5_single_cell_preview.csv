@@ -1,0 +1,59 @@
+system,score,n,pos,auroc,tpr5,stratum,n_viol
+A,iid_rmse,130,90.0,0.8405555555555555,0.07777777777777778,all,
+A,roll_iid,130,90.0,0.8486111111111111,0.07777777777777778,all,
+A,roll_ood,130,90.0,0.8972222222222223,0.18888888888888888,all,
+A,aic,130,90.0,0.9005555555555556,0.07777777777777778,all,
+A,rf200,130,90.0,0.9991666666666666,0.9888888888888889,all,
+A,rf2000,130,90.0,1.0,1.0,all,
+A,iid_rmse,114,78.0,0.9155982905982906,0.8589743589743589,AES,
+A,roll_iid,114,78.0,0.9245014245014245,0.8461538461538461,AES,
+A,roll_ood,114,78.0,0.9775641025641025,0.8333333333333334,AES,
+A,aic,114,78.0,0.9921652421652422,0.9358974358974359,AES,
+A,rf200,114,78.0,0.9989316239316239,0.9871794871794872,AES,
+A,rf2000,114,78.0,1.0,1.0,AES,
+B,iid_rmse,116,82.0,0.9791965566714491,0.9390243902439024,all,
+B,roll_iid,116,82.0,0.6362984218077475,0.573170731707317,all,
+B,roll_ood,116,82.0,0.990674318507891,0.975609756097561,all,
+B,aic,116,82.0,0.9781205164992827,0.9024390243902439,all,
+B,rf200,116,82.0,1.0,1.0,all,
+B,rf2000,116,82.0,1.0,1.0,all,
+B,iid_rmse,90,56.0,0.9695378151260504,0.9107142857142857,AES,
+B,roll_iid,90,56.0,0.46743697478991597,0.375,AES,
+B,roll_ood,90,56.0,0.9863445378151261,0.9642857142857143,AES,
+B,aic,90,56.0,0.9679621848739496,0.8571428571428571,AES,
+B,rf200,90,56.0,1.0,1.0,AES,
+B,rf2000,90,56.0,1.0,1.0,AES,
+A,iid_rmse,48,,0.8175824175824176,,S3 parsimonious AES (k<=k_true+4),13.0
+A,roll_iid,48,,0.9032967032967033,,S3 parsimonious AES (k<=k_true+4),13.0
+A,roll_ood,48,,0.9626373626373627,,S3 parsimonious AES (k<=k_true+4),13.0
+A,aic,48,,0.967032967032967,,S3 parsimonious AES (k<=k_true+4),13.0
+A,rf200,48,,1.0,,S3 parsimonious AES (k<=k_true+4),13.0
+A,iid_rmse,63,,0.7582304526748971,,"AES, k in [k_true, k_true+8]",27.0
+A,roll_iid,63,,0.8168724279835391,,"AES, k in [k_true, k_true+8]",27.0
+A,roll_ood,63,,0.9516460905349794,,"AES, k in [k_true, k_true+8]",27.0
+A,aic,63,,0.977366255144033,,"AES, k in [k_true, k_true+8]",27.0
+A,rf200,63,,0.9969135802469136,,"AES, k in [k_true, k_true+8]",27.0
+A,iid_rmse,51,,,,"AES, k>k_true+8",51.0
+A,roll_iid,51,,,,"AES, k>k_true+8",51.0
+A,roll_ood,51,,,,"AES, k>k_true+8",51.0
+A,aic,51,,,,"AES, k>k_true+8",51.0
+A,rf200,51,,,,"AES, k>k_true+8",51.0
+B,iid_rmse,19,,,,S3 parsimonious AES (k<=k_true+4),0.0
+B,roll_iid,19,,,,S3 parsimonious AES (k<=k_true+4),0.0
+B,roll_ood,19,,,,S3 parsimonious AES (k<=k_true+4),0.0
+B,aic,19,,,,S3 parsimonious AES (k<=k_true+4),0.0
+B,rf200,19,,,,S3 parsimonious AES (k<=k_true+4),0.0
+B,iid_rmse,28,,0.7395833333333334,,"AES, k in [k_true, k_true+8]",4.0
+B,roll_iid,28,,0.8125,,"AES, k in [k_true, k_true+8]",4.0
+B,roll_ood,28,,0.9895833333333334,,"AES, k in [k_true, k_true+8]",4.0
+B,aic,28,,0.8958333333333334,,"AES, k in [k_true, k_true+8]",4.0
+B,rf200,28,,1.0,,"AES, k in [k_true, k_true+8]",4.0
+B,iid_rmse,62,,0.9846153846153847,,"AES, k>k_true+8",52.0
+B,roll_iid,62,,0.4673076923076923,,"AES, k>k_true+8",52.0
+B,roll_ood,62,,0.9923076923076923,,"AES, k>k_true+8",52.0
+B,aic,62,,0.9403846153846154,,"AES, k>k_true+8",52.0
+B,rf200,62,,1.0,,"AES, k>k_true+8",52.0
+A-mis,iid_rmse,81,80.0,0.0625,,AES,
+A-mis,roll_iid,81,80.0,0.1,,AES,
+A-mis,roll_ood,81,80.0,0.4875,,AES,
+A-mis,aic,81,80.0,0.0375,,AES,
