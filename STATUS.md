@@ -9,7 +9,7 @@
 - 0A2: `docs/protocol_0A2.md` (commit f996151e, before the run), `src/gate_a2.py`, `results/0A2_jobs/`, `results/0A2_*.csv`.
 
 ## Next
-- Draft protocol 0B (Holling II misspecification; constructed needles with sampler budgets 2k/20k/200k vs violation volume; 20 seeds). Freeze before any 0B run.
+- Protocol 0B drafted: `docs/protocol_0B.md` (DRAFT, not frozen). Before freezing: write `tools/check_holling.py` (truth check of H laws, trapping c, limit cycle at K=4), settle the four open questions, then commit the frozen version. No 0B run before that.
 
 ## Resume
 - ceg-ode kernel, cwd repo root: `sys.path.insert(0, 'src'); import run_gate_a; run_gate_a.main(6, protocol='0A2')` (skips finished JSONs; 31 s for 40 jobs). Tables: `import analyze_gate_a2; analyze_gate_a2.main()`.
