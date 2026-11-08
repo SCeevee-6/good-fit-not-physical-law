@@ -1,0 +1,12 @@
+A 2 true terms excluded by mask: []
+A 3 true terms excluded by mask: []
+A 4 true terms excluded by mask: []
+Amis 2 true terms excluded by mask: []
+Amis 3 true terms excluded by mask: []
+Amis 4 true terms excluded by mask: []
+B 2 true terms excluded by mask: [((np.int64(0), np.int64(1), np.int64(0)), 2)]
+B 3 true terms excluded by mask: [((np.int64(0), np.int64(1), np.int64(0)), 2)]
+Bpos 2 excluded: [] | lb violated: [] | max eq residual: 0.0 | max |Xi_free M^T - Xi_true|: 0.0 | n_eq: 0 | true model: {'B1S': 'verified', 'B1I': 'verified', 'B1R': 'verified', 'B2S': 'verified', 'B2R': 'verified', 'B3p': 'verified', 'B3m': 'verified'}
+Bpos 3 excluded: [] | lb violated: [] | max eq residual: 0.0 | max |Xi_free M^T - Xi_true|: 0.0 | n_eq: 0 | true model: {'B1S': 'verified', 'B1I': 'verified', 'B1R': 'verified', 'B2S': 'verified', 'B2R': 'verified', 'B3p': 'verified', 'B3m': 'verified'}
+Bfac 2 excluded: [] | lb violated: [] | max eq residual: 0.0 | max |Xi_free M^T - Xi_true|: 0.0 | n_eq: 6 | true model: {'B1S': 'verified', 'B1I': 'verified', 'B1R': 'verified', 'B2S': 'verified', 'B2R': 'verified', 'B3p': 'verified', 'B3m': 'verified'}
+Bfac 3 excluded: [] | lb violated: [] | max eq residual: 0.0 | max |Xi_free M^T - Xi_true|: 0.0 | n_eq: 10 | true model: {'B1S': 'verified', 'B1I': 'verified', 'B1R': 'verified', 'B2S': 'verified', 'B2R': 'verified', 'B3p': 'verified', 'B3m': 'verified'}
