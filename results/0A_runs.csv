@@ -1,0 +1,181 @@
+sample_id,key,arm,status,iters,n_rows,nonstruct_all,nonstruct_pass,nonstruct_n,struct_all,iid_ratio,k,timeouts,statuses,seconds
+A_s0_16,A,S,ok,0,0,1,1,1,1,0.9999074833048485,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.11
+A_s0_16,A,C,ok,0,0,1,1,1,1,0.9999074833048485,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.26
+A_s0_16,A,Rnd,ok,0,0,1,1,1,1,0.9999074833048485,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.38
+A_s0_3,A,S,ok,0,0,1,1,1,1,1.0001290269203058,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.13
+A_s0_3,A,C,ok,0,0,1,1,1,1,1.0001290269203058,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.3
+A_s0_3,A,Rnd,ok,0,0,1,1,1,1,1.0001290269203058,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.41
+A_s0_38,A,S,ok,0,0,1,1,1,1,1.0,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.47
+A_s0_38,A,C,ok,0,0,1,1,1,1,1.0,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.63
+A_s0_38,A,Rnd,ok,0,0,1,1,1,1,1.0,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.79
+A_s0_96,A,S,ok,0,0,1,1,1,1,0.9930648253487846,9,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.28
+A_s0_96,A,C,ok,0,0,1,1,1,1,0.9930648253487846,9,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.6
+A_s0_96,A,Rnd,ok,0,0,1,1,1,1,0.9930648253487846,9,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.88
+A_s1_125,A,S,ok,0,0,1,1,1,1,0.9978354156799127,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.21
+A_s1_125,A,C,ok,0,0,1,1,1,1,0.9978354156799127,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.42
+A_s1_125,A,Rnd,ok,0,0,1,1,1,1,0.9978354156799127,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.63
+A_s1_16,A,S,ok,0,0,1,1,1,1,0.9998845462454683,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.17
+A_s1_16,A,C,ok,0,0,1,1,1,1,0.9998845462454683,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.36
+A_s1_16,A,Rnd,ok,0,0,1,1,1,1,0.9998845462454683,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.47
+A_s1_28,A,S,ok,0,0,1,1,1,1,1.0005263208371626,10,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.1
+A_s1_28,A,C,ok,0,0,1,1,1,1,1.0005263208371626,10,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.24
+A_s1_28,A,Rnd,ok,0,0,1,1,1,1,1.0005263208371626,10,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.48
+A_s1_48,A,S,ok,0,0,1,1,1,1,1.0,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.09
+A_s1_48,A,C,ok,0,0,1,1,1,1,1.0,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.22
+A_s1_48,A,Rnd,ok,0,0,1,1,1,1,1.0,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.32
+A_s2_11,A,S,ok,0,0,1,1,1,1,0.9992559207310271,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.09
+A_s2_11,A,C,ok,0,0,1,1,1,1,0.9992559207310271,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.22
+A_s2_11,A,Rnd,ok,0,0,1,1,1,1,0.9992559207310271,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.32
+A_s2_21,A,S,ok,0,0,1,1,1,1,0.9998352809716002,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.12
+A_s2_21,A,C,ok,0,0,1,1,1,1,0.9998352809716002,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.26
+A_s2_21,A,Rnd,ok,0,0,1,1,1,1,0.9998352809716002,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.4
+A_s2_79,A,S,ok,0,0,1,1,1,1,0.9901015312714732,12,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.25
+A_s2_79,A,C,ok,0,0,1,1,1,1,0.9901015312714732,12,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.49
+A_s2_79,A,Rnd,ok,0,0,1,1,1,1,0.9901015312714732,12,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.71
+A_s2_92,A,S,ok,0,0,1,1,1,1,0.9402634685797974,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.1
+A_s2_92,A,C,ok,0,0,1,1,1,1,0.9402634685797974,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.22
+A_s2_92,A,Rnd,ok,0,0,1,1,1,1,0.9402634685797974,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.33
+A_s3_113,A,S,ok,0,0,1,1,1,1,1.0,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.17
+A_s3_113,A,C,ok,0,0,1,1,1,1,1.0,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.36
+A_s3_113,A,Rnd,ok,0,0,1,1,1,1,1.0,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.57
+A_s3_26,A,S,ok,0,0,1,1,1,1,0.9990298669921398,7,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.07
+A_s3_26,A,C,ok,0,0,1,1,1,1,0.9990298669921398,7,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.17
+A_s3_26,A,Rnd,ok,0,0,1,1,1,1,0.9990298669921398,7,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.24
+A_s3_27,A,S,ok,0,0,1,1,1,1,0.998777326991426,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.07
+A_s3_27,A,C,ok,0,0,1,1,1,1,0.998777326991426,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.17
+A_s3_27,A,Rnd,ok,0,0,1,1,1,1,0.998777326991426,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.27
+A_s3_62,A,S,ok,0,0,0,0,1,1,0.9996328784728108,20,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""counterexample""}",0.06
+A_s3_62,A,C,ok,1,1,1,1,1,1,0.9981670063517999,20,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.19
+A_s3_62,A,Rnd,ok,1,1,1,1,1,1,0.9981801352041557,20,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.32
+A_s4_27,A,S,ok,0,0,1,1,1,1,0.9998776379009625,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.08
+A_s4_27,A,C,ok,0,0,1,1,1,1,0.9998776379009625,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.2
+A_s4_27,A,Rnd,ok,0,0,1,1,1,1,0.9998776379009625,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.3
+A_s4_48,A,S,ok,0,0,1,1,1,1,1.0,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.1
+A_s4_48,A,C,ok,0,0,1,1,1,1,1.0,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.23
+A_s4_48,A,Rnd,ok,0,0,1,1,1,1,1.0,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.34
+A_s4_60,A,S,ok,0,0,1,1,1,1,1.0001608453918989,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.1
+A_s4_60,A,C,ok,0,0,1,1,1,1,1.0001608453918989,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.23
+A_s4_60,A,Rnd,ok,0,0,1,1,1,1,1.0001608453918989,5,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.34
+A_s4_88,A,S,ok,0,0,0,0,1,1,0.9956475217269581,19,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""counterexample""}",0.1
+A_s4_88,A,C,ok,1,1,1,1,1,1,0.9938387990908564,17,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.37
+A_s4_88,A,Rnd,ok,1,1,1,1,1,1,0.9938407447628586,17,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.56
+Amis_s0_106,Amis,S,ok,0,0,0,0,1,1,1.0092862757573873,10,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""counterexample""}",0.16
+Amis_s0_106,Amis,C,ok,6,6,1,1,1,1,1.0408589896174254,14,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",1.6
+Amis_s0_106,Amis,Rnd,ok,3,3,1,1,1,1,1.0411716551181203,14,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",2.53
+Amis_s0_124,Amis,S,ok,0,0,0,0,1,1,1.0081082799200183,10,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""counterexample""}",0.13
+Amis_s0_124,Amis,C,ok,5,5,1,1,1,1,1.0383061990187499,13,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",2.28
+Amis_s0_124,Amis,Rnd,ok,3,3,1,1,1,1,1.0312412800462432,15,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",3.67
+Amis_s0_62,Amis,S,ok,0,0,0,0,1,1,1.008686154124022,18,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""counterexample""}",0.09
+Amis_s0_62,Amis,C,ok,7,7,1,1,1,1,1.0140352628033351,19,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.66
+Amis_s0_62,Amis,Rnd,ok,4,4,1,1,1,1,1.014038297131582,19,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",1.04
+Amis_s0_99,Amis,S,ok,0,0,0,0,1,1,0.9950069863057005,9,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""counterexample""}",0.15
+Amis_s0_99,Amis,C,ok,4,4,1,1,1,1,1.0206349088278133,14,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",1.85
+Amis_s0_99,Amis,Rnd,ok,2,2,1,1,1,1,1.0296121308602868,11,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",2.6
+Amis_s1_34,Amis,S,ok,0,0,1,1,1,1,1.1390087654144143,9,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.13
+Amis_s1_34,Amis,C,ok,0,0,1,1,1,1,1.1390087654144143,9,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.24
+Amis_s1_34,Amis,Rnd,ok,0,0,1,1,1,1,1.1390087654144143,9,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.34
+Amis_s1_37,Amis,S,ok,0,0,1,1,1,1,1.1320053158725425,6,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.11
+Amis_s1_37,Amis,C,ok,0,0,1,1,1,1,1.1320053158725425,6,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.39
+Amis_s1_37,Amis,Rnd,ok,0,0,1,1,1,1,1.1320053158725425,6,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.49
+Amis_s1_57,Amis,S,ok,0,0,1,1,1,1,1.0715893873296511,6,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.09
+Amis_s1_57,Amis,C,ok,0,0,1,1,1,1,1.0715893873296511,6,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.2
+Amis_s1_57,Amis,Rnd,ok,0,0,1,1,1,1,1.0715893873296511,6,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.29
+Amis_s1_98,Amis,S,ok,0,0,0,0,1,1,0.9978537535639385,17,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""counterexample""}",0.09
+Amis_s1_98,Amis,C,ok,4,4,1,1,1,1,1.0178209320736737,19,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.66
+Amis_s1_98,Amis,Rnd,ok,4,4,1,1,1,1,1.0191845008569245,19,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",1.56
+Amis_s2_1,Amis,S,ok,0,0,1,1,1,1,1.3982378091750354,7,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.11
+Amis_s2_1,Amis,C,ok,0,0,1,1,1,1,1.3982378091750354,7,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.24
+Amis_s2_1,Amis,Rnd,ok,0,0,1,1,1,1,1.3982378091750354,7,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.43
+Amis_s2_107,Amis,S,ok,0,0,0,0,1,1,1.1219331742481347,8,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""counterexample""}",0.21
+Amis_s2_107,Amis,C,ok,4,4,1,1,1,1,0.9807676759579074,12,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",1.6
+Amis_s2_107,Amis,Rnd,ok,2,2,1,1,1,1,0.9807430620265096,12,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",2.44
+Amis_s2_117,Amis,S,ok,0,0,1,1,1,1,1.3530518295709175,6,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.21
+Amis_s2_117,Amis,C,ok,0,0,1,1,1,1,1.3530518295709175,6,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.46
+Amis_s2_117,Amis,Rnd,ok,0,0,1,1,1,1,1.3530518295709175,6,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.72
+Amis_s2_76,Amis,S,ok,0,0,0,0,1,1,0.9609810355191639,19,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""counterexample""}",0.09
+Amis_s2_76,Amis,C,ok,4,4,1,1,1,1,0.967297974793106,19,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.9
+Amis_s2_76,Amis,Rnd,ok,2,2,1,1,1,1,0.9676085185631126,19,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",1.33
+Amis_s3_25,Amis,S,ok,0,0,1,1,1,1,1.243872005277682,6,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.15
+Amis_s3_25,Amis,C,ok,0,0,1,1,1,1,1.243872005277682,6,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.32
+Amis_s3_25,Amis,Rnd,ok,0,0,1,1,1,1,1.243872005277682,6,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.45
+Amis_s3_35,Amis,S,ok,0,0,1,1,1,1,1.2881877564169932,11,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.08
+Amis_s3_35,Amis,C,ok,0,0,1,1,1,1,1.2881877564169932,11,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.17
+Amis_s3_35,Amis,Rnd,ok,0,0,1,1,1,1,1.2881877564169932,11,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.25
+Amis_s3_80,Amis,S,ok,0,0,0,0,1,1,0.993371456850977,8,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""counterexample""}",0.15
+Amis_s3_80,Amis,C,ok,5,5,1,1,1,1,1.0805855816258485,11,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",1.43
+Amis_s3_80,Amis,Rnd,ok,2,2,1,1,1,1,1.0806390882907166,11,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",1.85
+Amis_s3_81,Amis,S,ok,0,0,1,1,1,1,1.1431809138676767,6,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.2
+Amis_s3_81,Amis,C,ok,0,0,1,1,1,1,1.1431809138676767,6,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.44
+Amis_s3_81,Amis,Rnd,ok,0,0,1,1,1,1,1.1431809138676767,6,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.6
+Amis_s4_123,Amis,S,ok,0,0,0,0,1,1,1.0048795486017557,19,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""counterexample""}",0.1
+Amis_s4_123,Amis,C,ok,8,8,1,1,1,1,1.0227195955376167,19,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",1.77
+Amis_s4_123,Amis,Rnd,ok,5,5,1,1,1,1,1.0230037075939216,19,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",2.21
+Amis_s4_131,Amis,S,ok,0,0,0,0,1,1,1.0008231002462005,18,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""counterexample""}",0.11
+Amis_s4_131,Amis,C,ok,6,6,1,1,1,1,1.006178985779724,19,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.94
+Amis_s4_131,Amis,Rnd,ok,5,5,1,1,1,1,1.0062538956895457,19,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",1.46
+Amis_s4_35,Amis,S,ok,0,0,1,1,1,1,1.059642393245232,7,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.14
+Amis_s4_35,Amis,C,ok,0,0,1,1,1,1,1.059642393245232,7,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.37
+Amis_s4_35,Amis,Rnd,ok,0,0,1,1,1,1,1.059642393245232,7,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.54
+Amis_s4_44,Amis,S,ok,0,0,1,1,1,1,1.14531603074204,7,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.15
+Amis_s4_44,Amis,C,ok,0,0,1,1,1,1,1.14531603074204,7,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.32
+Amis_s4_44,Amis,Rnd,ok,0,0,1,1,1,1,1.14531603074204,7,0,"{""A1x"": ""verified"", ""A1y"": ""verified"", ""A2"": ""verified""}",0.51
+B_s0_53,B,S,ok,0,0,0,0,3,1,1.0373336374423803,24,0,"{""B1S"": ""counterexample"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""counterexample"", ""B3p"": ""verified"", ""B3m"": ""verified""}",2.25
+B_s0_53,B,C,ok,3,7,1,3,3,1,1.0572621886457214,34,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",4.68
+B_s0_53,B,Rnd,ok,4,8,1,3,3,1,1.0561131606317296,23,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",5.45
+B_s0_69,B,S,ok,0,0,0,0,3,1,1.021475784777065,32,0,"{""B1S"": ""counterexample"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""counterexample"", ""B3p"": ""verified"", ""B3m"": ""verified""}",1.37
+B_s0_69,B,C,ok,5,10,1,3,3,1,1.0640778354223992,36,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",7.0
+B_s0_69,B,Rnd,ok,5,8,1,3,3,1,1.0372841025160753,36,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",7.53
+B_s0_71,B,S,ok,0,0,0,0,3,1,1.0242058985076714,24,0,"{""B1S"": ""counterexample"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""counterexample"", ""B3p"": ""verified"", ""B3m"": ""verified""}",1.32
+B_s0_71,B,C,ok,4,9,1,3,3,1,1.1356502590124546,20,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",3.76
+B_s0_71,B,Rnd,ok,3,7,0,2,3,1,1.042252443840618,36,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",4.35
+B_s0_75,B,S,ok,0,0,0,1,3,1,1.1376507497008075,36,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""counterexample"", ""B3p"": ""verified"", ""B3m"": ""verified""}",1.09
+B_s0_75,B,C,ok,4,7,1,3,3,1,1.1630194789935764,34,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",15.64
+B_s0_75,B,Rnd,ok,3,5,1,3,3,1,1.1566089811302196,36,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",15.99
+B_s1_105,B,S,ok,0,0,0,1,3,1,1.1532074203449085,24,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""counterexample"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.18
+B_s1_105,B,C,ok,4,7,1,3,3,1,1.2308428590723555,18,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.92
+B_s1_105,B,Rnd,ok,4,6,1,3,3,1,1.2450743101034467,17,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",2.27
+B_s1_30,B,S,ok,0,0,0,1,3,1,1.3826441378441308,15,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""counterexample"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.44
+B_s1_30,B,C,ok,2,4,1,3,3,1,1.5400146682781193,15,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.7
+B_s1_30,B,Rnd,ok,4,5,1,3,3,1,1.4796917314875702,15,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",1.22
+B_s1_76,B,S,ok,0,0,0,1,3,1,1.1430227803430122,36,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""counterexample"", ""B3p"": ""verified"", ""B3m"": ""verified""}",2.08
+B_s1_76,B,C,ok,5,9,1,3,3,1,1.2000581665123837,36,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",2.69
+B_s1_76,B,Rnd,ok,3,6,0,2,3,1,1.191744709447221,36,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",3.15
+B_s1_85,B,S,ok,0,0,0,0,3,1,1.1659990762231465,36,0,"{""B1S"": ""counterexample"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""counterexample"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.76
+B_s1_85,B,C,ok,5,8,1,3,3,1,1.1975634206849841,34,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",3.01
+B_s1_85,B,Rnd,ok,4,7,1,3,3,1,1.206125895032448,34,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",4.38
+B_s2_27,B,S,ok,0,0,0,1,3,1,1.5197757781348622,12,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""counterexample"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.26
+B_s2_27,B,C,ok,3,7,1,3,3,1,1.7110783597745884,15,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.61
+B_s2_27,B,Rnd,ok,2,4,1,3,3,1,1.590209295547137,15,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.85
+B_s2_80,B,S,ok,0,0,0,0,3,1,1.1112123337988635,24,0,"{""B1S"": ""counterexample"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""counterexample"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.18
+B_s2_80,B,C,ok,4,11,1,3,3,1,1.1971455701196654,22,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",1.0
+B_s2_80,B,Rnd,ok,5,9,1,3,3,1,1.1747469083948323,35,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",1.83
+B_s2_97,B,S,ok,0,0,0,0,3,1,1.135246620715944,24,0,"{""B1S"": ""counterexample"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""counterexample"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.17
+B_s2_97,B,C,ok,5,8,1,3,3,1,1.2661956102027419,12,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",2.85
+B_s2_97,B,Rnd,ok,3,7,0,2,3,1,1.1866558085099643,33,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",3.59
+B_s2_99,B,S,ok,0,0,0,2,3,1,1.2971857164359557,6,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.16
+B_s2_99,B,C,ok,1,1,1,3,3,1,2.6331119186847918,2,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.45
+B_s2_99,B,Rnd,ok,2,2,1,3,3,1,2.6331119186847918,2,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.83
+B_s3_11,B,S,ok,0,0,0,1,3,1,1.5276367124197368,12,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""counterexample"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.27
+B_s3_11,B,C,ok,3,6,1,3,3,1,2.382573100006511,7,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.6
+B_s3_11,B,Rnd,ok,3,5,1,3,3,1,1.9013371415750753,13,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.89
+B_s3_16,B,S,ok,0,0,0,1,3,1,1.4809110719503595,12,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""counterexample"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.08
+B_s3_16,B,C,ok,2,4,1,3,3,1,2.078612641321957,11,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.38
+B_s3_16,B,Rnd,ok,2,4,1,3,3,1,2.1135673363102225,7,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.71
+B_s3_52,B,S,ok,0,0,0,0,3,1,1.1544786283718067,36,0,"{""B1S"": ""counterexample"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""counterexample"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.22
+B_s3_52,B,C,ok,4,9,1,3,3,1,1.1787227242745972,36,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.73
+B_s3_52,B,Rnd,ok,3,6,0,2,3,1,1.1852988067073833,36,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",1.35
+B_s3_87,B,S,ok,0,0,0,0,3,1,1.1811206234848572,30,0,"{""B1S"": ""counterexample"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""counterexample"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.22
+B_s3_87,B,C,ok,5,10,1,3,3,1,1.2619106348303695,24,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",1.79
+B_s3_87,B,Rnd,ok,5,9,1,3,3,1,1.209906247557896,36,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",2.49
+B_s4_17,B,S,ok,0,0,0,1,3,1,1.405620382622324,12,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""counterexample"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.38
+B_s4_17,B,C,ok,3,6,1,3,3,1,2.0562897548937262,11,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",1.01
+B_s4_17,B,Rnd,ok,2,4,1,3,3,1,1.7585055403711405,9,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",1.41
+B_s4_27,B,S,ok,0,0,0,1,3,1,1.4696960256075309,12,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""counterexample"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.15
+B_s4_27,B,C,ok,3,7,1,3,3,1,2.0509039657625605,11,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.77
+B_s4_27,B,Rnd,ok,4,6,0,2,3,1,2.068750178905785,9,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",1.3
+B_s4_70,B,S,ok,0,0,0,0,3,1,1.1324739817372258,24,0,"{""B1S"": ""counterexample"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""counterexample"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.23
+B_s4_70,B,C,ok,5,12,1,3,3,1,1.2246809742759643,20,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",1.36
+B_s4_70,B,Rnd,ok,4,10,1,3,3,1,1.1666263250882258,28,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",1.95
+B_s4_75,B,S,ok,0,0,0,0,3,1,1.1416806359729932,24,0,"{""B1S"": ""counterexample"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""counterexample"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.2
+B_s4_75,B,C,ok,3,8,1,3,3,1,1.2381066871936843,18,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""verified"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",0.99
+B_s4_75,B,Rnd,ok,3,7,0,2,3,1,1.1664282829733448,25,0,"{""B1S"": ""verified"", ""B1I"": ""verified"", ""B1R"": ""verified"", ""B2S"": ""counterexample"", ""B2R"": ""verified"", ""B3p"": ""verified"", ""B3m"": ""verified""}",1.79

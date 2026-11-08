@@ -1,0 +1,5 @@
+criterion,quantity,value,threshold,passed,secondary_pooled
+G-A1,f(C)-f(S); med iid ratio C,0.5333; 1.0585,>=0.20; <=1.10,True,0.6100
+G-A2,f(C)-f(Rnd),0.1000,>=0.20,False,0.0600
+outcome,protocol 0A outcome,3,,,
+coverage,candidates with records; job errors,60; 0,60; 0,True,

@@ -49,3 +49,38 @@ The Clay problem (global regularity in 3D) is not a target of this project. The 
 | DNS time on a laptop | 64^2 grid, short runs, reuse snapshots |
 | pilot tolerance too loose (4-18% of strong-verified models still misbehave) | verify at weak tolerance in phase 0 |
 | novelty overlaps prior work | state the delta explicitly in the writeup, cite the baselines |
+
+
+## Addendum 2026-11-08: revised plan
+
+Why this changed. Two things came up after the pilot. (1) Checking the competition record: the top award goes to one of the category winners, and past winners had a method with a measurable advantage and a clear user. (2) The state of the Navier–Stokes question: in September 2026 an AI-agent claim of finite-time blow-up was reported, and reports disagree on how far the machine check goes. A student project cannot build on that. The pilot also showed that validation metrics and random testing already catch most violations on synthetic data. So the claim has to rest on real data, on a misspecified case, and on a fair comparison with simple by-construction fixes.
+
+Changes to the original plan:
+
+| item | original | revised |
+|---|---|---|
+| Navier–Stokes | phase 2 closure target | dropped as a target. Motivation only. |
+| SOS verifier | phase 1 requirement | optional. The z3 verifier covers up to 3 state variables. Use SOS only for a model with 4 or more. |
+| fluid models (Lorenz-63, shear flow, Kolmogorov) | phase 1 | optional stretch |
+| real data | none | headline: hare–lynx pelt records (Hudson's Bay), then one epidemic time series. Data source to be confirmed. |
+| baselines | constrained SINDy | add by-construction fixes: fitting log-states for positivity, fraction-state parametrisation for conservation, soft-penalty training. A reviewer will ask why these were not used. |
+| misspecification | arm A-mis; Holling II in phase 0 | Holling II is the headline synthetic test (true law outside the library), then the real data. |
+| Gate A | after all of phase 0 | after 0A (baselines and random-counterexample control) |
+| repair target | strong tolerance only | add a weak-tolerance repair arm. The strong tolerance leaves 4–18% of verified models unphysical in trajectory tests. |
+| board deliverables | none | live demo (best-fit model goes negative; repaired and by-construction models stay positive); one-page explanation written by the student; tests; reproducible repo |
+
+Decision rules added:
+- Gate A. If by-construction fixes match or beat repair on admissibility at equal held-out error, the claim becomes: when verification is needed and when a by-construction fix is enough, with the rule tested on systems not used to derive it. That is a result, not a dead end.
+- Gate R. At least one real dataset must show a validation-selected model violating a stated law under extrapolation. If none does, drop the real-data claim and report the synthetic results only.
+
+Timeline. Dates assume an affiliated fair in late February. Set the results freeze at that fair's deadline minus three weeks.
+- 0A, Nov 9–Dec 6: by-construction baselines, constrained SINDy, random-counterexample control. Gate A.
+- 0B, Dec 7–Jan 10: Holling II misspecification, needle test, 20 seeds with confidence intervals.
+- 1, Jan 11–Jan 31: hare–lynx. Gate R.
+- 2, Feb 1–Feb 21: epidemic series. Results freeze. Fair write-up, written by the student.
+- 3, Feb 22–Apr 4: robustness checks and the board demo. Any new experiment is registered before it runs.
+- May 2027: Regeneron ISEF, Los Angeles.
+
+Judging reference. The Society says projects are judged on creativity, innovation and depth of scientific inquiry. The Innovator Award is for innovative research with potential impact in its field and beyond. Recent winners of the top $100,000 award: 2025, a new synthesis route for an antiviral; 2026, a simulation program for protein-like folding. Earlier top awards: 2023 ($75,000), a method for finding exoplanets that orbit close to their stars; 2024 ($75,000), an organic electrochemical transistor.
+
+Odds. About 22 category winners compete for the top prize, and about 1,725 finalists compete overall. Being a finalist does not make a win likely, and no plan makes it near-certain. The levers are a clear test that can fail, a real case where the failure changes a decision, a simple fix that is compared honestly, and a student who can explain every step.
