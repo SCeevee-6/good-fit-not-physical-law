@@ -36,3 +36,15 @@ f is the fraction of the 60 candidates verified on every non-structural spec. Th
 ## Files
 
 `results/0A_jobs/*.json` (raw, one per candidate), `results/0A_runs.csv` (one row per candidate and arm), `results/0A_summary.csv`, `results/0A_gate.csv`, `logs/gate_0A_run.log` (local only, logs are not pushed).
+
+## Defect found after the run (2026-11-08)
+
+The B structure masks out a true term. The R-equation was restricted to monomials divisible by R, but the true law is R' = 0.2 I. The A and A-mis masks keep every true term (`tools/check_mask.py`).
+
+What this does to the result:
+- On A and A-mis, where the structure is right, C and Rnd both reach 1.00. The whole G-A2 gap (0.100) comes from B.
+- 20 of the 32 candidates that move from failing to passing between S and C are B candidates. Without B, f(C) - f(S) is 0.30 (A 0.10, A-mis 0.50).
+- The SIR accuracy figures (S 1.15, C 1.23, Rnd 1.20) are fits under a wrong structure. They say nothing yet about the cost of a correct one.
+- B1S failing in 10/20 is partly the same defect: S' = -(I' + R') inherits the bad R-equation.
+
+The verdict stays outcome 3 as frozen, flagged as confounded on B. Protocol 0A2 reruns B with a correct structure under the same rule.

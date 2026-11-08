@@ -51,3 +51,6 @@ B1S is moved from the structural family to the non-structural family. The S-equa
 - A run that ends infeasible, or a spec that ends in timeout, counts as not admissible. Candidates stay in the denominator of 60.
 - The median held-out ratio is taken over arm-models that ran (status ok).
 - Driver: `src/run_gate_a.py` (one JSON per candidate in `results/0A_jobs/`). Analysis: `src/analyze_gate_a.py`.
+
+## Defect found after the run (2026-11-08)
+The structure for system B is wrong. The R-equation keeps only monomials divisible by R, but the true law is R' = 0.2 I, which has no R factor. So the S arm on B cannot represent the true model, and the line above saying the true A and B models satisfy the structure is false for B. A and A-mis are fine (checked with `tools/check_mask.py`: no true term is masked). The frozen verdict is not changed. The correction is a new protocol, `docs/protocol_0A2.md`, to be written before it runs.

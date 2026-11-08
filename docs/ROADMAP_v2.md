@@ -100,3 +100,27 @@ Protocol 0A gave outcome 3 (`docs/gate_A_result.md`). G-A1 passed (f(C) - f(S) =
 - Chat 2 (0B) keeps its scope. The needle test is now the main test of witness vs random, and should vary the sample count of the random loop.
 - SIR repairs cost more accuracy (median ratio 1.23 for C) than the pooled gate figure shows. 0B reports accuracy cost per system.
 - Category decision can now be made. It still follows the headline demo.
+
+
+## Addendum 3, 2026-11-08: B structure defect, review points, plan for 0A2
+
+**Defect.** In protocol 0A the B structure kept only R-divisible monomials in the R-equation. The true R' = 0.2 I is not R-divisible, so arm S on B was misspecified by construction. A and A-mis are correct. Details in `docs/gate_A_result.md`. The 0A verdict (outcome 3) stays on record, flagged as confounded on B. It is not used for planning until 0A2 is in.
+
+**Wording.** Rule text in 0A says "pooled". The pre-run scoring note fixed the reading per candidate. From 0A2 on, protocols say "fraction of candidates" and report the per law x candidate pooled figure as secondary. On timing: the log of the cancelled first run shows 29 of 60 candidates finished (A and A-mis only) before the reset. Their outputs were held in kernel memory and lost, and none were written to file or recorded.
+
+**Protocol 0A2 (next chat, frozen before running).** Same sample, arms, budget, seed and decision rule as 0A. Only B changes, and A and A-mis are not rerun. Two B structures, both checked to contain the true model before running:
+- B-pos: I-equation divisible by I. R-equation free, but coefficients of R-free monomials are constrained >= 0, which makes R'(S,I,0) >= 0 on the orthant. S-equation = -(I' + R').
+- B-fac (the review's variant): same as B-pos, plus the S-equation must be divisible by S. That is a linear equality: the R-free and S-free part of I' + R' is zero. This enforces S positivity and conservation exactly.
+Gate A is re-decided from A, A-mis (0A results reused) and B-pos. B-fac is reported next to it. If B-fac and B-pos give different outcomes, report both. Accuracy cost is reported per system and per law.
+
+**Review points taken.**
+- 0B: random-loop sampler budget 2k, 20k and 200k points, plotted against violation volume, with witnesses as the reference.
+- Accuracy cost reported per law and per system, not only pooled.
+- Working headline, conditional on 0A2: which laws a parametrisation enforces exactly, which need an exact check, what the check costs, and when finite sampling misses a violation.
+- S1 (Navier-Stokes) stays small, as one more case of the same question.
+- Gate R moves earlier once the hare-lynx source is settled.
+
+**Review points not taken as written.**
+- "Accuracy cost is real on SIR": the 0A SIR numbers come from the defective structure. Measure it again in 0A2.
+- The demo idea (structured SIR stays positive but S rises): only valid with a correct structure, so it waits for 0A2.
+- Category: still decided after 0A2.
