@@ -1,0 +1,63 @@
+{
+ "params": {
+  "a": "1",
+  "h": "1",
+  "b": "4/5",
+  "d": "2/5",
+  "K": "4",
+  "c": "5"
+ },
+ "b": {
+  "x_star": "1",
+  "y_star": "3/2",
+  "K_hopf": "3",
+  "K_hopf_eq_2xs_plus_1_over_h": true,
+  "trace": "1/8",
+  "det": "3/20",
+  "unstable_focus": true,
+  "rk4_tail_x": [
+   0.13359323296529774,
+   3.166581034580848
+  ],
+  "rk4_tail_y": [
+   0.4116986168719329,
+   2.529561095679585
+  ],
+  "limit_cycle": true,
+  "K_below": 2.7,
+  "below_converges": true,
+  "traj_inside_trap": true
+ },
+ "c": {
+  "Vdot_max": "-54/125",
+  "Vdot_max_float": -0.432,
+  "argmax_x": "14/5",
+  "c_min_trap": "98/25",
+  "argmax_inside": true,
+  "traps": true
+ },
+ "a": {
+  "H1x": {
+   "z3": "unsat",
+   "sec": 0.0034
+  },
+  "H1y": {
+   "z3": "unsat",
+   "sec": 0.0008
+  },
+  "H2": {
+   "z3": "unsat",
+   "sec": 0.0099
+  },
+  "H2_margin": {
+   "z3": "unsat",
+   "sec": 0.007
+  },
+  "H2_tight": {
+   "z3": "sat",
+   "sec": 0.0063
+  },
+  "within_limit": true
+ },
+ "all_ok": true
+}

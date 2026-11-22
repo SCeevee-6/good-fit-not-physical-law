@@ -1,9 +1,12 @@
 """Data generation: clean ODE trajectories, measurement noise, Savitzky-Golay smoothing/derivatives."""
 import numpy as np
 from scipy.integrate import solve_ivp
-from scipy.signal import savgol_filter
+try:
+    from scipy.signal import savgol_filter
+except ImportError:                      # scipy.signal DLL blocked on some machines; numpy copy of the same filter
+    from savgol_np import savgol_filter
 
-SYS_ID = {'A_predator_prey': 0, 'B_sir': 1}
+SYS_ID = {'A_predator_prey': 0, 'B_sir': 1, 'H_holling': 2}
 
 
 def simulate_true(sys, ic):

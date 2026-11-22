@@ -85,6 +85,7 @@ class System:
     n_train: int = 14
     n_iid: int = 6
     n_ood: int = 6
+    rhs_true: Callable = None        # set when the truth is not in the polynomial library (system H)
 
     @property
     def n(self):
@@ -97,6 +98,8 @@ class System:
         return embed_true(self.true_terms, self.E(d), self.n)
 
     def f_true(self):
+        if self.rhs_true is not None:
+            return self.rhs_true
         E = self.E(max(self.degrees))
         Xi = self.true_Xi(max(self.degrees))
         from lib import make_rhs
@@ -174,6 +177,39 @@ def _sysB():
     return System('B_sir', ('S', 'I', 'R'), terms, (2, 3), 60.0, 0.25, 11, 3, ic_train, ic_ood, specs)
 
 
-SYSTEMS = {'A': _sysA(), 'B': _sysB()}
+# ---------------------------------------- System H: Rosenzweig-MacArthur (Holling II) -------------
+H_PAR = dict(a=Fr(1), h=Fr(1), b=Fr(4, 5), d=Fr(2, 5), K=Fr(4), c=Fr(5))   # protocol 0B; checked by tools/check_holling.py
+
+
+def _sysH():
+    a, h, b, d, K, c = (float(H_PAR[k]) for k in 'a h b d K c'.split())
+    def rhs(t, u):
+        x, y = u
+        fr = x * y / (1 + h * x)
+        return np.array([x * (1 - x / K) - a * fr, -d * y + b * fr])
+    # bookkeeping only: the polynomial part of the truth (the rational term has no library form)
+    terms = [{(1, 0): 1.0, (2, 0): -1.0 / K}, {(0, 1): -d}]
+    def ic_train(rng):
+        return np.array([rng.uniform(0.3, 3.0), rng.uniform(0.2, 2.0)])
+    def ic_ood(rng):
+        return np.array([rng.uniform(3.5, 5.5), rng.uniform(0.1, 0.6)])   # high prey, low predator, inside V <= c
+    r, C = H_PAR['b'] / H_PAR['a'], H_PAR['c']
+    ymax, xmax = C, C / r                                                 # 5, 25/4
+    tw, ts = 1e-3, 2e-2
+    specs = [
+        Spec('H1x', 'prey cannot go negative: x\'(0,y) >= 0', (Fr(1), Fr(0)), ('y',),
+             lambda u, K_: [0 * u[0], u[0]],
+             [((Fr(1),), Fr(0)), ((Fr(-1),), -ymax)], tw, ts, ((0, float(ymax)),)),
+        Spec('H1y', 'predator cannot go negative: y\'(x,0) >= 0', (Fr(0), Fr(1)), ('x',),
+             lambda u, K_: [u[0], 0 * u[0]],
+             [((Fr(1),), Fr(0)), ((Fr(-1),), -xmax)], tw, ts, ((0, float(xmax)),)),
+        Spec('H2', 'trapping region: dV/dt <= 0 on V = 0.8x+y = 5', (-r, Fr(-1)), ('x',),
+             lambda u, K_: [u[0], K_(C) - K_(r) * u[0]],
+             [((Fr(1),), Fr(0)), ((Fr(-1),), -xmax)], tw, ts, ((0, float(xmax)),), shell_V=True),
+    ]
+    return System('H_holling', ('x', 'y'), terms, (2, 3, 4), 40.0, 0.05, 21, 3, ic_train, ic_ood, specs, rhs_true=rhs)
+
+
+SYSTEMS = {'A': _sysA(), 'B': _sysB(), 'H': _sysH()}
 NOISE_LEVELS = (0.005, 0.02, 0.05)
 SEEDS = (0, 1, 2, 3, 4)
