@@ -4,7 +4,7 @@ usage: python tools/gh_push.py <repo-name> <folder> "<commit message>" [--privat
 token: env GITHUB_TOKEN. Skips whatever .gitignore in <folder> lists (simple patterns only).
 Creates the repo if it does not exist. Prints one line: url, commit, file count.
 """
-import os, sys, json, base64, fnmatch, urllib.request, urllib.error
+import os, sys, json, base64, fnmatch, hashlib, urllib.request, urllib.error
 
 API = 'https://api.github.com'
 
@@ -75,20 +75,30 @@ def main():
     code, ref = call('GET', f'/repos/{login}/{name}/git/ref/heads/{branch}', token)
     assert code == 200, ('no branch', code)
     head = ref['object']['sha']
-    entries = []
+    code, cur = call('GET', f'/repos/{login}/{name}/git/trees/{head}?recursive=1', token)
+    have = {e['path']: e['sha'] for e in cur.get('tree', []) if e.get('type') == 'blob'} if code == 200 else {}
+    entries, sent = [], 0
     for rel in collect(folder):
         with open(os.path.join(folder, rel), 'rb') as fh:
-            b = base64.b64encode(fh.read()).decode()
-        code, blob = call('POST', f'/repos/{login}/{name}/git/blobs', token, {'content': b, 'encoding': 'base64'})
-        assert code == 201, ('blob failed', rel, code)
-        entries.append({'path': rel, 'mode': '100644', 'type': 'blob', 'sha': blob['sha']})
-    code, tree = call('POST', f'/repos/{login}/{name}/git/trees', token, {'tree': entries})
-    assert code == 201, ('tree failed', code, tree.get('message'))
+            data = fh.read()
+        sha = hashlib.sha1(b'blob %d\0' % len(data) + data).hexdigest()   # git blob id; unchanged files are not re-sent
+        if have.get(rel) != sha:
+            code, blob = call('POST', f'/repos/{login}/{name}/git/blobs', token, {'content': base64.b64encode(data).decode(), 'encoding': 'base64'})
+            assert code == 201, ('blob failed', rel, code)
+            sha = blob['sha']; sent += 1
+        entries.append({'path': rel, 'mode': '100644', 'type': 'blob', 'sha': sha})
+    tree = None                                   # full snapshot, built in chunks (one large tree call can 502)
+    for i in range(0, len(entries), 300):
+        body = {'tree': entries[i:i + 300]}
+        if tree:
+            body['base_tree'] = tree['sha']
+        code, tree = call('POST', f'/repos/{login}/{name}/git/trees', token, body)
+        assert code == 201, ('tree failed', code, tree.get('message'))
     code, commit = call('POST', f'/repos/{login}/{name}/git/commits', token, {'message': msg, 'tree': tree['sha'], 'parents': [head]})
     assert code == 201, ('commit failed', code)
     code, _ = call('PATCH', f'/repos/{login}/{name}/git/refs/heads/{branch}', token, {'sha': commit['sha']})
     assert code == 200, ('ref update failed', code)
-    print(repo['html_url'], commit['sha'][:8], len(entries), 'files')
+    print(repo['html_url'], commit['sha'][:8], len(entries), 'files', sent, 'sent')
 
 
 if __name__ == '__main__':

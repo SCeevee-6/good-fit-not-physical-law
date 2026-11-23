@@ -8,3 +8,4 @@ data/
 src/_test_analyze.py
 src/profile_b.py
 *.tmp
+kg_out/

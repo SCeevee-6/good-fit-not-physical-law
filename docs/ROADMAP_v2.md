@@ -136,3 +136,17 @@ What changes in the plan:
 - Only 1 of 60 candidates has a violation that 2000 random points miss. 0B therefore builds needles on purpose and runs sampler budgets 2k / 20k / 200k against violation volume, witness loop as reference. Natural needles are too rare here to carry the comparison.
 - B-fac alone satisfied every SIR law on all 20 candidates. The law taxonomy gets a per-law column for "enforced by which structure" and "satisfied empirically without enforcement".
 - Category decision is unblocked; it still follows the headline demo.
+
+## Addendum 5, 2026-11-23: protocol 0B run
+
+Protocol 0B was frozen at commit 9f1cf045 before any run, and ran on Kaggle. Details in `docs/gate_B_result.md`.
+
+- G-B1 passes: 97 % of equivalent Holling II models break a law, mostly positivity.
+- G-B2 passes: C repairs 160/160 at a median held-out cost of 3.6 %, and out-of-range rollouts improve.
+- G-B3 fails: no natural violation is anywhere near the volume a 20k-point sampler misses (smallest 0.064 vs v50 3.5e-5). The random detector matches 1 - (1 - v)^n on built needles.
+- Gate A outcome 3 replicates over 20 seeds: f(C)-f(Rnd) 0.033 [0.017, 0.050], f(C)-f(S) 0.354 [0.288, 0.429].
+
+What changes in the plan:
+- Do not claim witness search finds violations that sampling misses on these testbeds. The claim is a certificate (verified admissible, exact witness) plus a measured miss curve that says when sampling stops being enough.
+- New observation to follow up: on H, structure alone makes the trapping law fail more often (f(H2) 0.88 pool, 0.40 S). Enforcing one law can push a misspecified fit into breaking another. This is a candidate headline for the law taxonomy.
+- Next: hare-lynx real data (network access approved by the user), then the category decision.

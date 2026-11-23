@@ -1,17 +1,21 @@
-# STATUS (2026-11-08, chat 2)
+# STATUS (2026-11-23, chat 3)
 
 ## Decided
-- Gate A re-decided under protocol 0A2: outcome 3 with B-pos (f(C)-f(S) 0.317, med ratio C 1.000, f(C)-f(Rnd) 0.017); B-fac also outcome 3 (0.200 exactly, 0.000). `docs/gate_A2_result.md`, ROADMAP_v2 Addendum 4.
-- 0A result kept on record, superseded for B by 0A2.
+- Gate A: protocol 0A2, outcome 3 (`docs/gate_A2_result.md`). Replicated over 20 seeds in 0B-3.
+- Protocol 0B ran (`docs/gate_B_result.md`, ROADMAP_v2 Addendum 5): G-B1 pass, G-B2 pass, G-B3 fail, replication pass.
 
 ## Frozen
-- 0A: `docs/protocol_0A.md`, `results/0A_sample.csv`, `src/gate_a.py`, `results/0A_jobs/`.
-- 0A2: `docs/protocol_0A2.md` (commit f996151e, before the run), `src/gate_a2.py`, `results/0A2_jobs/`, `results/0A2_*.csv`.
+- 0A, 0A2 as before.
+- 0B: `docs/protocol_0B.md` (commit 9f1cf045, before the run), `src/gate_b.py`, `src/needles.py`, `src/run_0B.py`, `results/0B_jobs/`, `results/0B_sample.csv`.
 
 ## Next
-- Protocol 0B drafted: `docs/protocol_0B.md` (DRAFT, not frozen). Before freezing: write `tools/check_holling.py` (truth check of H laws, trapping c, limit cycle at K=4), settle the four open questions, then commit the frozen version. No 0B run before that.
+- Hare-lynx real data. The user approved network access; pick the source and record it before fitting.
+- Law taxonomy per law and structure, including the H result that structure alone breaks the trapping law more often.
+- Competition category follows the headline demo.
 
 ## Resume
-- ceg-ode kernel, cwd repo root: `sys.path.insert(0, 'src'); import run_gate_a; run_gate_a.main(6, protocol='0A2')` (skips finished JSONs; 31 s for 40 jobs). Tables: `import analyze_gate_a2; analyze_gate_a2.main()`.
-- Mask check: `runpy.run_path('tools/check_mask.py')`.
-- No pandas in ceg-ode; use csv and numpy. Gate thresholds are compared as exact fractions.
+- Kaggle (heavy runs): `python tools/kaggle_launch.py push <main|needles> <commit> <user>`, then `status` / `fetch`. The token's account is shreyanchethan. The runner pulls the given commit from GitHub, so the repo must be public or the code uploaded another way.
+- Local: `python src/run_0B.py <pool|sample|arms|needles> [workers]` (resumable), `python src/analyze_0B.py` (CSVs only).
+- Holling truth check: `python tools/check_holling.py`.
+- This machine blocks `scipy.signal`; `src/savgol_np.py` stands in, and gives the same fits.
+- No pandas in analysis code. Gate thresholds are compared as exact fractions.

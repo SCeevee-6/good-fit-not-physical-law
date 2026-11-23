@@ -1,0 +1,5 @@
+rule,stat,count,n,value,boot_lo,boot_hi,wilson_lo,wilson_hi,threshold,passed,med_ood_ratio_C,v50_20k,verifier_found,needles_built,d_CS_lo,d_CS_hi,d_CRnd_lo,d_CRnd_hi
+G-B1,fraction of accuracy-equivalent H candidates violating a law,3365,3456,0.9736689814814815,0.9661458333333334,0.9809420092567384,0.9677819016711215,0.9785042328143474,>= 1/5 and boot_lo > 1/10,True,,,,,,,,
+G-B2,f(C) on H (all laws) and median OOD rollout ratio of C,160,160,1.0,,,,,f(C) >= 9/10 and median OOD ratio <= 1.10,True,0.588203262506263,,,,,,,
+G-B3,share of accuracy-equivalent H violators with volume < v50(20k),0,3365,0.0,,,,,>= 1/20,False,,3.497742789830644e-05,450,450,,,,
+Replication,"pooled A+Amis+Bpos: C-Rnd interval reaches below 1/5, C-S interval above 0",,240,,,,,,d_CRnd_lo < 1/5 and d_CS_lo > 0,True,,,,,0.2875,0.42916666666666664,0.016666666666666666,0.05
