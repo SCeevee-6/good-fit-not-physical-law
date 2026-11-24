@@ -1,5 +1,5 @@
 """Push tools/kaggle_0B.py as a private Kaggle script kernel, or fetch its output.
-usage: python tools/kaggle_launch.py push <mode> <commit> <user>    (mode: main | needles)
+usage: python tools/kaggle_launch.py push <mode> <commit> <user>    (mode: main | needles | R)
        python tools/kaggle_launch.py status <mode> <user>
        python tools/kaggle_launch.py fetch <mode> <user> <outdir>
 Needs the kaggle CLI and its token in the environment.
@@ -10,7 +10,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 
 def slug(mode):
-    return f'ceg-0b-{mode}'
+    return 'ceg-0r' if mode == 'R' else f'ceg-0b-{mode}'
 
 
 def kg(*a):
@@ -24,8 +24,11 @@ def main():
     if cmd == 'push':
         commit, user = sys.argv[3], sys.argv[4]
         d = tempfile.mkdtemp()
-        src = open(os.path.join(HERE, 'kaggle_0B.py'), encoding='utf-8').read()
-        src = src.replace("MODE = 'main'", f"MODE = '{mode}'").replace("COMMIT = '9f1cf045'", f"COMMIT = '{commit}'")
+        if mode == 'R':
+            src = open(os.path.join(HERE, 'kaggle_0R.py'), encoding='utf-8').read().replace("COMMIT = 'REPLACE'", f"COMMIT = '{commit}'")
+        else:
+            src = open(os.path.join(HERE, 'kaggle_0B.py'), encoding='utf-8').read()
+            src = src.replace("MODE = 'main'", f"MODE = '{mode}'").replace("COMMIT = '9f1cf045'", f"COMMIT = '{commit}'")
         open(os.path.join(d, 'run.py'), 'w', encoding='utf-8', newline='\n').write(src)
         meta = dict(id=f'{user}/{slug(mode)}', title=slug(mode), code_file='run.py', language='python', kernel_type='script',
                     is_private=True, enable_gpu=False, enable_tpu=False, enable_internet=True,
