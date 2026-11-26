@@ -150,3 +150,17 @@ What changes in the plan:
 - Do not claim witness search finds violations that sampling misses on these testbeds. The claim is a certificate (verified admissible, exact witness) plus a measured miss curve that says when sampling stops being enough.
 - New observation to follow up: on H, structure alone makes the trapping law fail more often (f(H2) 0.88 pool, 0.40 S). Enforcing one law can push a misspecified fit into breaking another. This is a candidate headline for the law taxonomy.
 - Next: hare-lynx real data (network access approved by the user), then the category decision.
+
+## Addendum 6, 2026-11-26: protocol 0R run (Gate R)
+
+Protocol 0R was frozen at 0ad1896c. A first run stalled, and addendum 1 of the protocol added time limits before any real-series result existed. The run that counts is commit fcfb358d. Details in `docs/gate_R_result.md`.
+
+- G-R1 passes: the validation-selected model breaks the hare positivity law and the trapping law.
+- G-R2 passes: 45 of 47 accuracy-equivalent candidates break a law.
+- G-R3 passes: the witness loop repairs 47 of 47 at a median validation ratio of 0.99.
+- Verdict: the real-data claim stays.
+
+What changes in the plan:
+- The real-data claim is weaker than the synthetic one. The fits are poor (validation error 0.89 training sd) and the witnesses sit where there is no data. State it as "unconstrained fits break stated laws outside the data", not as a finding about hares and lynx.
+- Gate R is passed on one series. A second real series (epidemic, chat 5) is what would make it a claim.
+- Next: the law taxonomy per law and structure, then the epidemic series.

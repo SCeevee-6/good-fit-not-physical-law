@@ -1,0 +1,6 @@
+rule,stat,value,laws,val_rmse,k,degree,witness_outside_obs_box,witness_replay_ok,threshold,passed,count,n,primary_C_verified,primary_iid_ratio,primary_ood_ratio,pooled_count,pooled_n,pooled_med_iid,pooled_med_ood,cheap_fix,detail
+G-R1,validation-selected model (min validation RMSE) breaks a law,True,"R1x,R2",0.8873578882161728,5,2,"R1x:True,R2:True","R1x:True,R2:True",verifier counterexample at strong tolerance,True,,,,,,,,,,,
+G-R2,share of accuracy-equivalent candidates that break a law,0.9574468085106383,,,,,,,n >= 5 and share >= 1/5,True,45,47,,,,,,,,,
+G-R3,C repairs the selected model and the pooled set at low cost,,,,,,,,"primary C verified, ratios <= 1.10; pooled f(C) >= 9/10, medians <= 1.10",True,,,True,1.0512535550155588,0.9751550891999387,47,47,0.9873652180744934,0.6183588941399065,,
+Verdict,real-data claim retained (G-R1 and G-R2); cheap fix retained (also G-R3),retained,,,,,,,,True,,,,,,,,,,True,
+Sensitivity,"primary violates in every config / share of AES violating, per config",True,,,,,,,,,,,,,,,,,,,w5c2:1:63/65;w5c3:1:63/65;w5c4:1:63/65;w7c2:1:45/47;w7c3:1:45/47;w7c4:1:45/47;w9c2:1:19/20;w9c3:1:19/20;w9c4:1:19/20
