@@ -1,5 +1,5 @@
 """Push tools/kaggle_0B.py as a private Kaggle script kernel, or fetch its output.
-usage: python tools/kaggle_launch.py push <mode> <commit> <user>    (mode: main | needles | R)
+usage: python tools/kaggle_launch.py push <mode> <commit> <user>    (mode: main | needles | R | E)
        python tools/kaggle_launch.py status <mode> <user>
        python tools/kaggle_launch.py fetch <mode> <user> <outdir>
 Needs the kaggle CLI and its token in the environment.
@@ -10,7 +10,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 
 def slug(mode):
-    return 'ceg-0r' if mode == 'R' else f'ceg-0b-{mode}'
+    return {'R': 'ceg-0r', 'E': 'ceg-0e'}.get(mode, f'ceg-0b-{mode}')
 
 
 def kg(*a):
@@ -24,10 +24,11 @@ def main():
     if cmd == 'push':
         commit, user = sys.argv[3], sys.argv[4]
         d = tempfile.mkdtemp()
-        if mode == 'R':
-            src = open(os.path.join(HERE, 'kaggle_0R.py'), encoding='utf-8').read().replace("COMMIT = 'REPLACE'", f"COMMIT = '{commit}'")
+        if mode in ('R', 'E'):
+            src = open(os.path.join(HERE, f'kaggle_0{mode}.py'), encoding='utf-8').read().replace("COMMIT = 'REPLACE'", f"COMMIT = '{commit}'")
             if len(sys.argv) > 5 and sys.argv[5] == 'test':
-                src = src.replace("SERIES_ARGS = []", "SERIES_ARGS = ['--series', 'synthetic_H', '--only', '1']")
+                ts = 'synthetic_H' if mode == 'R' else 'synthetic_B'
+                src = src.replace("SERIES_ARGS = []", f"SERIES_ARGS = ['--series', '{ts}', '--only', '1']")
         else:
             src = open(os.path.join(HERE, 'kaggle_0B.py'), encoding='utf-8').read()
             src = src.replace("MODE = 'main'", f"MODE = '{mode}'").replace("COMMIT = '9f1cf045'", f"COMMIT = '{commit}'")
