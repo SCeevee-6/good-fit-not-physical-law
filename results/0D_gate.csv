@@ -1,0 +1,10 @@
+rule,stat,value,boot_lo,boot_hi,passed,count,n
+C - SoftA,verified share on non-structural laws,0.0625,-0.05,0.175,,,
+C - SoftB,verified share on non-structural laws,-0.1375,-0.2375,-0.05,,,
+R-D1a,C verifies >= 1/10 more than the pilot-budget grid (SoftA),0.0625,,,False,,
+R-D1b,C verifies >= 1/10 more than the fine grid (SoftB),-0.1375,,,False,,
+R-D1,coverage advantage of the loop at four states (R-D1a or R-D1b),False,,,False,,
+R-D2,Bernstein vs z3 disagreements among laws both decided (must be 0),0,,,True,0,703
+R-D3,verified laws with a sampled point below -tol_strong (must be 0),0,,,True,0,400
+E4 C - S,"verified share, non-structural laws (report only)",0.775,0.675,0.8625,,,
+E4 C - Rnd,"verified share, non-structural laws (report only)",0.225,0.125,0.3375,,,

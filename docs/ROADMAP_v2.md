@@ -203,3 +203,18 @@ What changes in the plan:
 - Do not claim the loop beats soft penalties on accuracy or on share of laws satisfied. The remaining argument is cost in constraints and the certificate, and growth with state dimension. The dimension argument is untested.
 - Report the accuracy cost of repair as a function of noise. "Cheap" holds at 2 % and 5 %, not at 0.5 % for a wrong library.
 - Next: the choice of headline for the demo. The candidates are the law taxonomy with its structure-containing-the-truth caveat (two real series, three synthetic systems) and the soft-penalty adequacy result. Category follows the headline.
+
+## Addendum 10, 2026-11-27: protocol 0D run (four states)
+
+Protocol 0D was frozen at commit 3cbcb2e9, with a test-only fix before the run (3641866a), and ran on Kaggle. Details in `docs/gate_D_result.md`.
+
+- R-D1: no coverage advantage for the loop at four states. The fine grid (11 points per axis, 5148 rows) verifies 80 of 80 candidates, the loop 69, the pilot-budget grid 64.
+- The loop hit its 15-iteration budget in 11 of 80 runs. A larger budget was not tried.
+- The random loop is clearly behind: 51 of 80 verified, although its 2000-point sampler stopped clean in 77. C - Rnd is 0.225 [0.125, 0.338].
+- Verifier agreement (0 of 703) and the independent sampling check (0 of 400) hold. A d-state Bernstein verifier now exists (`src/bern_nd.py`).
+
+What changes in the plan:
+- The soft-penalty result stands up to four states. Do not claim the loop beats a grid on coverage or accuracy. The claims left for the loop are the constraint count (15 against 364 or 5148 rows) and the exact witness.
+- The witness loop's advantage over random counterexamples grows with the number of states. That is the dimension result that supports the loop.
+- Untested: a loop with a larger budget, a grid built on the simplex, five or more states.
+- Headline recommendation stays the taxonomy. The dimension result goes in as one of its controls.

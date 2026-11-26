@@ -12,6 +12,8 @@
 
 - Protocol 0C ran (`docs/gate_C_result.md`, ROADMAP_v2 Addendum 9): soft penalty matches the loop on the synthetic testbeds (R-C1: loop not needed), Gate A outcome 3 holds at 0.5 % and 5 % noise, independent check finds 0 of 2871 accepted models violating. Repair costs accuracy at 0.5 % noise for a wrong library (median ratio 1.4-1.5).
 
+- Protocol 0D ran (`docs/gate_D_result.md`, ROADMAP_v2 Addendum 10): at four states a fine dense grid verifies 80/80, the loop 69/80 (budget stops), pilot-budget grid 64/80, random loop 51/80. R-D1 (loop coverage advantage) not supported; C - Rnd 0.225.
+
 ## Frozen
 - 0A, 0A2 as before.
 - 0B: `docs/protocol_0B.md` (commit 9f1cf045, before the run), `src/gate_b.py`, `src/needles.py`, `src/run_0B.py`, `results/0B_jobs/`, `results/0B_sample.csv`.
@@ -22,12 +24,15 @@
 
 - 0C: `docs/protocol_0C.md` (frozen at 2109feba), `src/robust.py`, `src/run_0C.py`, `src/analyze_0C.py`, `results/0C_jobs/`, `results/0C_sample.csv`.
 
+- 0D: `docs/protocol_0D.md` (frozen at 3cbcb2e9, run at 3641866a), `src/bern_nd.py`, `src/dimtest.py`, `src/run_0D.py`, `src/analyze_0D.py`, `results/0D_jobs/`.
+
 ## Next
 - Epidemic series (chat 5): choose the source, write the protocol and freeze it before the first fit.
-- Headline for the demo, then the write-up. The category choice follows the headline. Open: does a dense-grid soft penalty still work as the state dimension grows (untested).
+- Headline for the demo, then the write-up. The category choice follows the headline. The four-state test is done (0D): the grid still works, the loop's coverage advantage over random counterexamples grows with dimension.
 - Competition category follows the headline demo.
 
 ## Resume
+- 0D on Kaggle: `python tools/kaggle_launch.py push D <commit> <user> [test]`, then `status D <user>` and `fetch D <user> <dir>`. Unzip into the repo, then `python src/analyze_0D.py`. The full run takes about 15 minutes on 4 CPUs.
 - 0C on Kaggle: `python tools/kaggle_launch.py push C <commit> <user> [test]`, then `status C <user>` and `fetch C <user> <dir>`. Unzip into the repo, then `python src/analyze_0C.py`. The full run takes about 20 minutes on 4 CPUs.
 - 0E on Kaggle: `python tools/kaggle_launch.py push E <commit> <user> [test]`, then `status E <user>` and `fetch E <user> <dir>`. Unzip into the repo, then `python src/analyze_0E.py`. 30 configs take about 30 minutes on 4 CPUs.
 - 0R on Kaggle: `python tools/kaggle_launch.py push R <commit> <user> [test]`, then `status R <user>` and `fetch R <user> <dir>`. Unzip into the repo, then `python src/analyze_0R.py`. Each config runs in its own process with a time limit.
