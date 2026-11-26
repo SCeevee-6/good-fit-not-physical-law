@@ -1,0 +1,25 @@
+country,cand,role,spec,state,G,outside_obs_box,replay_ok,roll,roll_min,roll_sum_range
+argentina,59,primary,B1S,"[0.0, 0.0, 1.0]",-0.074912,True,True,failed_or_blowup,,
+argentina,59,primary,B3m,"[0.0, 1.5, 0.0]",-0.07513875,True,True,failed_or_blowup,,
+bangladesh,5,primary,B1S,"[0.0, 0.0, 1.0]",-9.141663,True,True,failed_or_blowup,,
+bangladesh,5,primary,B1R,"[0.0, 1.0, 0.0]",-36.536396,True,True,failed_or_blowup,,
+bangladesh,5,primary,B2S,"[0.0, 1.5, 0.0]",-162.1006275,True,True,failed_or_blowup,,
+bangladesh,5,primary,B2R,"[0.0, 1.5, 0.0]",-82.22483925,True,True,failed_or_blowup,,
+chile,56,primary,B1S,"[0.0, 0.0, 1.0]",-0.099928,True,True,failed_or_blowup,,
+chile,56,primary,B2R,"[0.0, 0.0, 1.5]",-0.03144,True,True,failed_or_blowup,,
+indonesia,38,primary,B1S,"[0.0, 1.0, 0.0]",-55.456347,True,True,ok,0.0,"[1.0, 73.20789747041837]"
+indonesia,38,primary,B2S,"[0.0, 0.0, 1.5]",-5.55414,True,True,ok,0.0,"[1.5, 4.726430140716216]"
+indonesia,38,primary,B2R,"[0.0, 0.0, 1.5]",-7.0345185,True,True,ok,0.0,"[1.5, 4.726430140716216]"
+indonesia,38,primary,B3p,"[0.0, 1.5, 0.0]",-155.64845625,True,True,failed_or_blowup,,
+indonesia,38,primary,B3m,"[0.1875, 0.1875, 1.125]",-0.0975401953125,True,True,ok,0.1466088436098116,"[1.5, 5.534656932012225]"
+iran,8,primary,B1I,"[0.0, 0.0, 1.0]",-2.031975,True,True,failed_or_blowup,,
+iran,8,primary,B2S,"[0.0, 1.5, 0.0]",-52.6008795,True,True,ok,0.0,"[1.499999999999999, 1.5]"
+iran,8,primary,B2R,"[0.375, 0.375, 0.75]",-0.81496875,True,True,ok,0.011392557168812247,"[1.4999999999999993, 1.5]"
+iraq,34,primary,B1S,"[0.0, 0.0, 1.0]",-0.700322,True,True,failed_or_blowup,,
+russia,10,primary,B1S,"[0.0, 0.0, 1.0]",-0.373694,True,True,failed_or_blowup,,
+russia,10,primary,B3m,"[0.0, 1.5, 0.0]",-2.64390525,True,True,failed_or_blowup,,
+southafrica,40,primary,B1S,"[0.0, 1.0, 0.0]",-24.556831,True,True,failed_or_blowup,,
+turkey,15,primary,B1S,"[0.0, 1.0, 0.0]",-34.217534,True,True,ok,-10.155192215172232,"[0.9999999999999947, 1.0000000000000213]"
+ukraine,37,primary,B2S,"[0.0, 1.5, 0.0]",-0.18873225,True,True,failed_or_blowup,,
+ukraine,37,primary,B2R,"[0.0, 0.0, 1.5]",-1.0360665,True,True,failed_or_blowup,,
+ukraine,37,primary,B3p,"[0.0, 1.5, 0.0]",-14.4412605,True,True,failed_or_blowup,,

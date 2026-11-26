@@ -173,3 +173,19 @@ What changes in the plan:
 - The non-structural laws (A2, B1S, B2S, B2R, H2, R2) need a check. The witness loop verifies all of them in every sampled model. The random loop is behind on B2S (72/80), B1S (79/80) and R2 (45/47).
 - B-fac enforces all seven SIR laws by structure alone on the 80 sampled models. B-pos does not.
 - On H, structure alone lowers the share of models that satisfy the trapping law from 0.87 to 0.35 (Wilson 0.25 to 0.46). One system, so it is a candidate finding to test on the epidemic series, not a result.
+
+## Addendum 8, 2026-11-26: protocol 0E run (second real series)
+
+Protocol 0E was frozen at commit 942d55e5 and ran on Kaggle (JHU CSSE panel of 10 countries). Details in `docs/gate_E_result.md`.
+
+- G-E1 passes: the validation-selected model breaks a law in 10 of 10 countries.
+- G-E2 passes: all 35 equivalent candidates break a law. The equivalent sets are small (1 to 10 per country), so the interval has no width.
+- G-E3 fails: C repairs 34 of 35 but the median validation ratio is 1.46, so the cheap-fix claim is not kept on this series. Extrapolation rollouts improve (median 0.64).
+- The B-fac result from the SIR testbed does not carry over: B-fac alone leaves B2R unverified in 24 of 35 models. It held on the testbed because the truth lies inside the structure.
+- Structure alone lowers satisfaction of a law again (B2R under B-fac, B1S under B-pos), as on H.
+
+What changes in the plan:
+- Two real series now show the same thing for unconstrained fits: they break the stated laws, mostly where there is no data. Both fits are poor, so say it that way.
+- The fix has a cost on real data that the synthetic runs did not show. Report the validation ratio per country, not only a pooled median.
+- The claim to carry forward is the one in `docs/law_taxonomy.md`: structure enforces what it contains and nothing else, and a structure that does not contain the truth can make other laws worse.
+- Next: robustness checks and the board demo (chat 6). Competition category still follows the headline demo.

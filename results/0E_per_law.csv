@@ -1,0 +1,8 @@
+law,family,n,pool_violating,pool_share,Bpos_S_verified,Bpos_C_verified,Bpos_Rnd_verified,Bfac_S_verified,Bfac_C_verified,Bfac_Rnd_verified
+B1S,non-structural,35,31,0.8857142857142857,0,34,31,35,35,35
+B1I,structural,35,5,0.14285714285714285,35,35,31,35,35,35
+B1R,structural,35,4,0.11428571428571428,35,35,31,35,35,35
+B2S,non-structural,35,11,0.3142857142857143,19,34,29,34,34,35
+B2R,non-structural,35,16,0.45714285714285713,20,34,30,11,34,34
+B3p,structural,35,13,0.37142857142857144,35,35,31,35,35,35
+B3m,structural,35,13,0.37142857142857144,35,35,31,35,35,35

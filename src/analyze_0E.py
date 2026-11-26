@@ -83,6 +83,23 @@ def main():
                 for l, wv in (byc[c].get('wit') or {}).items():
                     wit_rows.append(dict(country=slug, cand=c, role='primary' if c == d['primary'] else 'aic', **{k: (json.dumps(v) if isinstance(v, list) else v) for k, v in wv.items()}))
     wcsv('0E_summary.csv', summ); wcsv('0E_candidates.csv', cand_rows); wcsv('0E_witnesses.csv', wit_rows)
+    # per law, primary window, arm-set equivalent candidates pooled over countries: share satisfying each law in the pool and after each arm
+    per_law = []
+    for l in LAWS:
+        row = dict(law=l, family='non-structural' if l in NONSTRUCT else 'structural')
+        n = pv = 0; cnt = {}
+        for (slug, w), (d, byc, arms, pick_aes) in per.items():
+            if w != PRIMARY_W:
+                continue
+            for c in pick_aes:
+                n += 1; pv += byc[c]['status'][l] == 'counterexample'
+                for st in ('Bpos', 'Bfac'):
+                    for arm in ('S', 'C', 'Rnd'):
+                        a_ = arms.get((c, st, arm))
+                        cnt[(st, arm)] = cnt.get((st, arm), 0) + bool(a_ and a_.get('status') == 'ok' and json.loads(a_['statuses'])[l] == 'verified')
+        row.update(n=n, pool_violating=pv, pool_share=pv / max(1, n), **{f'{st}_{arm}_verified': v for (st, arm), v in cnt.items()})
+        per_law.append(row)
+    wcsv('0E_per_law.csv', per_law)
 
     P = [s for s in summ if s['window'] == PRIMARY_W]
     K = len(P); gates = []
