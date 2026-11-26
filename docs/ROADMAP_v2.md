@@ -1,5 +1,7 @@
 # Roadmap v2
 
+Superseded for planning by `docs/ROADMAP_v3.md` (2026-11-26). Kept as history.
+
 Date: 2026-11-08. This file supersedes `docs/ROADMAP.md` for planning. The original text and addenda 1 and 2 stay as history. Each unit is governed by its frozen protocol. This file gives the order of work, the gates and the decision rules.
 
 ## Question

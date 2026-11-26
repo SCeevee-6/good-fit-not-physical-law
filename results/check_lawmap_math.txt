@@ -1,0 +1,7 @@
+1 bound: {'closed': -0.15202916074086753, 'sampled': -0.14162220560798155, 'argmin_on_boundary': 1.0, 'ok': True}
+2 sparse: {'contained': 500, 'trials': 500, 'ok': np.True_}
+3 rank-one: {'abs_err': 1.3877787807814457e-17, 'ok': np.True_}
+4 chebyshev: {'max_ratio': 0.3331714476394737, 'ok': np.True_}
+5 width vs n: {'rows': [(100, 0.13996015887113897, 0.13149108076787466), (1000, 0.1606760170895373, 0.04705010574526584), (10000, 0.16233710718767605, 0.01447744972102172)], 'ok': True}
+6 horizon bound: {'max_lower_ratio': 0.18735115251109216, 'max_upper_ratio': 0.9999531052174481, 'N2': 0.17559775725829024, 'ok': np.True_}
+ALL_OK True

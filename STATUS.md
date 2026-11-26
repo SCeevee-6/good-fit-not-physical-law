@@ -1,4 +1,4 @@
-# STATUS (2026-11-26, chat 3)
+# STATUS (2026-11-26)
 
 ## Decided
 - Gate A: protocol 0A2, outcome 3 (`docs/gate_A2_result.md`). Replicated over 20 seeds in 0B-3.
@@ -27,11 +27,13 @@
 - 0D: `docs/protocol_0D.md` (frozen at 3cbcb2e9, run at 3641866a), `src/bern_nd.py`, `src/dimtest.py`, `src/run_0D.py`, `src/analyze_0D.py`, `results/0D_jobs/`.
 
 ## Next
-- Epidemic series (chat 5): choose the source, write the protocol and freeze it before the first fit.
-- Headline for the demo, then the write-up. The category choice follows the headline. The four-state test is done (0D): the grid still works, the loop's coverage advantage over random counterexamples grows with dimension.
-- Competition category follows the headline demo.
+- Direction changed to `docs/ROADMAP_v3.md`: law zones over the data-consistent set, region certificate, law horizon, measurement design. v2 results are the motivation and controls.
+- Identities used by v3 are checked in `tools/check_lawmap_math.py` (`results/check_lawmap_math.txt`, ALL_OK True).
+- First unit: F0 zone maps for stored fits (local, Rashomon version), then write and freeze `docs/protocol_0F.md` before any 0F run.
+- README rewritten as a summary of every unit and its outcome.
 
 ## Resume
+- Law-map checks: `python tools/check_lawmap_math.py` (about 20 s).
 - 0D on Kaggle: `python tools/kaggle_launch.py push D <commit> <user> [test]`, then `status D <user>` and `fetch D <user> <dir>`. Unzip into the repo, then `python src/analyze_0D.py`. The full run takes about 15 minutes on 4 CPUs.
 - 0C on Kaggle: `python tools/kaggle_launch.py push C <commit> <user> [test]`, then `status C <user>` and `fetch C <user> <dir>`. Unzip into the repo, then `python src/analyze_0C.py`. The full run takes about 20 minutes on 4 CPUs.
 - 0E on Kaggle: `python tools/kaggle_launch.py push E <commit> <user> [test]`, then `status E <user>` and `fetch E <user> <dir>`. Unzip into the repo, then `python src/analyze_0E.py`. 30 configs take about 30 minutes on 4 CPUs.
