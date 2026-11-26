@@ -43,3 +43,5 @@ One four-state system, SEIR with the structure that contains the truth. Coeffici
 Per arm run 900 s (Linux alarm; a time-out counts as not admissible). `src/bern_nd.py`, `src/dimtest.py`, `src/run_0D.py` (phases pool, sample, arms; one JSON per job, resumable), `src/analyze_0D.py`, `tools/kaggle_0D.py`. Outputs: `results/0D_jobs/`, `results/0D_sample.csv`, `results/0D_arms.csv`, `results/0D_per_law.csv`, `results/0D_rows_by_dimension.csv`, `results/0D_gate.csv`. Kaggle, pinned packages of 0B.
 
 The pipeline was tested before the freeze on one candidate of an off-grid cell (seed 99). I saw its outputs: all five arms verified all eight laws, with 3 constraint rows for C and 364 and 5148 for SoftA and SoftB. That is one candidate and nothing was tuned from it; the files were not kept.
+
+Note, 2026-11-27, after the freeze commit 3cbcb2e9 and before any real run: the Kaggle pipeline test failed in `draw_sample` because test mode builds only two pool cells. I added a test-only branch (`OD_QUICK`) that skips missing cells. The path used by the real run is unchanged. The real run uses the commit recorded in `STATUS.md`.

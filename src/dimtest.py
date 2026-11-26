@@ -168,6 +168,8 @@ def draw_sample(pool_dir):
     rng = np.random.default_rng(SAMPLE_SEED)
     out, short = [], []
     for seed in SEEDS:
+        if os.environ.get('OD_QUICK') and not os.path.exists(os.path.join(pool_dir, cell_id(seed) + '.json')):
+            continue                          # pipeline test only (two pool cells)
         P = json.load(open(os.path.join(pool_dir, cell_id(seed) + '.json')))
         aes = [r for r in P['rows'] if r['aes']]
         if len(aes) < N_PER_CELL:
