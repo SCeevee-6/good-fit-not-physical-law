@@ -1,7 +1,9 @@
-"""Driver for protocol 0R. One JSON per config in <out>/ (resumable). Config 0 is the primary, the rest are sensitivity runs.
-usage (repo root): python src/run_0R.py [n_workers] [--series PATH|synthetic_H] [--out DIR]     log: logs/0R_run.log
+"""Driver for protocol 0R (with addendum 1). Each config runs in its own subprocess, killed after CFG_LIMIT_S.
+One JSON per config in <out>/ (resumable). A killed config is written as {timed_out: true} and reported, not retried.
+usage (repo root): python src/run_0R.py [n_workers] [--series PATH|synthetic_H] [--out DIR] [--only N] [--cfg-limit SEC] [--total-limit SEC]
+log: logs/0R_run.log, per-config progress: logs/0R_progress_<name>.log
 """
-import os, sys, json, time
+import os, sys, json, time, subprocess
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 
@@ -10,41 +12,83 @@ def name(cfg):
     return f"w{cfg['window']}_c{cfg['c']}"
 
 
-def work(a):
-    cfg, series, out = a
+def _arg(args, key, default):
+    return args[args.index(key) + 1] if key in args else default
+
+
+def _write(path, obj):
+    tmp = path + '.tmp'
+    with open(tmp, 'w') as f:
+        json.dump(obj, f, default=float)
+    os.replace(tmp, path)
+
+
+def one(args):
     import real_r
-    p = os.path.join(out, name(cfg) + '.json')
+    nm = _arg(args, '--one', None)
+    cfg = [c for c in real_r.CONFIGS if name(c) == nm][0]
+    out = _arg(args, '--out', os.path.join(ROOT, 'results', '0R_jobs'))
+    series = _arg(args, '--series', real_r.SERIES)
     try:
-        rec, err = real_r.run_config(cfg, series), None
-    except Exception as e:
+        rec, err = real_r.run_config(cfg, series, nm), None
+    except Exception:
         import traceback
         rec, err = dict(cfg=cfg), traceback.format_exc()[-1500:]
     rec['error'] = err
-    tmp = p + '.tmp'
-    with open(tmp, 'w') as f:
-        json.dump(rec, f, default=float)
-    os.replace(tmp, p)
-    return name(cfg), err
+    _write(os.path.join(out, nm + '.json'), rec)
 
 
 def main():
-    import multiprocessing as mp, real_r
+    import real_r
     args = sys.argv[1:]
-    series = args[args.index('--series') + 1] if '--series' in args else real_r.SERIES
-    out = args[args.index('--out') + 1] if '--out' in args else os.path.join(ROOT, 'results', '0R_jobs')
+    if '--one' in args:
+        return one(args)
+    series = _arg(args, '--series', real_r.SERIES)
+    out = _arg(args, '--out', os.path.join(ROOT, 'results', '0R_jobs'))
     n = int(args[0]) if args and args[0].isdigit() else 3
+    only = int(_arg(args, '--only', len(real_r.CONFIGS)))
+    cfg_limit = float(_arg(args, '--cfg-limit', 6000)); total_limit = float(_arg(args, '--total-limit', 23400))
     os.makedirs(out, exist_ok=True); os.makedirs(os.path.join(ROOT, 'logs'), exist_ok=True)
-    only = int(args[args.index('--only') + 1]) if '--only' in args else len(real_r.CONFIGS)
-    todo = [(c, series, out) for c in real_r.CONFIGS[:only] if not os.path.exists(os.path.join(out, name(c) + '.json'))]
-    with open(os.path.join(ROOT, 'logs', '0R_run.log'), 'a') as lg:
-        lg.write(f"{time.strftime('%H:%M:%S')} start: {len(todo)} to run of {len(real_r.CONFIGS)}, series {series}\n"); lg.flush()
-        nerr = 0
-        with mp.get_context('spawn').Pool(min(n, max(1, len(todo)))) as pool:
-            for nm, err in pool.imap_unordered(work, todo):
-                nerr += err is not None
-                lg.write(f"{time.strftime('%H:%M:%S')} {nm} {'ERR ' + err if err else 'done'}\n"); lg.flush()
-        lg.write(f"{time.strftime('%H:%M:%S')} finished, errors {nerr}\n")
-    print(f'0R: {len(todo)} run, errors {nerr}')
+    todo = [c for c in real_r.CONFIGS[:only] if not os.path.exists(os.path.join(out, name(c) + '.json'))]
+    t_start = time.time(); running = {}; nerr = nkill = 0
+    lg = open(os.path.join(ROOT, 'logs', '0R_run.log'), 'a')
+    def log(m):
+        lg.write(f"{time.strftime('%H:%M:%S')} {m}\n"); lg.flush()
+    log(f'start: {len(todo)} to run of {len(real_r.CONFIGS)}, series {series}, cfg limit {cfg_limit:.0f} s, total {total_limit:.0f} s')
+    while todo or running:
+        out_of_time = time.time() - t_start > total_limit
+        while todo and len(running) < n and not out_of_time:
+            c = todo.pop(0)
+            fh = open(os.path.join(ROOT, 'logs', f'0R_stdout_{name(c)}.log'), 'w')
+            pr = subprocess.Popen([sys.executable, os.path.abspath(__file__), '--one', name(c), '--series', series, '--out', out],
+                                  stdout=fh, stderr=subprocess.STDOUT, cwd=ROOT)
+            running[name(c)] = (pr, time.time(), fh, c); log(f'launched {name(c)}')
+        if out_of_time:
+            for c in todo:
+                _write(os.path.join(out, name(c) + '.json'), dict(cfg=c, error=None, timed_out=True, reason='total time limit before launch'))
+                log(f'{name(c)} not launched (total limit)')
+            todo = []
+        for nm, (pr, t0, fh, c) in list(running.items()):
+            rc = pr.poll()
+            over = time.time() - t0 > cfg_limit or (out_of_time and time.time() - t_start > total_limit + 600)
+            if rc is None and over:
+                pr.kill(); pr.wait(); rc = 'killed'; nkill += 1
+                tail = ''
+                pg = os.path.join(ROOT, 'logs', f'0R_progress_{nm}.log')
+                if os.path.exists(pg):
+                    tail = ''.join(open(pg).readlines()[-5:])
+                _write(os.path.join(out, nm + '.json'), dict(cfg=c, error=None, timed_out=True, reason=f'config limit {cfg_limit:.0f} s', progress_tail=tail))
+            if rc is not None:
+                fh.close(); del running[nm]
+                ok = os.path.exists(os.path.join(out, nm + '.json'))
+                if rc not in (0, 'killed') or not ok:
+                    nerr += 1
+                    if not ok:
+                        _write(os.path.join(out, nm + '.json'), dict(cfg=c, error=f'worker exit {rc}'))
+                log(f'{nm} {"killed at limit" if rc == "killed" else ("done" if rc == 0 else f"exit {rc}")} ({time.time() - t0:.0f} s)')
+        time.sleep(2)
+    log(f'finished, errors {nerr}, killed {nkill}'); lg.close()
+    print(f'0R: errors {nerr}, killed {nkill}')
 
 
 if __name__ == '__main__':

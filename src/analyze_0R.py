@@ -52,19 +52,23 @@ def summarize(J):
 
 
 def main():
-    J = {}
+    J = {}; lost = []
     for f in glob.glob(os.path.join(JOBS, '*.json')):
         d = json.load(open(f))
         if d.get('error'):
-            print('ERROR in', f, d['error'][-300:]); continue
+            print('ERROR in', f, d['error'][-300:]); lost.append(dict(window=d['cfg']['window'], c=d['cfg']['c'], state='error')); continue
+        if d.get('timed_out'):
+            lost.append(dict(window=d['cfg']['window'], c=d['cfg']['c'], state='timed_out', reason=d.get('reason', ''))); continue
         J[(d['cfg']['window'], d['cfg']['c'])] = d
     prim_key = (7, 3)
     summ, detail = [], {}
     for k in sorted(J):
         s, aes_pick, arms, byc = summarize(J[k]); summ.append(s); detail[k] = (aes_pick, arms, byc)
     wcsv('0R_summary.csv', summ)
+    wcsv('0R_lost_configs.csv', lost)
     if prim_key not in J:
-        print('primary config missing'); return
+        wcsv('0R_gate.csv', [dict(rule='Verdict', value='undecided', stat='primary config did not finish', passed='')])
+        print('primary config missing: verdict undecided'); return
     P = J[prim_key]; aes_pick, arms, byc = detail[prim_key]
     S0 = [s for s in summ if (s['window'], s['c']) == prim_key][0]
 
@@ -97,8 +101,8 @@ def main():
     pr = byc[P['primary']]
     gates.append(dict(rule='G-R1', stat='validation-selected model (min validation RMSE) breaks a law', value=pr['viol'],
                       laws=','.join(l for l in LAWS if pr['status'][l] == 'counterexample'), val_rmse=pr['iid_rmse'], k=pr['k'], degree=pr['degree'],
-                      witness_outside_obs_box=','.join(f"{l}:{w['outside_obs_box']}" for l, w in (pr.get('wit') or {}).items()),
-                      witness_replay_ok=','.join(f"{l}:{w['replay_ok']}" for l, w in (pr.get('wit') or {}).items()),
+                      witness_outside_obs_box=','.join(f"{l}:{w.get('outside_obs_box')}" for l, w in (pr.get('wit') or {}).items()),
+                      witness_replay_ok=','.join(f"{l}:{w.get('replay_ok')}" for l, w in (pr.get('wit') or {}).items()),
                       threshold='verifier counterexample at strong tolerance', passed=bool(pr['viol'])))
     n, k = S0['n_aes'], S0['n_aes_viol']
     gates.append(dict(rule='G-R2', stat='share of accuracy-equivalent candidates that break a law', count=k, n=n, value=k / max(1, n),

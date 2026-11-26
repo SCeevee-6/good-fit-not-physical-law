@@ -55,3 +55,16 @@ One series, one split, 20 validation points (14 after smoothing). With roughly n
 ## Code and outputs
 
 `src/real_r.py`, `src/run_0R.py` (one JSON per config, resumable), `src/analyze_0R.py` (CSVs only), `tools/kaggle_0R.py`. Outputs: `results/0R_jobs/`, `results/0R_gate.csv`, `0R_summary.csv`, `0R_candidates.csv`, `0R_witnesses.csv`. `real_r.py` registers system R and patches the system-name map and degree list of `gate_b` at import. `gate_b.py` itself is unchanged and the 0B results stand. Run on Kaggle, same pinned packages as 0B.
+
+
+## Addendum 1, 2026-11-25: time limits (before any real-series result exists)
+
+The first Kaggle run of this protocol (code at commit 0ad1896c) stalled and was cancelled after about 2.5 hours. Its log stops about 80 seconds in, after numpy overflow warnings, and no config finished. No fit result from the real series was ever written or seen. I think a model with huge coefficients hung a numerical step that had no time cap, but I did not confirm where.
+
+Changes, all about run time. No law, split, tolerance, candidate rule, arm or decision rule changes.
+- Per candidate and per law: verification 60 s, volume and depth 60 s, witness replay and rollout 60 s. Per arm run (loop, evaluation and rollout): 180 s. Done with a wall-clock alarm, so it only runs on Linux (Kaggle). A step that hits its limit counts as `timeout`, which means not verified, the same as a z3 timeout in 0B. An arm run that hits its limit counts as not admissible, like an infeasible one. A witness step that fails is recorded as an error and is not used.
+- Each config runs in its own process and is killed after 100 minutes. A killed config is written as timed out, listed in `results/0R_lost_configs.csv`, and not retried. If the primary config (window 7, c = 3) is killed or errors, the verdict is undecided and I say so. No config is dropped for any other reason. Total limit for the whole run is 6.5 hours.
+- Candidates with a NaN validation error get an infinite one, so a NaN cannot be picked as the best model or break the equivalence rule.
+- Progress is written per config to `logs/0R_progress_<config>.log`, and the runner always zips whatever exists.
+
+The new code was tested on the simulated series only (kill path locally, full path on Kaggle). Commit for the real run: see `STATUS.md`.

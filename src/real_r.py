@@ -3,7 +3,7 @@
 Series -> normalise by the training mean -> Savitzky-Golay per segment -> pool (pilot STLSQ sweep) -> verify every candidate
 -> arms S, C, Rnd on the selected candidates -> witness checks. One config = (SG window, shell level c), one JSON.
 """
-import os, sys, csv, json, time, math
+import os, sys, csv, json, time, math, signal, contextlib
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE); sys.path.insert(0, HERE)
 for v in ('OMP_NUM_THREADS', 'OPENBLAS_NUM_THREADS', 'MKL_NUM_THREADS'):
     os.environ[v] = '1'
@@ -22,6 +22,7 @@ TRAIN_END, VAL_END = 1895, 1915          # train 1845-1895, validation 1896-1915
 BLOCK = 5                                # block-bootstrap block length (points after smoothing)
 N_ARM = 60                               # cap on accuracy-equivalent candidates sent through the arms
 TW, TS = 1e-3, 2e-2                      # tolerances, as the pilot (normalised units)
+VERIFY_S, ARM_S, WIT_S = 60, 180, 60      # per-candidate limits (addendum 1 to protocol 0R); no SIGALRM on Windows, so no limit there
 PRIMARY = dict(window=7, c=3)
 CONFIGS = [dict(window=w, c=c) for w in (7, 5, 9) for c in (3, 2, 4)]     # first one is the primary config
 gate_b.DEGREES['R'] = (2, 3, 4)
@@ -33,6 +34,48 @@ def _sysname(key):
 
 gate_b.sysname = _sysname
 gate_a.STRUCT['R'] = {'R1x', 'R1y'}
+
+
+class StageTimeout(Exception):
+    pass
+
+
+@contextlib.contextmanager
+def limit(seconds):
+    """Wall-clock limit for a block of Python code (Linux). Native calls end when they return, z3 has its own 3 s limit."""
+    if not hasattr(signal, 'SIGALRM'):
+        yield; return
+    def _h(sig, frm):
+        raise StageTimeout()
+    old = signal.signal(signal.SIGALRM, _h)
+    signal.setitimer(signal.ITIMER_REAL, seconds)
+    try:
+        yield
+    finally:
+        signal.setitimer(signal.ITIMER_REAL, 0)
+        signal.signal(signal.SIGALRM, old)
+
+
+def selftest_limit(sec=2.0):
+    """True if a busy Python loop is stopped by limit() within sec + 3 s. Always True where there is no SIGALRM."""
+    if not hasattr(signal, 'SIGALRM'):
+        return True
+    t = time.time()
+    try:
+        with limit(sec):
+            while True:
+                sum(i * i for i in range(1000))
+    except StageTimeout:
+        return time.time() - t < sec + 3
+
+
+_PROG = [None]
+
+
+def progress(msg):
+    if _PROG[0]:
+        with open(_PROG[0], 'a') as f:
+            f.write(f"{time.strftime('%H:%M:%S')} {msg}\n")
 
 
 def load_series(path=SERIES):
@@ -112,27 +155,56 @@ def witness_check(S, Xi, E, sp, q, info, T_roll=10.0):
 def pool_stage(S, cell, info):
     t0 = time.time()
     rows = gate_b.pool_rows('R', cell, 0)
+    if any(not np.isfinite(r['iid_rmse']) for r in rows):       # a NaN would poison min() and the equivalence rule
+        for r in rows:
+            r['iid_rmse'] = float(r['iid_rmse']) if np.isfinite(r['iid_rmse']) else float('inf')
+        best = min(r['iid_rmse'] for r in rows)
+        for r in rows:
+            r['best_iid_rmse'] = best; r['aes'] = bool(r['iid_rmse'] <= 1.10 * best)
+    progress(f'pool fitted: {len(rows)} candidates')
     E_of = {d: S.E(d) for d in (2, 3, 4)}
-    for r in rows:
+    for n_, r in enumerate(rows):
         Xi = np.array(r['xi']); E = E_of[r['degree']]
         st, vol, depth, tm = {}, {}, {}, {}
+        r['limit_hits'] = []
         for sp in S.specs:
-            q = verify_spec_robust(sp, Xi, E, 'strong')
+            try:
+                with limit(VERIFY_S):
+                    q = verify_spec_robust(sp, Xi, E, 'strong')
+            except StageTimeout:
+                st[sp.name], tm[sp.name] = 'timeout', float(VERIFY_S); r['limit_hits'].append(f'verify:{sp.name}')
+                continue
             st[sp.name], tm[sp.name] = q['status'], round(q['time'], 4)
-            if q['status'] == 'counterexample':
-                vol[sp.name] = gate_b.law_volume(sp, Xi, E)
-                depth[sp.name] = exact_min_1d(sp, Xi, E) / sp.tol_strong
-                r.setdefault('wit', {})[sp.name] = witness_check(S, Xi, E, sp, q, info)
+            if q['status'] != 'counterexample':
+                continue
+            try:
+                with limit(VERIFY_S):
+                    vol[sp.name] = gate_b.law_volume(sp, Xi, E)
+                    depth[sp.name] = exact_min_1d(sp, Xi, E) / sp.tol_strong
+            except (StageTimeout, Exception) as e:
+                vol.setdefault(sp.name, None); depth.setdefault(sp.name, None); r['limit_hits'].append(f'volume:{sp.name}:{type(e).__name__}')
+            try:
+                with limit(WIT_S):
+                    r.setdefault('wit', {})[sp.name] = witness_check(S, Xi, E, sp, q, info)
+            except (StageTimeout, Exception) as e:
+                r.setdefault('wit', {})[sp.name] = dict(spec=sp.name, error=type(e).__name__); r['limit_hits'].append(f'witness:{sp.name}:{type(e).__name__}')
+        try:
+            with limit(VERIFY_S):
+                aic = aic_score(Xi, E, cell['train_flat'], cell['deriv_sd'])
+        except (StageTimeout, Exception):
+            aic = float('inf')
         r.update(status=st, z3_sec=tm, volume=vol, depth=depth, viol=any(v == 'counterexample' for v in st.values()),
-                 timeout=any(v == 'timeout' for v in st.values()),
-                 aic=aic_score(Xi, E, cell['train_flat'], cell['deriv_sd']))
+                 timeout=any(v == 'timeout' for v in st.values()), aic=aic)
+        if n_ % 20 == 0:
+            progress(f'pool verified {n_ + 1}/{len(rows)}')
+    progress(f'pool done, limit hits {sum(len(r["limit_hits"]) for r in rows)}')
     return rows, round(time.time() - t0, 1)
 
 
 def select(rows):
-    key = lambda r: (r['iid_rmse'], r['k'], r['degree'], r['cand'])
+    key = lambda r: (r['iid_rmse'] if np.isfinite(r['iid_rmse']) else float('inf'), r['k'], r['degree'], r['cand'])
     prim = min(rows, key=key)['cand']
-    aic = min(rows, key=lambda r: (r['aic'], r['k'], r['cand']))['cand']
+    aic = min(rows, key=lambda r: (r['aic'] if np.isfinite(r['aic']) else float('inf'), r['k'], r['cand']))['cand']
     aes = sorted([r for r in rows if r['aes']], key=key)
     return prim, aic, [r['cand'] for r in aes]
 
@@ -140,7 +212,7 @@ def select(rows):
 def arms_stage(S, cell, info, rows, picks):
     byc = {r['cand']: r for r in rows}
     out = []
-    for cand in picks:
+    for n_, cand in enumerate(picks):
         r = byc[cand]
         E = gate_a.library(S, 'R', r['degree'])
         idx = dict(gate_a.make_variants(len(cell['train']), 0))[r['variant']]
@@ -152,23 +224,33 @@ def arms_stage(S, cell, info, rows, picks):
         if ood0 is None:
             ood0 = gate_b.rollout_rmse(np.array(r['xi']), E, cell['ood'], cell['state_sd'])
         for arm in ('S', 'C', 'Rnd'):
-            Xf, iters, nrows = gate_a.run_arm(arm, S, 'R', Th, dX[:, fc], allowed, r['threshold'], M, E, rng)
-            rec = dict(cand=cand, arm=arm, iters=iters, n_rows=nrows, pool_ood=ood0, pool_iid=r['iid_rmse'])
-            if Xf is None:
-                rec['status'] = 'infeasible'
-            else:
-                Xi = Xf @ M.T
-                rec.update(gate_a.evaluate(S, 'R', Xi, E, cell))
-                rec['iid_ratio'] = rec['iid_rmse'] / r['iid_rmse']
-                rec['roll_ood'] = gate_b.rollout_rmse(Xi, E, cell['ood'], cell['state_sd'])
-                rec['ood_ratio'] = rec['roll_ood'] / ood0
-                rec['xi'] = Xi.tolist(); rec['status'] = 'ok'
+            rec = dict(cand=cand, arm=arm, pool_ood=ood0, pool_iid=r['iid_rmse'])
+            try:
+                with limit(ARM_S):
+                    Xf, iters, nrows = gate_a.run_arm(arm, S, 'R', Th, dX[:, fc], allowed, r['threshold'], M, E, rng)
+                    rec.update(iters=iters, n_rows=nrows)
+                    if Xf is None:
+                        rec['status'] = 'infeasible'
+                    else:
+                        Xi = Xf @ M.T
+                        rec.update(gate_a.evaluate(S, 'R', Xi, E, cell))
+                        rec['iid_ratio'] = rec['iid_rmse'] / r['iid_rmse']
+                        rec['roll_ood'] = gate_b.rollout_rmse(Xi, E, cell['ood'], cell['state_sd'])
+                        rec['ood_ratio'] = rec['roll_ood'] / ood0
+                        rec['xi'] = Xi.tolist(); rec['status'] = 'ok'
+            except StageTimeout:
+                rec['status'] = 'timeout'
             out.append(rec)
+        progress(f'arms {n_ + 1}/{len(picks)} (cand {cand}) ' + ','.join(a['status'] for a in out[-3:]))
     return out
 
 
-def run_config(cfg, series=SERIES):
+def run_config(cfg, series=SERIES, name=None):
     t0 = time.time()
+    if name:
+        os.makedirs(os.path.join(ROOT, 'logs'), exist_ok=True)
+        _PROG[0] = os.path.join(ROOT, 'logs', f'0R_progress_{name}.log')
+    progress(f'start {cfg}')
     S, cell, info = build(cfg, series)
     cell['train_flat'] = [dict(Xs=np.vstack([t['Xs'] for t in cell['train']]), dX=np.vstack([t['dX'] for t in cell['train']]))]
     rows, tp = pool_stage(S, cell, info)
@@ -180,6 +262,7 @@ def run_config(cfg, series=SERIES):
         if 'roll_ood' not in r:
             r['roll_ood'] = gate_b.rollout_rmse(np.array(r['xi']), E_of[r['degree']], cell['ood'], cell['state_sd'])
     picks = list(dict.fromkeys([prim, aic] + aes_pick))
+    progress(f'selected: primary {prim}, aic {aic}, {len(aes)} AES, {len(picks)} to arms')
     arms = arms_stage(S, cell, info, rows, picks)
     return dict(cfg=cfg, info=info, n=len(rows), n_aes=len(aes), primary=prim, aic_pick=aic, aes=aes, arm_picks=picks,
                 pool_seconds=tp, seconds=round(time.time() - t0, 1), rows=rows, arms=arms)

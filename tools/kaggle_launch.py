@@ -26,6 +26,8 @@ def main():
         d = tempfile.mkdtemp()
         if mode == 'R':
             src = open(os.path.join(HERE, 'kaggle_0R.py'), encoding='utf-8').read().replace("COMMIT = 'REPLACE'", f"COMMIT = '{commit}'")
+            if len(sys.argv) > 5 and sys.argv[5] == 'test':
+                src = src.replace("SERIES_ARGS = []", "SERIES_ARGS = ['--series', 'synthetic_H', '--only', '1']")
         else:
             src = open(os.path.join(HERE, 'kaggle_0B.py'), encoding='utf-8').read()
             src = src.replace("MODE = 'main'", f"MODE = '{mode}'").replace("COMMIT = '9f1cf045'", f"COMMIT = '{commit}'")
