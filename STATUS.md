@@ -10,6 +10,8 @@
 
 - Protocol 0E ran (`docs/gate_E_result.md`, ROADMAP_v2 Addendum 8): G-E1 and G-E2 pass, G-E3 fails on the validation cost (median ratio 1.46). The cheap-fix claim is not kept on this series.
 
+- Protocol 0C ran (`docs/gate_C_result.md`, ROADMAP_v2 Addendum 9): soft penalty matches the loop on the synthetic testbeds (R-C1: loop not needed), Gate A outcome 3 holds at 0.5 % and 5 % noise, independent check finds 0 of 2871 accepted models violating. Repair costs accuracy at 0.5 % noise for a wrong library (median ratio 1.4-1.5).
+
 ## Frozen
 - 0A, 0A2 as before.
 - 0B: `docs/protocol_0B.md` (commit 9f1cf045, before the run), `src/gate_b.py`, `src/needles.py`, `src/run_0B.py`, `results/0B_jobs/`, `results/0B_sample.csv`.
@@ -18,12 +20,15 @@
 
 - 0E: `docs/protocol_0E.md` (frozen at 942d55e5), `src/real_e.py`, `src/run_0E.py`, `src/analyze_0E.py`, `data_raw/jhu/`, `results/0E_jobs/`.
 
+- 0C: `docs/protocol_0C.md` (frozen at 2109feba), `src/robust.py`, `src/run_0C.py`, `src/analyze_0C.py`, `results/0C_jobs/`, `results/0C_sample.csv`.
+
 ## Next
 - Epidemic series (chat 5): choose the source, write the protocol and freeze it before the first fit.
-- Robustness checks and the board demo (chat 6). The category choice follows the headline demo.
+- Headline for the demo, then the write-up. The category choice follows the headline. Open: does a dense-grid soft penalty still work as the state dimension grows (untested).
 - Competition category follows the headline demo.
 
 ## Resume
+- 0C on Kaggle: `python tools/kaggle_launch.py push C <commit> <user> [test]`, then `status C <user>` and `fetch C <user> <dir>`. Unzip into the repo, then `python src/analyze_0C.py`. The full run takes about 20 minutes on 4 CPUs.
 - 0E on Kaggle: `python tools/kaggle_launch.py push E <commit> <user> [test]`, then `status E <user>` and `fetch E <user> <dir>`. Unzip into the repo, then `python src/analyze_0E.py`. 30 configs take about 30 minutes on 4 CPUs.
 - 0R on Kaggle: `python tools/kaggle_launch.py push R <commit> <user> [test]`, then `status R <user>` and `fetch R <user> <dir>`. Unzip into the repo, then `python src/analyze_0R.py`. Each config runs in its own process with a time limit.
 - Kaggle (heavy runs): `python tools/kaggle_launch.py push <main|needles> <commit> <user>`, then `status` / `fetch`. The token's account is shreyanchethan. The runner pulls the given commit from GitHub, so the repo must be public or the code uploaded another way.

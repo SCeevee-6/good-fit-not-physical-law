@@ -1,0 +1,9 @@
+rule,stat,value,boot_lo,boot_hi,f_soft,med_iid_soft,loop_needed,passed,d_CS_lo,d_CS_hi,d_CRnd_lo,d_CRnd_hi,count,n
+R-C1 Soft1,"C minus soft penalty, verified share on non-structural laws, pooled",0.0,0.0,0.0,1.0,1.0000224302189946,False,,,,,,,
+R-C1 Soft2,"C minus soft penalty, verified share on non-structural laws, pooled",0.0,0.0,0.0,1.0,1.0000225444097404,False,,,,,,,
+R-C1 Soft3,"C minus soft penalty, verified share on non-structural laws, pooled",0.0,0.0,0.0,1.0,1.0000224885766773,False,,,,,,,
+R-C1,"counterexample loop needed over soft penalty: for every lambda, gap >= 1/10 or median validation ratio > 1.10",False,,,,,,False,,,,,,
+R-C2 noise 0.5%,pooled A+Amis+B-pos: C-S lower > 0 and C-Rnd lower < 1/5,0.046413502109704644,,,,,,True,0.4449152542372881,0.5291666666666667,0.01680672268907563,0.07983193277310924,,
+R-C2 noise 5%,pooled A+Amis+B-pos: C-S lower > 0 and C-Rnd lower < 1/5,0.04583333333333333,,,,,,True,0.32916666666666666,0.45,0.020833333333333332,0.07083333333333333,,
+R-C2 noise 2% (0B),pooled A+Amis+B-pos: C-S lower > 0 and C-Rnd lower < 1/5,0.03333333333333333,,,,,,True,0.275,0.42083333333333334,0.016666666666666666,0.05,,
+R-C3,"verified laws where a 200,000-point uniform sample finds G < -tol_strong (must be 0)",0,,,,,,True,,,,,0,2871

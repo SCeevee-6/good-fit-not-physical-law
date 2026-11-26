@@ -189,3 +189,17 @@ What changes in the plan:
 - The fix has a cost on real data that the synthetic runs did not show. Report the validation ratio per country, not only a pooled median.
 - The claim to carry forward is the one in `docs/law_taxonomy.md`: structure enforces what it contains and nothing else, and a structure that does not contain the truth can make other laws worse.
 - Next: robustness checks and the board demo (chat 6). Competition category still follows the headline demo.
+
+## Addendum 9, 2026-11-27: protocol 0C run (robustness)
+
+Protocol 0C was frozen at commit 2109feba and ran on Kaggle. Details in `docs/gate_C_result.md`.
+
+- R-C1: the counterexample loop is not needed over a soft penalty on a dense grid, on these testbeds. The soft penalty verifies all 320 sampled candidates at all three lam, with the same accuracy as C.
+- R-C2: Gate A outcome 3 holds at 0.5 % and 5 % noise.
+- R-C3: 0 of 2871 accepted models fail an independent uniform-sampling check.
+- At 0.5 % noise the repair is not cheap where the library is wrong: median validation ratio 1.49 (A-mis) and 1.42 (H).
+
+What changes in the plan:
+- Do not claim the loop beats soft penalties on accuracy or on share of laws satisfied. The remaining argument is cost in constraints and the certificate, and growth with state dimension. The dimension argument is untested.
+- Report the accuracy cost of repair as a function of noise. "Cheap" holds at 2 % and 5 %, not at 0.5 % for a wrong library.
+- Next: the choice of headline for the demo. The candidates are the law taxonomy with its structure-containing-the-truth caveat (two real series, three synthetic systems) and the soft-penalty adequacy result. Category follows the headline.
