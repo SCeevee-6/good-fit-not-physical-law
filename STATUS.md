@@ -6,6 +6,8 @@
 
 - Protocol 0R ran (`docs/gate_R_result.md`, ROADMAP_v2 Addendum 6): G-R1, G-R2, G-R3 pass, real-data claim kept, with the limits listed there.
 
+- Law taxonomy done (`docs/law_taxonomy.md`, `results/law_taxonomy.csv`, Addendum 7). The H result (structure lowers trapping-law satisfaction) is untested elsewhere.
+
 ## Frozen
 - 0A, 0A2 as before.
 - 0B: `docs/protocol_0B.md` (commit 9f1cf045, before the run), `src/gate_b.py`, `src/needles.py`, `src/run_0B.py`, `results/0B_jobs/`, `results/0B_sample.csv`.
@@ -14,7 +16,7 @@
 
 ## Next
 - Epidemic series (chat 5): choose the source, write the protocol and freeze it before the first fit.
-- Law taxonomy per law and structure, including the H result that structure alone breaks the trapping law more often.
+- Epidemic series (second real series): source not chosen yet, waiting on the user. Candidates seen in CRAN `outbreaks` 1.9.0: influenza_england_1978_school (14 daily points, in_bed and convalescent), sars_canada_2003 (110 daily incidence counts, no compartments). Both are weak for this pipeline.
 - Competition category follows the headline demo.
 
 ## Resume

@@ -164,3 +164,12 @@ What changes in the plan:
 - The real-data claim is weaker than the synthetic one. The fits are poor (validation error 0.89 training sd) and the witnesses sit where there is no data. State it as "unconstrained fits break stated laws outside the data", not as a finding about hares and lynx.
 - Gate R is passed on one series. A second real series (epidemic, chat 5) is what would make it a claim.
 - Next: the law taxonomy per law and structure, then the epidemic series.
+
+## Addendum 7, 2026-11-26: law taxonomy
+
+`docs/law_taxonomy.md` and `results/law_taxonomy.csv` tabulate the pilot, 0B and 0R results per system and law. Nothing was rerun.
+
+- Positivity laws and the SIR conservation laws are enforced exactly by structure. Without it, the fit breaks them often (hare positivity in 81 % of equivalent hare-lynx models, H1x in 97 % of H models).
+- The non-structural laws (A2, B1S, B2S, B2R, H2, R2) need a check. The witness loop verifies all of them in every sampled model. The random loop is behind on B2S (72/80), B1S (79/80) and R2 (45/47).
+- B-fac enforces all seven SIR laws by structure alone on the 80 sampled models. B-pos does not.
+- On H, structure alone lowers the share of models that satisfy the trapping law from 0.87 to 0.35 (Wilson 0.25 to 0.46). One system, so it is a candidate finding to test on the epidemic series, not a result.
