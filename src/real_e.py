@@ -72,7 +72,7 @@ def build(cfg, series=None):
     cuts = [i * w for i in range(nb)] + [m]
     train = [dict(Xs=T['Xs'][cuts[i]:cuts[i + 1]], dX=T['dX'][cuts[i]:cuts[i + 1]]) for i in range(nb)]
     cell = dict(train=train, iid=[V], ood=[O], state_sd=T['Xs'].std(0), deriv_sd=T['dX'].std(0), seed=0,
-                train_flat=[dict(Xs=T['Xs'], dX=T['dX'])])
+                train_flat=[dict(Xs=T['Xs'], dX=T['dX'])], train_whole=T)   # train_whole: raw X too (protocol 0F); not used by 0E
     info = dict(cfg=cfg, n_days=n, n_train=a, n_val=b - a, n_ext=n - b, n_train_smoothed=int(m), n_blocks=nb,
                 obs_box=[[float(X[:, j].min()), float(X[:, j].max())] for j in range(3)],
                 start=None if dates is None else dates[0], end=None if dates is None else dates[-1],

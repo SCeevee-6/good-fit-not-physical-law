@@ -123,6 +123,7 @@ def build(cfg, series=SERIES):
     train = [dict(Xs=T['Xs'][cuts[i]:cuts[i + 1]], dX=T['dX'][cuts[i]:cuts[i + 1]]) for i in range(nb)]
     train[-1] = dict(Xs=T['Xs'][cuts[nb - 1]:], dX=T['dX'][cuts[nb - 1]:])
     cell = dict(train=train, iid=[seg(va)], ood=[seg(te)], state_sd=T['Xs'].std(0), deriv_sd=T['dX'].std(0), seed=0)
+    cell['train_whole'] = T                     # unsplit training series with raw X (protocol 0F); not used by 0R
     vmax_obs = float((X[:, 0] / xm + X[:, 1] / ym).max())
     info = dict(cfg=cfg, scale_hare=float(sh), scale_lynx=float(sl_), xm=xm, ym=ym, n_train=int(tr.sum()), n_val=int(va.sum()), n_test=int(te.sum()),
                 n_train_smoothed=int(n), n_blocks=nb, V_obs_max_all=vmax_obs,

@@ -1,5 +1,5 @@
 """Push tools/kaggle_0B.py as a private Kaggle script kernel, or fetch its output.
-usage: python tools/kaggle_launch.py push <mode> <commit> <user>    (mode: main | needles | R | E | C | D)
+usage: python tools/kaggle_launch.py push <mode> <commit> <user>    (mode: main | needles | R | E | C | D | F)
        python tools/kaggle_launch.py status <mode> <user>
        python tools/kaggle_launch.py fetch <mode> <user> <outdir>
 Needs the kaggle CLI and its token in the environment.
@@ -10,7 +10,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 
 def slug(mode):
-    return {'R': 'ceg-0r', 'E': 'ceg-0e', 'C': 'ceg-0c', 'D': 'ceg-0d'}.get(mode, f'ceg-0b-{mode}')
+    return {'R': 'ceg-0r', 'E': 'ceg-0e', 'C': 'ceg-0c', 'D': 'ceg-0d', 'F': 'ceg-0f'}.get(mode, f'ceg-0b-{mode}')
 
 
 def kg(*a):
@@ -24,7 +24,7 @@ def main():
     if cmd == 'push':
         commit, user = sys.argv[3], sys.argv[4]
         d = tempfile.mkdtemp()
-        if mode in ('C', 'D'):
+        if mode in ('C', 'D', 'F'):
             src = open(os.path.join(HERE, f'kaggle_0{mode}.py'), encoding='utf-8').read().replace("COMMIT = 'REPLACE'", f"COMMIT = '{commit}'")
             if len(sys.argv) > 5 and sys.argv[5] == 'test':
                 src = src.replace('QUICK = False', 'QUICK = True')
