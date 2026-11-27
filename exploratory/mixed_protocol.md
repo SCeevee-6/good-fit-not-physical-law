@@ -1,0 +1,3 @@
+# Single-run accumulating noise and independent readout noise
+
+Freeze before numerical evaluation. Model Y(t)=integral p+eta W(t+T), observed with independent N(0,sigma²) read errors. Test a clipped triangular weighting schedule against two-timestamp repeats and equally spaced reads. Use m=.35,L=1,T=2,sigma=.0125, eta in {.025,.075,.15}, even n in {2,4,8,16,64}. Predict its certified worst-case accuracy is within one percentage point of the mixed-channel adaptive upper bound at n>=8. Report failures. Validate one intermediate cell with 100000 Gaussian draws. This is simulation; Brownian fluctuations depict shared accumulated metering error on one fixed physical trajectory.

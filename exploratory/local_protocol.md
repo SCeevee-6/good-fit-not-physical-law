@@ -1,0 +1,3 @@
+# Local power from nested cumulative measurements
+
+Before numerical evaluation: time origin at target. Meter integrates an unknown power p from -T with |p'|<=L. Class labels p(0)>=m or <=-m. Equal per-read independent Gaussian noise. Use T=2, L=1, m=0.35, sigma=0.0125. Predict each endpoint alone (at 0 or an earlier time) is minimax chance; a suitably timed pair exceeds 95%. Compare with plain differencing and a physically resettable short gate. Separately test four equally spaced readings against a four-read schedule with the same last two times as the winning pair (extra samples may be ignored). Record exact certificates and failure when noise increases. No underlying oscillatory symmetry required.
