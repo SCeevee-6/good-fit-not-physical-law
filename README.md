@@ -1,5 +1,17 @@
 # good-fit-not-physical-law
 
+## Project map
+
+This repository contains two connected investigations into what physical laws can be inferred from measurements. The original study asks where data constrain laws in learned dynamical systems. The newer exploratory work asks when hidden physical quantities are identifiable from measurements, when they are fundamentally ambiguous, and which added measurement resolves that ambiguity. The exploratory studies remain grouped under [`exploratory/`](exploratory/) so their separate protocols, assumptions, simulations, and limits remain visible.
+
+- **Data-driven law discovery:** start with [`docs/ROADMAP_v3.md`](docs/ROADMAP_v3.md) and the F0 law-zone results. The project finds that equally accurate models can disagree about physical laws, especially away from observed states. Its earlier gates also record where counterexample-guided repair fails to improve on grid methods or costs predictive accuracy.
+- **Measurement limits and hidden energy flow:** start with [`exploratory/hidden_storage.md`](exploratory/hidden_storage.md). It gives passive circuit realizations with identical terminal behavior and opposite internal energy flow, then characterizes feasible histories for matched delay networks.
+- **Resolution limits for integrated measurements:** [`exploratory/local_theorem.md`](exploratory/local_theorem.md) treats local power-sign recovery under bounded rate of change. [`exploratory/mixed_theorem.md`](exploratory/mixed_theorem.md) adds accumulated meter noise and finite readout noise, with an upper bound for adaptive sampling.
+- **Tests against recorded data:** [`exploratory/clock_findings.md`](exploratory/clock_findings.md) and the associated protocols evaluate injected signals on chronologically separated public clock and timing-counter records. These are offline injection tests, not new physical interventions.
+- **Reproduction:** individual studies document their commands, inputs, frozen protocols, results, and limitations in their respective Markdown files. The original project setup below runs the dynamical-systems research.
+
+The studies are at different evidence stages. Mathematical statements apply only under their stated assumptions. Simulated checks and offline signal injections do not establish experimental validation or publication priority. See each study report for its own assumptions, failed predictions, and next physical tests.
+
 If an equation found from data predicts held-out data as well as the best one, can it still break a physical law it is supposed to obey? How often, where, and what fixes it?
 
 Short answer so far: yes, very often, on simulated and real data. The violations sit almost entirely in states the data never visited. Building the law into the model's form fixes only the laws that form contains, and can make other laws worse. On systems with two to four variables a dense grid or random sampling finds and fixes what occurs, so an exact solver is not needed for search. Its value is the certificate and the small number of constraints.
@@ -53,7 +65,7 @@ Systems: logistic predator-prey (A), SIR with varying population (B), A with the
 - Real-data fits are poor: validation error above 1 training sd in 8 of 10 countries.
 - The COVID panel is 10 correlated series from one pandemic, with 35 equivalent candidates in total.
 - Synthetic systems have at most four states.
-- There is no theorem yet.
+- The exploratory branch adds mathematical theorems about law identifiability and measurement limits. They do not yet constitute a general theorem for all physical systems, and the original law-zone research remains open.
 
 ## Layout
 
