@@ -2,6 +2,7 @@
 
 python src/run_0F.py calib [workers]   -> results/0F_jobs/calib/<sys>_n<ni>_s<seed>.json
 python src/run_0F.py real  [workers]   -> results/0F_jobs/real/<name>.json
+python src/run_0F.py horizon [workers] -> results/0F_jobs/horizon/<sys>_s<seed>.json  (0F-3)
 Env OF_QUICK=1: development seeds 0-1 and hare-lynx plus one country (pipeline test only; outputs are discarded).
 Resumable: a job whose JSON exists is skipped.
 """
@@ -145,20 +146,43 @@ def real_job(name):
     return rec
 
 
+HORIZON_SYS = ('A', 'B', 'H', 'E4')
+HORIZON_SEEDS = tuple(range(100, 120))
+
+
+def horizon_run(job):
+    from systems import SYSTEMS
+    from data import make_cell
+    from gate_a import NOISE
+    from lawmap import noise_sd, stacked_set
+    from horizon import horizon_job
+    _setup()
+    key, seed = job; S = SYSTEMS[key]; t0 = time.time()
+    cell = make_cell(S, NOISE[1], seed, 1); trajs = cell['train']; sig = noise_sd(trajs, S)
+    rng = np.random.default_rng([seed, 31])
+    rec = dict(key=key, seed=seed, degrees={})
+    for d in S.degrees:
+        E = S.E(d); ds = stacked_set(trajs, S, E, sig, alpha=ALPHA)
+        rec['degrees'][str(d)] = horizon_job(ds, trajs, S, E, sig, ds.Xi_ref, S.specs, rng)
+    rec['seconds'] = round(time.time() - t0, 1)
+    return rec
+
+
 def _worker(args):
     phase, job = args
-    path = os.path.join(RES, phase, (f'{job[0]}_n{job[1]}_s{job[2]}' if phase == 'calib' else job) + '.json')
+    name = {'calib': lambda j: f'{j[0]}_n{j[1]}_s{j[2]}', 'real': lambda j: j, 'horizon': lambda j: f'{j[0]}_s{j[1]}'}[phase](job)
+    path = os.path.join(RES, phase, name + '.json')
     if os.path.exists(path):
         return path, 'skip'
     if hasattr(signal, 'SIGALRM'):
         signal.signal(signal.SIGALRM, _alarm); signal.alarm(JOB_LIMIT_S)
     try:
-        rec = calib_job(job) if phase == 'calib' else real_job(job)
+        rec = {'calib': calib_job, 'real': real_job, 'horizon': horizon_run}[phase](job)
         st = 'ok'
     except Limit:
-        rec, st = dict(job=list(job) if phase == 'calib' else job, error='time limit'), 'limit'
+        rec, st = dict(job=list(job) if isinstance(job, tuple) else job, error='time limit'), 'limit'
     except Exception as e:                                  # recorded, not hidden
-        rec, st = dict(job=list(job) if phase == 'calib' else job, error=repr(e)[:500]), 'error'
+        rec, st = dict(job=list(job) if isinstance(job, tuple) else job, error=repr(e)[:500]), 'error'
     finally:
         if hasattr(signal, 'SIGALRM'):
             signal.alarm(0)
@@ -172,6 +196,8 @@ def jobs(phase):
         seeds = CALIB_SEEDS
         # primary noise first, so anything lost to a time limit is a sensitivity job
         return [(k, ni, s) for ni in (1, 0, 2) for k in CALIB_SYS for s in seeds]
+    if phase == 'horizon':
+        return [(k, s) for k in HORIZON_SYS for s in ((0, 1) if QUICK else HORIZON_SEEDS)]
     return [x[0] for x in real_datasets()]
 
 

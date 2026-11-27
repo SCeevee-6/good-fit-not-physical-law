@@ -5,6 +5,7 @@ Output: /kaggle/working/0F.zip (results/0F_jobs, logs/0F_*).
 import os, sys, subprocess, time, zipfile, io, urllib.request
 COMMIT = 'REPLACE'
 QUICK = False
+PHASES = ('calib', 'real')
 REPO = 'SCeevee-6/good-fit-not-physical-law'
 PINS = ['numpy==2.4.6', 'scipy==1.17.1', 'z3-solver==5.1.0.0', 'cvxpy==1.9.3', 'clarabel==0.11.1', 'sympy==1.14.0']
 T0 = time.time()
@@ -26,7 +27,7 @@ root = os.path.join('/tmp/src', os.listdir('/tmp/src')[0])
 n = os.cpu_count() or 4
 print('cpus', n, 'root', root, flush=True)
 try:
-    for ph in ('calib', 'real'):
+    for ph in PHASES:
         t = time.time()
         sh([sys.executable, 'src/run_0F.py', ph, str(n)], cwd=root)
         print(f'phase {ph} {time.time() - t:.0f} s', flush=True)

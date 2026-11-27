@@ -243,7 +243,7 @@ class StackedSet:
     def __init__(self, trajs, S, E, sigma, Xi_ref, keep=None, alpha=0.05, rcond=1e-12, null_tol=1e-8):
         from scipy.stats import chi2
         from scipy.linalg import solve_triangular
-        self.E = E; n = E.shape[1]; self.n = n
+        self.E = E; n = E.shape[1]; self.n = n; self.Xi_ref = np.asarray(Xi_ref, float)
         self.keep = np.ones(E.shape[0], bool) if keep is None else np.asarray(keep, bool)
         pk = int(self.keep.sum()); self.p = pk; sig = np.asarray(sigma, float); self.sigma = sig
         Zs, ys = [], []

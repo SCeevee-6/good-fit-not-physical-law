@@ -116,3 +116,12 @@ If any fails, the design claim is dropped (ROADMAP_v3 kill rule).
 ## Not changed by results
 
 Seeds, grids, alpha, tolerances, the 1/20 target, the cap, and the arms. The time limit per 0F-1 job is 30 minutes. A job lost to it is recorded and not rerun, and gates need at least 90 of 100 seeds per cell.
+
+## Addendum 1 (2026-11-27, before any counted 0F-3 run)
+
+On development seed 7 (system A), the lambda_min lower bound in 0F-3 is valid but useless. lambda_min of the Savitzky-Golay residual covariance is tiny, so the bound is below 1e-3 of h^2, and the horizon bracket almost never closes by g = 8.
+
+Added: a second, exact lower bound. It evaluates the test polynomial p = T_d(l(x)) through the whitened design, h^2 >= eps c_j^2 T_d(g)^2 / ||Z delta_p||^2, instead of bounding ||Z delta_p||^2 by n / lambda_min. On seed 7 it is 4-20 times tighter and holds at 1000 of 1000 points per law (`src/horizon.py`, `test_poly_denominator`).
+
+G-F3 now applies to both bands (each must hold at >= 99 % of points). The bracket width and the censored-ray count are reported for both. Nothing else changes. 0F-3 code is `src/horizon.py` and `python src/run_0F.py horizon`.
+
