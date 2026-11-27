@@ -125,3 +125,26 @@ Added: a second, exact lower bound. It evaluates the test polynomial p = T_d(l(x
 
 G-F3 now applies to both bands (each must hold at >= 99 % of points). The bracket width and the censored-ray count are reported for both. Nothing else changes. 0F-3 code is `src/horizon.py` and `python src/run_0F.py horizon`.
 
+## Addendum 2 (2026-11-27, before any counted 0F-4 run)
+
+A smoke test on development seed 7 showed that at degree 2 the confidence set already decides the whole target set for A2, B2S and B2R before anything is added. Every (seed, law) pair would be dropped, and G-F4 would test nothing.
+
+Starting undecided share of the target set, development seeds 0-4, by degree:
+
+| system | degree 2 | degree 3 | degree 4 |
+|---|---|---|---|
+| A2 | 0 | 0 | 1.0 in all five |
+| B2S | 0 | 0.05-0.22 | n/a |
+| B2R | 0 | 0.17-0.51 | n/a |
+| H2 | 0 | 0 | 0 |
+| E2S | 0.10-0.14 | 0.92-0.96 | n/a |
+| E2R | 0.34-0.40 | 1.0 | n/a |
+
+Changes:
+- Each system uses its highest library degree: A 4, B 3, E4 3.
+- H is dropped from G-F4 because its target set is decided at every degree. Its starting share is still reported.
+- E4 is in the pooled gate. The pooled values without E4 are reported next to it, because E4 is expected to fail G-F1.
+- The time limit for one 0F-4 job (one system and seed, all arms) is 5 hours.
+
+Nothing else changes.
+

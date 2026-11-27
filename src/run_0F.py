@@ -3,6 +3,7 @@
 python src/run_0F.py calib [workers]   -> results/0F_jobs/calib/<sys>_n<ni>_s<seed>.json
 python src/run_0F.py real  [workers]   -> results/0F_jobs/real/<name>.json
 python src/run_0F.py horizon [workers] -> results/0F_jobs/horizon/<sys>_s<seed>.json  (0F-3)
+python src/run_0F.py design [workers]  -> results/0F_jobs/design/<sys>_s<seed>.json   (0F-4)
 Env OF_QUICK=1: development seeds 0-1 and hare-lynx plus one country (pipeline test only; outputs are discarded).
 Resumable: a job whose JSON exists is skipped.
 """
@@ -19,6 +20,7 @@ N_SAMPLE = 200
 ALPHA = 0.05
 GRID = dict(n1=501, n2=61, n3=25, n4=11)
 JOB_LIMIT_S = 1800
+LIMITS = {'design': 5 * 3600}
 QUICK = os.environ.get('OF_QUICK') == '1'
 if QUICK:                                   # pipeline test on development seeds, never the gate sample
     CALIB_SEEDS = (0, 1); CHECK_SEEDS = (0, 1)
@@ -168,16 +170,22 @@ def horizon_run(job):
     return rec
 
 
+def design_run(job):
+    from design import design_job
+    _setup()
+    return design_job(*job)
+
+
 def _worker(args):
     phase, job = args
-    name = {'calib': lambda j: f'{j[0]}_n{j[1]}_s{j[2]}', 'real': lambda j: j, 'horizon': lambda j: f'{j[0]}_s{j[1]}'}[phase](job)
+    name = {'calib': lambda j: f'{j[0]}_n{j[1]}_s{j[2]}', 'real': lambda j: j, 'horizon': lambda j: f'{j[0]}_s{j[1]}', 'design': lambda j: f'{j[0]}_s{j[1]}'}[phase](job)
     path = os.path.join(RES, phase, name + '.json')
     if os.path.exists(path):
         return path, 'skip'
     if hasattr(signal, 'SIGALRM'):
-        signal.signal(signal.SIGALRM, _alarm); signal.alarm(JOB_LIMIT_S)
+        signal.signal(signal.SIGALRM, _alarm); signal.alarm(LIMITS.get(phase, JOB_LIMIT_S))
     try:
-        rec = {'calib': calib_job, 'real': real_job, 'horizon': horizon_run}[phase](job)
+        rec = {'calib': calib_job, 'real': real_job, 'horizon': horizon_run, 'design': design_run}[phase](job)
         st = 'ok'
     except Limit:
         rec, st = dict(job=list(job) if isinstance(job, tuple) else job, error='time limit'), 'limit'
@@ -196,6 +204,10 @@ def jobs(phase):
         seeds = CALIB_SEEDS
         # primary noise first, so anything lost to a time limit is a sensitivity job
         return [(k, ni, s) for ni in (1, 0, 2) for k in CALIB_SYS for s in seeds]
+    if phase == 'design':
+        from design import DESIGN, SEEDS
+        order = ('E4', 'B', 'A')                     # slowest first
+        return [(k, s) for k in order if k in DESIGN for s in ((0,) if QUICK else SEEDS)]
     if phase == 'horizon':
         return [(k, s) for k in HORIZON_SYS for s in ((0, 1) if QUICK else HORIZON_SEEDS)]
     return [x[0] for x in real_datasets()]

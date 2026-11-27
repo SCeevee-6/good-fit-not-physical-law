@@ -72,6 +72,53 @@ def main():
         gate.append(dict(rule='G-F2 hare-lynx mean undecided share, lowest degree (prediction >= 1/2)', value=None if hl is None else round(hl, 4), n=1, threshold='>= 0.5', result='reported'))
         if cv:
             gate.append(dict(rule='G-F2 COVID median over countries (prediction >= 1/2)', value=round(float(np.median(cv)), 4), n=len(cv), threshold='>= 0.5', result='reported'))
+    # 0F-3
+    Hz = [json.load(open(f)) for f in sorted(glob.glob(os.path.join(J, 'horizon', '*.json')))]
+    hrows = []
+    for h in Hz:
+        if 'error' in h:
+            gate.append(dict(rule=f'horizon job error {h.get("job")}', value=h['error'][:80], n=1, threshold='-', result='error')); continue
+        for d, R in h['degrees'].items():
+            for law, v in R.items():
+                hrows.append(dict(key=h['key'], seed=h['seed'], degree=int(d), law=law, **v))
+    if hrows:
+        for band, k in (('lambda_min', 'n_in_band'), ('exact test polynomial', 'n_in_band_exact')):
+            a = sum(r[k] for r in hrows); b = sum(r['n_points'] for r in hrows)
+            gate.append(dict(rule=f'G-F3 band holds ({band})', value=f'{a}/{b}', n=b, threshold='>= 99/100',
+                             result='pass' if Fr(a, b) >= Fr(99, 100) else 'FAIL'))
+        for key in sorted({r['key'] for r in hrows}):
+            for d in sorted({r['degree'] for r in hrows if r['key'] == key}):
+                rr = [r for r in hrows if r['key'] == key and r['degree'] == d]
+                bx = [r['median_log_bracket_exact'] for r in rr if r['median_log_bracket_exact'] is not None]
+                gate.append(dict(rule=f'horizon (reported) {key} degree {d}: median log bracket (exact), censored rays share',
+                                 value=f"{np.median(bx) if bx else None} | {sum(r['n_censored_exact'] for r in rr)}/{sum(r['n_bracket_exact'] + r['n_censored_exact'] for r in rr)}",
+                                 n=len(rr), threshold='-', result='reported'))
+    write('0F_horizon.csv', hrows)
+    # 0F-4
+    Dz = [json.load(open(f)) for f in sorted(glob.glob(os.path.join(J, 'design', '*.json')))]
+    drows, pairs = [], []
+    for dj in Dz:
+        if 'error' in dj:
+            gate.append(dict(rule=f'design job error {dj.get("job")}', value=dj['error'][:80], n=1, threshold='-', result='error')); continue
+        for l in dj['laws']:
+            nl = dj['arms'][f'law_{l}']['need'][l]; nr = dj['arms']['random']['need'][l]
+            nh = dj['arms']['halton']['need'][l]; nd = dj['arms']['dopt']['need'][l]
+            drows.append(dict(key=dj['key'], seed=dj['seed'], law=l, n_target=dj['n_target'][l], law_design=nl, random=nr, halton=nh, dopt=nd,
+                              start_undecided=dj['arms']['random']['trace'][0][l]))
+            if nl == 0:
+                continue
+            pairs.append((dj['key'], nr / nl, nl, nd))
+    write('0F_design.csv', drows)
+    for label, P in (('all systems', pairs), ('without E4', [p for p in pairs if p[0] != 'E4'])):
+        if not P:
+            continue
+        ratios = np.array([p[1] for p in P]); med = float(np.median(ratios))
+        rng = np.random.default_rng(20261126); bs = np.median(ratios[rng.integers(0, len(ratios), (10000, len(ratios)))], axis=1)
+        lo = float(np.quantile(bs, 0.025)); ml = float(np.median([p[2] for p in P])); md = float(np.median([p[3] for p in P]))
+        ok = med >= 2 and lo > 1 and ml <= md
+        gate.append(dict(rule=f'G-F4 design ({label}): median random/law, bootstrap low, median law vs dopt', value=f'{med:.3f} | {lo:.3f} | {ml} vs {md}',
+                         n=len(P), threshold='>= 2, > 1, <=', result=('pass' if ok else 'FAIL') if label == 'all systems' else 'reported'))
+    gate.append(dict(rule='G-F4 pairs dropped (decided at start)', value=sum(1 for r in drows if r['law_design'] == 0), n=len(drows), threshold='-', result='reported'))
     write('0F_calib.csv', cal); write('0F_zones_calib.csv', zc); write('0F_real.csv', real); write('0F_witnesses.csv', wit); write('0F_gate.csv', gate)
     for g in gate:
         print(g['rule'], '|', g['value'], '|', g['result'])
