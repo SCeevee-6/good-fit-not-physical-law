@@ -1,0 +1,5 @@
+# Matched passive one-port challenge
+
+Before numerical scoring: use two parallel branches, series R-L and series R-C, initially unenergized. R=1, L=tau R, C=tau/R. After a long positive pulse transitioning through zero to negative voltage and back, choose instead this fixed simpler two-step challenge: apply 2 V for 1 time unit from rest then 1 V. Predict at 1+ that tau=0.2 discharges and tau=3 charges despite identical terminal input. Integrate capacitor voltage and inductor current separately; check energy balance. Stress with 1% error on C and report maximum port discrepancy over 0..3 relative to peak ideal current. No claim of tolerance-robust perfect equality.
+
+For a second construction compare matched line banks with delays on [0,2]. A unit calibration power step and aggregate terminating-resistor power samples at fixed delays partition the delay distribution. Before scoring: predict the resulting lower and upper bounds contain the hidden power-rate trajectory at all queried times for an unseen test waveform. Use 4,8,16,32 equal bins and compare average interval width. Synthetic tests only.

@@ -1,0 +1,116 @@
+\documentclass[11pt]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage{amsmath,amssymb,mathtools,booktabs}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\title[Measurements and physical laws]{What Measurements Determine About Physical Laws}
+\author{Shreyan Chethan}
+\date{}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\begin{document}
+\begin{abstract}
+Can perfect input-output measurements determine what happens inside a physical system? We answer no for explicit passive circuit families. Two four-component one-ports have identical terminal behavior for every applied voltage history, yet their stored-energy rates have opposite signs at the same instant. For matched lossless delay-line banks, we characterize exactly the set of internal storage-rate histories compatible with terminal data as a convex hull, and show how a step response identifies the delay distribution. We connect these results to data-driven law discovery, where accurate equations disagree about laws outside observed regions, and to noise-limited sign recovery in integrating meters. Chronological tests on public clock records with offline-injected signals expose a long-window calibration failure and motivate empirical tail calibration. The exact results are restricted to their stated circuit classes; the recorded-data analyses are computational, not new hardware experiments.
+\end{abstract}
+\maketitle
+
+\section{Introduction}
+A model can predict what reaches a measurement port without identifying what happens inside the system. Voltage and current determine supplied power, but not necessarily its division between stored energy and dissipation. Likewise, equations that fit observed trajectories comparably well can imply different physical laws away from observed states.
+
+Our project began with sparse-regression discovery of ordinary differential equations. Equivalent fits often violated positivity, trapping, monotonicity, or conservation away from sampled states. Counterexample-guided repair frequently imposed a chosen law in synthetic settings, but dense grids performed similarly in low dimensions and repair could cost validation accuracy on real series. This redirected the project toward a set-valued question: which physical claims are shared by all models compatible with the data, and which added measurement would resolve the ambiguity?
+
+The central result is an exact passive-circuit construction. A continuum of circuits has the same driving-point map for every input, while internal stored energy changes at opposite rates. We then give an exact history-set theorem for matched delay lines. These results sit alongside resolution bounds for integrating meters and empirical analyses of clock records.
+
+\section{A passive one-port with hidden energy flow}
+Take two parallel branches, one a series $R$--$L$ branch with $L=R\tau$, the other a series $R$--$C$ branch with $C=\tau/R$. Starting from rest, let $i_L$ be the inductor current and $x$ the capacitor voltage. The circuit equations are
+\[
+\tau\dot i_L+i_L=v/R,\qquad \tau\dot x+x=v.
+\]
+Uniqueness gives $Ri_L=x$. Consequently,
+\[
+i_{\rm in}=i_L+(v-x)/R=v/R
+\]
+for every voltage history, independently of $\tau$. The stored energy and its derivative are
+\[
+E_\tau=\tfrac12Li_L^2+\tfrac12Cx^2=\tau x^2/R,\qquad
+\dot E_\tau=2x(v-x)/R.
+\]
+The terminal law is resistive, while the energy stored inside the physical inductors and capacitors depends on $\tau$.
+
+\begin{theorem}[Opposite internal storage rates]
+Apply $v=2$ V over $[0,1)$ and $v=1$ V over $[1,3]$. At the transition, $x(1)=2(1-e^{-1/\tau})$. For $R=1\,\Omega$, $\dot E_\tau(1^+)$ is approximately $-3.9195$ W at $\tau=0.2$ and $+0.4910$ W at $\tau=3$, although both circuits draw exactly $1$ A at the port immediately after the transition.
+\end{theorem}
+\begin{proof}
+Solve $\tau\dot x+x=v$ on the first interval and substitute in the energy derivative. Equality of the terminal maps follows from $Ri_L=x$, as above.
+\end{proof}
+Both satisfy conservation of energy. At the transition the input supplies one watt. In the first realization stored energy falls while dissipation exceeds input power. In the second realization stored energy rises. An internal voltage measurement distinguishes them. A one-percent capacitance perturbation preserves opposite signs for this drive, but breaks exact port equivalence, so tolerance leakage must be evaluated experimentally.
+
+\section{The full set of histories in matched delay networks}
+Let $P(t)=v(t)^2/R$ be terminal power. Consider parallel initially quiescent, lossless, nondispersive matched lines with delays $d_i$ and positive weights $w_i$ summing to one. Give line $i$ characteristic and load resistance $R/w_i$. Every network has the same terminal resistance $R$. Its termination dissipates $w_iP(t-d_i)$ and its total field-energy rate is
+\[
+\dot E(t)=P(t)-\sum_iw_iP(t-d_i).
+\]
+
+\begin{theorem}[Compatible histories form a convex hull]
+Fix observation times $t_1,\ldots,t_k$, a compact delay set $D$, and continuous $P$. Across this network family the attainable vector of storage rates is
+\[
+\operatorname{conv}\{(P(t_j)-P(t_j-d))_{j=1}^k:d\in D\}.
+\]
+Every vector in this set has a realization with at most $k+1$ lines.
+\end{theorem}
+\begin{proof}
+A bank's vector is the integral of the delay curve against its delay probability measure, so belongs to the convex hull. Conversely every finite convex combination is realized by choosing the corresponding line delays and weights. Carath\'eodory's theorem reduces a point in a compact convex subset of $\mathbb R^k$ to at most $k+1$ points.
+\end{proof}
+The joint set is sharper than independent pointwise intervals because one physical network must use the same delay weights at every time. If compatible vectors include opposite signs in a coordinate, no terminal-only procedure can decide that rate within this realization class.
+
+Under a unit power step from rest, the fraction dissipated at line terminations by time $s$ is the delay distribution function $\mu([0,s])$. A complete ideal step response identifies $\mu$. With finite bins $B_b$ of known masses $m_b$, the sharp closure of the feasible storage-rate interval at time $t$ is
+\[
+[P(t)-\sum_bm_b\sup_{d\in B_b}P(t-d),\quad
+P(t)-\sum_bm_b\inf_{d\in B_b}P(t-d)].
+\]
+A synthetic 80-line study enclosed all 701 queried rates. Refining calibration from four to 32 bins reduced mean interval width from 0.856 to 0.123 normalized units, and increased sign-certification frequency from 58.8\% to 96.4\% for the tested waveform.
+
+\section{Learned equations and law-identifiability regions}
+The original study fits polynomial differential equations and checks inequalities such as positivity and trapping. Let $\widehat\xi$ be a least-squares coefficient vector, $G$ the design Gram matrix on the identified subspace, and
+\[
+\mathcal E=\{\xi:(\xi-\widehat\xi)^TG(\xi-\widehat\xi)\le\epsilon\}
+\]
+the residual-consistent set. For a law linear in coefficients at state $u$, $a(u)^T\xi\ge-\delta$, the extrema over $\mathcal E$ are
+\[
+a(u)^T\widehat\xi\ \pm\sqrt{\epsilon\,a(u)^TG^{-1}a(u)}.
+\]
+Thus each queried state is certified, refuted, or undecided. Exploratory maps found large undecided regions away from data and increased uncertainty with library degree. Earlier tests also found that dense grids matched counterexample repair at low dimension, while repair sometimes increased real-series validation error. These results motivate set-valued physical claims; they do not establish that a chosen equation library contains the true dynamics.
+
+\section{Resolution limits for integrating meters}
+Suppose $p$ is $L$-Lipschitz and the question is whether $p(0)\ge m$ or $p(0)\le-m$. An integrating meter returns $Y(t)=\int_{-T}^t p(s)\,ds+\varepsilon_t$, with independent Gaussian read noise of standard deviation $\sigma$.
+
+\begin{theorem}[Two-read resolution]
+If $T\ge(1+1/\sqrt2)m/L$, the best worst-case accuracy with two reads is
+\[
+\Phi\!\left(\frac{m^2}{4L\sigma}\right).
+\]
+It is attained by differencing readings at $-m/L$ and $0$.
+\end{theorem}
+For positive sign, the Lipschitz envelope implies $p(t)\ge m+Lt$ over the last $m/L$ interval, so the integrated signal is at least $m^2/(2L)$. The negative case is symmetric. The independent read errors give difference noise $\sqrt2\sigma$. An opposing pair of admissible histories gives the converse. Extensions with accumulated Brownian meter noise give a single-run resolution ceiling and a finite-read upper bound against adaptive sampling. These assume calibrated noise and a known rate bound.
+
+\section{Chronological tests on recorded clocks}
+Public one-second phase records for a cesium clock against a hydrogen maser, a counter cable-delay measurement, and a GPS receiver against a maser provide measured backgrounds. Each series was divided chronologically into training, calibration, and test portions. Positive and negative frequency ramps were injected offline into held-out blocks. These are computational stress tests, not physical perturbation experiments.
+
+On the cesium record, the Gaussian model selected ramps intended to yield 90\% accuracy. The harder-sign test accuracy was 91.31\% at four seconds, 90.90\% at 16 seconds, and 82.48\% at 64 seconds. The frozen three-duration gate failed. A subsequent tail-calibration analysis passed a criterion of at least 87\% in all six external cable and GPS settings. At 64 seconds the corrected amplitude rose 34.9\% for cable delay but fell 8.5\% for GPS. These related records show that temporal noise can cause resolution errors in either direction; they are not independent hardware replications.
+
+\section{Discussion}
+The shared mathematical structure is a set-valued account of what data determine. The circuit pair shows exact ambiguity: every possible terminal drive leaves internal energy flow unresolved. The delay-line theorem describes all compatible histories jointly. Learned-law maps expose states where equations consistent with trajectory data disagree. Meter bounds and clock tests quantify the effect of measurement noise.
+
+The exact results apply to specified realization classes. They do not prove ambiguity in every passive system. The delay theorem assumes matched, lossless, nondispersive lines. The clock experiments use offline injection and cannot show how a physical source responds to a commanded signal. The next decisive experiment is a blinded component-level test of the R-L/R-C construction with independent internal voltage and current channels, measured tolerances, and an external terminal classifier.
+
+\\section{Conclusion}
+External predictions and internal physical identification are different achievements. We give a passive circuit family whose port behavior is identical while stored-energy flow reverses, characterize compatible histories in a matched delay-network family, and connect these examples to data-driven laws and instrument limits. A rigorous physical report should state which claims hold for every model compatible with the observations and identify the additional measurement needed to resolve the rest.
+
+\begin{thebibliography}{9}
+\bibitem{lines} MIT OpenCourseWare, \emph{Network models of transmission lines and wave behavior}, 2.141 Modeling and Simulation of Dynamic Systems, 2006.
+\bibitem{donoho} D. L. Donoho, Statistical estimation and optimal recovery, \emph{Ann. Statist.} 22 (1994), 238--270.
+\bibitem{armstrong} T. B. Armstrong and M. Koles\'ar, Simple and honest confidence intervals in nonparametric regression, \emph{Quant. Econ.} 11 (2020), 1--39.
+\bibitem{allan} A. Wallin, AllanTools timing-data repository, \url{https://github.com/aewallin/allantools}.
+\end{thebibliography}
+\end{document}

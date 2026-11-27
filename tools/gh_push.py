@@ -87,8 +87,14 @@ def main():
             assert code == 201, ('blob failed', rel, code)
             sha = blob['sha']; sent += 1
         entries.append({'path': rel, 'mode': '100644', 'type': 'blob', 'sha': sha})
-    tree = None                                   # full snapshot, built in chunks (one large tree call can 502)
-    for i in range(0, len(entries), 300):
+    # Default: layer local files on top of head's tree, so files other writers pushed are kept.
+    # --mirror: make the remote an exact snapshot of the local folder (deletes remote-only files).
+    mirror = '--mirror' in sys.argv
+    remote_only = sorted(set(have) - {e['path'] for e in entries})
+    if remote_only:
+        print(('DELETING ' if mirror else 'keeping ') + str(len(remote_only)) + ' remote-only files, e.g.', remote_only[:5])
+    tree = None if mirror else {'sha': cur['sha']}
+    for i in range(0, len(entries), 300):              # chunks: one large tree call can 502
         body = {'tree': entries[i:i + 300]}
         if tree:
             body['base_tree'] = tree['sha']
