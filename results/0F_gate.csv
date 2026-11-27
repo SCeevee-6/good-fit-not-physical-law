@@ -1,0 +1,49 @@
+rule,value,n,threshold,result
+G-F0 sampled-model contradictions,0,780,0,pass
+G-F0 region certificates (reported),"{""verified"": 93}",93,-,reported
+G-F1 coverage A degree 2,95/100,100,">= 9/10, n >= 90",pass
+G-F1 coverage A degree 3,96/100,100,">= 9/10, n >= 90",pass
+G-F1 coverage A degree 4,94/100,100,">= 9/10, n >= 90",pass
+G-F1 coverage B degree 2,93/100,100,">= 9/10, n >= 90",pass
+G-F1 coverage B degree 3,92/100,100,">= 9/10, n >= 90",pass
+G-F1 coverage E4 degree 2,0/100,100,">= 9/10, n >= 90",FAIL
+G-F1 coverage E4 degree 3,0/100,100,">= 9/10, n >= 90",FAIL
+coverage (reported) A degree 2 noise 0,75/100,100,-,reported
+coverage (reported) A degree 2 noise 2,94/100,100,-,reported
+coverage (reported) A degree 3 noise 0,73/100,100,-,reported
+coverage (reported) A degree 3 noise 2,97/100,100,-,reported
+coverage (reported) A degree 4 noise 0,79/100,100,-,reported
+coverage (reported) A degree 4 noise 2,92/100,100,-,reported
+coverage (reported) B degree 2 noise 0,98/100,100,-,reported
+coverage (reported) B degree 2 noise 2,92/100,100,-,reported
+coverage (reported) B degree 3 noise 0,97/100,100,-,reported
+coverage (reported) B degree 3 noise 2,81/100,100,-,reported
+coverage (reported) E4 degree 2 noise 0,74/100,100,-,reported
+coverage (reported) E4 degree 2 noise 2,0/100,100,-,reported
+coverage (reported) E4 degree 3 noise 0,0/100,100,-,reported
+coverage (reported) E4 degree 3 noise 2,0/100,100,-,reported
+coverage known sigma (reported) A degree 2,94/100,100,-,reported
+coverage known sigma (reported) A degree 3,96/100,100,-,reported
+coverage known sigma (reported) A degree 4,95/100,100,-,reported
+coverage known sigma (reported) B degree 2,93/100,100,-,reported
+coverage known sigma (reported) B degree 3,89/100,100,-,reported
+coverage known sigma (reported) E4 degree 2,0/100,100,-,reported
+coverage known sigma (reported) E4 degree 3,0/100,100,-,reported
+calib jobs with errors or time limit,0,900,-,reported
+"G-F2 hare-lynx mean undecided share, lowest degree (prediction >= 1/2)",0.6242,1,>= 0.5,reported
+G-F2 COVID median over countries (prediction >= 1/2),0.1857,10,>= 0.5,reported
+G-F3 band holds (lambda_min),680000/680000,680000,>= 99/100,pass
+G-F3 band holds (exact test polynomial),680000/680000,680000,>= 99/100,pass
+"horizon (reported) A degree 2: median log bracket (exact), censored rays share",0.09675019958602513 | 7111/8000,40,-,reported
+"horizon (reported) A degree 3: median log bracket (exact), censored rays share",0.3889578201820845 | 6016/8000,40,-,reported
+"horizon (reported) A degree 4: median log bracket (exact), censored rays share",1.054378888005934 | 4244/8000,40,-,reported
+"horizon (reported) B degree 2: median log bracket (exact), censored rays share",0.5602381626150349 | 17941/20000,100,-,reported
+"horizon (reported) B degree 3: median log bracket (exact), censored rays share",0.9272292024354045 | 13454/20000,100,-,reported
+"horizon (reported) E4 degree 2: median log bracket (exact), censored rays share",0.9895101495356264 | 20253/24000,120,-,reported
+"horizon (reported) E4 degree 3: median log bracket (exact), censored rays share",0.6470895361060425 | 19396/24000,120,-,reported
+"horizon (reported) H degree 2: median log bracket (exact), censored rays share",0.037013784731575336 | 6952/8000,40,-,reported
+"horizon (reported) H degree 3: median log bracket (exact), censored rays share",0.2726103447775056 | 6575/8000,40,-,reported
+"horizon (reported) H degree 4: median log bracket (exact), censored rays share",0.4079383200758272 | 4414/8000,40,-,reported
+"G-F4 design (all systems): median random/law, bootstrap low, median law vs dopt",1.420 | 1.167 | 2.0 vs 2.0,100,">= 2, > 1, <=",FAIL
+"G-F4 design (without E4): median random/law, bootstrap low, median law vs dopt",1.000 | 1.000 | 1.0 vs 1.0,60,">= 2, > 1, <=",reported
+G-F4 pairs dropped (decided at start),0,100,-,reported

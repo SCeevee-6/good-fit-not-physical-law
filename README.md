@@ -1,17 +1,5 @@
 # good-fit-not-physical-law
 
-## Project map
-
-This repository contains two connected investigations into what physical laws can be inferred from measurements. The original study asks where data constrain laws in learned dynamical systems. The newer exploratory work asks when hidden physical quantities are identifiable from measurements, when they are fundamentally ambiguous, and which added measurement resolves that ambiguity. The exploratory studies remain grouped under [`exploratory/`](exploratory/) so their separate protocols, assumptions, simulations, and limits remain visible.
-
-- **Data-driven law discovery:** start with [`docs/ROADMAP_v3.md`](docs/ROADMAP_v3.md) and the F0 law-zone results. The project finds that equally accurate models can disagree about physical laws, especially away from observed states. Its earlier gates also record where counterexample-guided repair fails to improve on grid methods or costs predictive accuracy.
-- **Measurement limits and hidden energy flow:** start with [`exploratory/hidden_storage.md`](exploratory/hidden_storage.md). It gives passive circuit realizations with identical terminal behavior and opposite internal energy flow, then characterizes feasible histories for matched delay networks.
-- **Resolution limits for integrated measurements:** [`exploratory/local_theorem.md`](exploratory/local_theorem.md) treats local power-sign recovery under bounded rate of change. [`exploratory/mixed_theorem.md`](exploratory/mixed_theorem.md) adds accumulated meter noise and finite readout noise, with an upper bound for adaptive sampling.
-- **Tests against recorded data:** [`exploratory/clock_findings.md`](exploratory/clock_findings.md) and the associated protocols evaluate injected signals on chronologically separated public clock and timing-counter records. These are offline injection tests, not new physical interventions.
-- **Reproduction:** individual studies document their commands, inputs, frozen protocols, results, and limitations in their respective Markdown files. The original project setup below runs the dynamical-systems research.
-
-The studies are at different evidence stages. Mathematical statements apply only under their stated assumptions. Simulated checks and offline signal injections do not establish experimental validation or publication priority. See each study report for its own assumptions, failed predictions, and next physical tests.
-
 If an equation found from data predicts held-out data as well as the best one, can it still break a physical law it is supposed to obey? How often, where, and what fixes it?
 
 Short answer so far: yes, very often, on simulated and real data. The violations sit almost entirely in states the data never visited. Building the law into the model's form fixes only the laws that form contains, and can make other laws worse. On systems with two to four variables a dense grid or random sampling finds and fixes what occurs, so an exact solver is not needed for search. Its value is the certificate and the small number of constraints.
@@ -39,6 +27,7 @@ Systems: logistic predator-prey (A), SIR with varying population (B), A with the
 | 0D | four states (E4) | frozen 3cbcb2e9, run 3641866a | Fine grid 80/80 (5148 rows), loop 69/80 (15 rows), pilot-budget grid 64/80, random loop 51/80, structure 7/80. **R-D1 not supported** (no coverage edge over a grid). C-Rnd grows to 0.225 | [gate_D](docs/gate_D_result.md) |
 | S1 | Navier-Stokes closure energy test | frozen, not run | side track, parked | [protocol_S1](docs/protocol_S1.md) |
 | F0 | where the data decide a law (zones over all equally good fits) | exploratory, no gates | Away from the data almost every law is undecided (hare-lynx 100%, SEIR 99%). Certified share is higher near data (SIR 0.58 vs 0.17). A refuted zone appears only when the truth is outside the library (Holling 0.35). A larger library decides less (A: 0.33 at degree 2, 0 at degrees 3 and 4) | [F0_result](docs/F0_result.md) |
+| 0F | confidence set over all equally good fits: calibration, exact region certificates, real series, horizon bound, measurement design | frozen 01a24e87, addenda 1-3 at 04350905 | Calibrated on 2- and 3-state systems (coverage 92-96% at 95%); **fails on the 4-state system** (0/100). 93/93 region certificates verified exactly. COVID at degree 2: a quarter of each law domain refuted. The horizon bound holds at 680,000/680,000 points but is one-sided. **Design gate fails** (median ratio 1.42, needed 2); law design roughly halves trajectories only where the law starts fully undecided | [gate_F](docs/gate_F_result.md) |
 
 ![Share of accuracy-equivalent models that break a law, by noise and by model size (pilot).](figures/fig4_gap.png)
 
@@ -49,6 +38,10 @@ Systems: logistic predator-prey (A), SIR with varying population (B), A with the
 ![Law zones: where the data certify, refute or leave a law undecided (F0).](figures/fig_F0_zones.png)
 
 *F0. a-d: the half-width of x' over all equally good fits (grey scale, log10) with the training data in black and each law's domain coloured by zone (blue certified, orange refuted, grey undecided). e: share of each law domain in each zone at the lowest library degree. f: certified share over the whole domain and near the data.*
+
+![0F: calibration, certified share and measurement design.](figures/fig_0F.png)
+
+*0F. a: calibration statistic per seed (1 is exact; coverage at 95 % nominal above each column). b: certified share of the law domains under the Rashomon set (R) and the confidence set (C), 2 % noise. c: trajectories added until a law is settled, per seed and arm (31 = not settled by the cap of 30).*
 
 *Pilot repair. Counterexample-guided repair (CEG) fixes almost every violator with a few constraint rows. A dense grid needs about 300-450 rows. Random points at the same row budget fix 10-27%. The median accuracy cost is nil.*
 
@@ -65,7 +58,8 @@ Systems: logistic predator-prey (A), SIR with varying population (B), A with the
 - Real-data fits are poor: validation error above 1 training sd in 8 of 10 countries.
 - The COVID panel is 10 correlated series from one pandemic, with 35 equivalent candidates in total.
 - Synthetic systems have at most four states.
-- The exploratory branch adds mathematical theorems about law identifiability and measurement limits. They do not yet constitute a general theorem for all physical systems, and the original law-zone research remains open.
+- The one bound proved so far (the horizon band in ROADMAP_v3 item 7) holds in every check but is one-sided in practice.
+- The confidence set loses calibration when noise in the regressors dominates (4-state system, low noise).
 
 ## Layout
 

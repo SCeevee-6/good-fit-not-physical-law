@@ -129,3 +129,16 @@ F0 is in `docs/F0_result.md`. It changes the draft gates as follows, before anyt
 - New item for T: "a refuted zone implies the truth is not in the library, if the law holds" is immediate from the definitions. F0 saw refuted zones only for H and COVID. How often a wrong library shows no refuted zone (A-mis shows none) is a G-F2 measurement.
 - 0F fixes the set definition for real series: training data only, as in F0. Validation-selected models outside that set are reported, not dropped.
 
+## Addendum 2 (2026-11-27): 0F result
+
+0F is in `docs/gate_F_result.md`.
+- G-F0 and G-F3 pass. G-F1 passes on A and B and fails on E4.
+- G-F2: the hare-lynx prediction held and the COVID one did not.
+- G-F4 fails, so the design claim is dropped (kill rule). The description that law design halves trajectories where a law starts fully undecided is kept as a description.
+
+What is left before the 2027-01-03 freeze:
+- T: write out item 7 with proofs (`docs/law_horizon.md`). Add the observation from 0F-3 that the lower side is what limits the horizon. Look for a tighter lower bound (the worst test polynomial, not T_d along one functional).
+- A bias-corrected (errors-in-variables) estimator to fix E4 calibration, as a new frozen unit if attempted. If it is not done, the probability wording stays limited to A and B at 2 %.
+- E5 is dropped. Not enough time, and 0F-4 showed nothing for it to build on.
+- Figures and write-up from Jan 4.
+
