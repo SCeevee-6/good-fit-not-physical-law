@@ -78,13 +78,14 @@ A measurement in G-F4 is a short trajectory from a chosen initial condition, sam
 
 ## Calendar
 
-This assumes an affiliated fair deadline in late February 2027. The freeze is that deadline minus three weeks. Recompute once the date is known.
+Target: project finished on 2027-01-15. Results freeze on 2027-01-03, so the last two weeks are write-up only.
 
-- Nov 27 to Dec 6: F0, then write and freeze protocol 0F.
-- Dec 7 to Dec 27: 0F-1 and 0F-2 on Kaggle. Start T.
-- Dec 28 to Jan 17: 0F-3 and 0F-4. Finish proposition 7 and (i).
-- Jan 18 to Feb 7: E5 if time, robustness addenda, results freeze.
-- After the freeze: write-up and preprint, then the fair rounds. May 2027: Regeneron ISEF.
+- Nov 26 to Nov 30: F0 (done, see `docs/F0_result.md`), then write and freeze protocol 0F.
+- Dec 1 to Dec 10: 0F-1 (G-F0, G-F1) and 0F-2 (real series) on Kaggle. Write out proposition 7 in full.
+- Dec 11 to Dec 22: 0F-3 (horizon) and 0F-4 (design) on Kaggle. Work on (i), the closed-form radius.
+- Dec 23 to Jan 2: robustness addenda, (ii) and (iii) if time. E5 only if every gate above is done.
+- Jan 3: results freeze. Nothing new gets run after this date.
+- Jan 4 to Jan 15: figures, write-up, preprint, repo cleanup. Finished on Jan 15.
 
 ## Kill rules
 
@@ -117,3 +118,14 @@ All of these need confirming against the papers before they are cited:
 - Constrained SINDy (Loiseau and Brunton; Kaptanoglu et al.).
 
 What I claim as mine has to survive that reading: law zones for discovered equations, the region certificate over the whole consistent set, the horizon bound, and design aimed at deciding a law, tested on synthetic systems and two real series.
+
+## Addendum 1 (2026-11-26): F0 result and changes to the 0F draft
+
+F0 is in `docs/F0_result.md`. It changes the draft gates as follows, before anything in 0F is frozen:
+
+- The confidence set is the main object of 0F. The Rashomon set (factor 1.21 on the residual sum of squares) is reported next to it. F0 showed the Rashomon set is wide: stored models use at most 71 % of its half-width.
+- G-F4 is restricted to laws with a positive true margin (A2, H2, B2S, B2R, E2S, E2R). Zero-margin face laws can only be certified where h < tol, which F0 shows the data rarely allow, and structure handles them anyway.
+- When the data lie on an invariant set, the law domain is restricted to that set. For COVID this is S + I + R = 1, where the library matrix has rank 6 of 10 at degree 2.
+- New item for T: "a refuted zone implies the truth is not in the library, if the law holds" is immediate from the definitions. F0 saw refuted zones only for H and COVID. How often a wrong library shows no refuted zone (A-mis shows none) is a G-F2 measurement.
+- 0F fixes the set definition for real series: training data only, as in F0. Validation-selected models outside that set are reported, not dropped.
+

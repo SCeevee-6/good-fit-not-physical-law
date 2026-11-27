@@ -1,0 +1,30 @@
+dataset,cand,role,law,degree,state,cand_in_E,m,h,zone
+hare_lynx,47,primary,R1x,2,"[0.0, 1.0]",True,-0.04082109999613097,0.8107804968961038,0
+hare_lynx,47,primary,R2,2,"[5.0, 3.3810344827586203]",True,-0.9016289610386528,4.658192338565125,0
+hare_lynx,5,aic,R1x,2,"[0.0, 2.0]",True,-0.2524144914283871,1.4462542216922516,0
+hare_lynx,5,aic,R1y,2,"[0.0, 0.0]",True,-0.16646454560628074,0.8378414981174516,0
+hare_lynx,5,aic,R2,2,"[5.0, 3.3810344827586203]",True,-0.9016289610386528,4.658192338565125,0
+covid_russia,10,primary,B1S,2,"[0.0, 0.0, 1.0]",False,0.8468058735389531,6.3677394581770645,0
+covid_russia,10,primary,B3m,2,"[0.0, 1.5, 0.0]",False,0.019999999995161204,inf,0
+covid_turkey,15,primary,B1S,2,"[0.0, 1.0, 0.0]",False,-38.9546415035938,34.36029118426842,-1
+covid_argentina,59,primary,B1S,2,"[0.0, 0.0, 1.0]",False,0.4498138863696705,1.2162573570728863,0
+covid_argentina,59,primary,B3m,2,"[0.0, 1.5, 0.0]",False,0.019999999999864997,inf,0
+covid_iran,8,primary,B1I,2,"[0.0, 0.0, 1.0]",False,1.00634897424636,4.223310587881681,0
+covid_iran,8,primary,B2S,2,"[0.0, 1.5, 0.0]",False,-22.672120795214024,inf,0
+covid_iran,8,primary,B2R,2,"[0.375, 0.375, 0.75]",False,0.29245870611555214,inf,0
+covid_indonesia,38,primary,B1S,2,"[0.0, 1.0, 0.0]",True,-280.5978698801544,3162.5127430435055,0
+covid_indonesia,38,primary,B2S,2,"[0.0, 0.0, 1.5]",True,7.287358266002017,inf,0
+covid_indonesia,38,primary,B2R,2,"[0.0, 0.0, 1.5]",True,-6.046123280918017,inf,0
+covid_indonesia,38,primary,B3p,2,"[0.0, 1.5, 0.0]",True,0.020000000475296247,inf,0
+covid_indonesia,38,primary,B3m,2,"[0.1875, 0.1875, 1.125]",True,0.019999999999737988,inf,0
+covid_southafrica,40,primary,B1S,2,"[0.0, 1.0, 0.0]",False,15.402475938592156,31.456737336020012,0
+covid_ukraine,37,primary,B2S,2,"[0.0, 1.5, 0.0]",False,11.195676072804925,inf,0
+covid_ukraine,37,primary,B2R,2,"[0.0, 0.0, 1.5]",False,-2.754018316202936,inf,0
+covid_ukraine,37,primary,B3p,2,"[0.0, 1.5, 0.0]",False,0.020000000000802914,inf,0
+covid_iraq,34,primary,B1S,2,"[0.0, 0.0, 1.0]",False,0.791026049669107,3.7352346345693284,0
+covid_chile,56,primary,B1S,2,"[0.0, 0.0, 1.0]",False,-0.10625702552925063,0.5077256494482715,0
+covid_chile,56,primary,B2R,2,"[0.0, 0.0, 1.5]",False,-0.04843091662755987,inf,0
+covid_bangladesh,5,primary,B1S,2,"[0.0, 0.0, 1.0]",False,-8.63182396015791,10.104295877342562,0
+covid_bangladesh,5,primary,B1R,2,"[0.0, 1.0, 0.0]",False,-28.212196448264574,90.10812823527073,0
+covid_bangladesh,5,primary,B2S,2,"[0.0, 1.5, 0.0]",False,-168.77333376147212,inf,0
+covid_bangladesh,5,primary,B2R,2,"[0.0, 1.5, 0.0]",False,-63.52333427402948,inf,0

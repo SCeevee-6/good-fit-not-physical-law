@@ -17,9 +17,7 @@ Claim to earn: a decision rule, backed by a test that can fail. Not "verificatio
 - Gate A, protocol 0A (`docs/protocol_0A.md`): frozen 2026-11-08, with one dated clarification (B1S moved to the non-structural family). Sample frozen in `results/0A_sample.csv`: 60 candidates, seed 20261108. Code: `src/gate_a.py`. Reproduction of pilot coefficients matched exactly on three candidates. The full run was cancelled by a kernel reset. No 0A results exist yet.
 - Side track S1 (`docs/protocol_S1.md`): frozen, not run.
 - Open decisions: competition category (after Gate A), real-data source for hare-lynx, affiliated fair and its deadline.
-- Environment: the `ceg-ode` kernel can no longer import pandas, and some SciPy DLLs were blocked after the reset. Use `csv` and numpy. Run long jobs in the background with per-job outputs. See skill `windows-sandbox-parallel-compute`.
-
-## Gates
+- Environment: the `ceg-ode` kernel can no longer import pandas, and some SciPy DLLs were blocked after the reset. Use `csv` and numpy. Run long jobs in the background with per-job outputs. ## Gates
 
 | gate | question | pass rule | source |
 |---|---|---|---|
@@ -32,11 +30,11 @@ Gate A outcomes:
 2. Structure is enough on these specs. The claim becomes the rule for when a structural fix suffices. Recorded as a dated addendum.
 3. Counterexamples help, but the feedback loop explains it, not the witness type. The random-counterexample loop becomes a main arm. Report that.
 
-## Work order and chats
+## Work order
 
-Each chat opens from files, writes its protocol before its first run, runs long jobs in the background with resumable outputs, and ends with `STATUS.md` and a push via `tools/gh_push.py`.
+Each block opens from files, writes its protocol before its first run, runs long jobs in the background with resumable outputs, and ends with `STATUS.md` and a push via `tools/gh_push.py`.
 
-| chat | scope | ends at |
+| block | scope | ends at |
 |---|---|---|
 | 1 | Gate A: run protocol 0A, analyse, decide | Gate A decision recorded |
 | 2 | Phase 0B: Holling II misspecification (true law outside the library), needle test (narrow violations), 20 seeds with confidence intervals | Phase 0 frozen |
@@ -45,18 +43,18 @@ Each chat opens from files, writes its protocol before its first run, runs long 
 | 5 | Phase 2: epidemic time series, results freeze | Freeze date |
 | 6 | Phase 3: robustness checks, board demo, write-up | Board-ready tag |
 
-Chat 3 (S1) can start earlier if chat 2 is waiting on compute.
+Block 3 (S1) can start earlier if block 2 is waiting on compute.
 
 ## Calendar
 
 Assumes an affiliated fair in late February 2027. Set the freeze at that fair's deadline minus three weeks.
 
-- Nov 9 to Dec 6: chat 1
-- Dec 7 to Jan 10: chat 2
-- Dec to Jan: chat 3, overlapping chat 2 if compute allows
-- Jan 11 to 31: chat 4
-- Feb 1 to 21: chat 5, freeze
-- Feb 22 to Apr 4: chat 6
+- Nov 9 to Dec 6: block 1
+- Dec 7 to Jan 10: block 2
+- Dec to Jan: block 3, overlapping block 2 if compute allows
+- Jan 11 to 31: block 4
+- Feb 1 to 21: block 5, freeze
+- Feb 22 to Apr 4: block 6
 - May 2027: Regeneron ISEF, Los Angeles (exact dates per the Society)
 
 ## Method scope
@@ -76,7 +74,7 @@ Assumes an affiliated fair in late February 2027. Set the freeze at that fair's 
 | Kernel reset or DLL block mid-run | Per-job outputs, resume from files, `csv` in place of pandas. |
 | Overclaiming from two real systems | Report as two cases. No general claim. |
 | Fair rules, including AI-use rules | The fair's rulebook governs the submission. Check it before the fair deadline. |
-| Context lost between chats | Each chat reads the files listed above. This file is the index. |
+| Context lost between work blocks | Each block starts from the files listed above. This file is the index. |
 
 ## Discipline
 
@@ -99,7 +97,7 @@ Protocol 0A gave outcome 3 (`docs/gate_A_result.md`). G-A1 passed (f(C) - f(S) =
 
 - The random-counterexample loop is a main arm next to the witness loop from now on, not only a control.
 - The claim is that a counterexample loop is needed on top of structure. Witnesses only win where violations are narrow. In 0A all six random-loop misses were B2S on SIR.
-- Chat 2 (0B) keeps its scope. The needle test is now the main test of witness vs random, and should vary the sample count of the random loop.
+- Block 2 (0B) keeps its scope. The needle test is now the main test of witness vs random, and should vary the sample count of the random loop.
 - SIR repairs cost more accuracy (median ratio 1.23 for C) than the pooled gate figure shows. 0B reports accuracy cost per system.
 - Category decision can now be made. It still follows the headline demo.
 
@@ -110,7 +108,7 @@ Protocol 0A gave outcome 3 (`docs/gate_A_result.md`). G-A1 passed (f(C) - f(S) =
 
 **Wording.** Rule text in 0A says "pooled". The pre-run scoring note fixed the reading per candidate. From 0A2 on, protocols say "fraction of candidates" and report the per law x candidate pooled figure as secondary. On timing: the log of the cancelled first run shows 29 of 60 candidates finished (A and A-mis only) before the reset. Their outputs were held in kernel memory and lost, and none were written to file or recorded.
 
-**Protocol 0A2 (next chat, frozen before running).** Same sample, arms, budget, seed and decision rule as 0A. Only B changes, and A and A-mis are not rerun. Two B structures, both checked to contain the true model before running:
+**Protocol 0A2 (next block, frozen before running).** Same sample, arms, budget, seed and decision rule as 0A. Only B changes, and A and A-mis are not rerun. Two B structures, both checked to contain the true model before running:
 - B-pos: I-equation divisible by I. R-equation free, but coefficients of R-free monomials are constrained >= 0, which makes R'(S,I,0) >= 0 on the orthant. S-equation = -(I' + R').
 - B-fac (the review's variant): same as B-pos, plus the S-equation must be divisible by S. That is a linear equality: the R-free and S-free part of I' + R' is zero. This enforces S positivity and conservation exactly.
 Gate A is re-decided from A, A-mis (0A results reused) and B-pos. B-fac is reported next to it. If B-fac and B-pos give different outcomes, report both. Accuracy cost is reported per system and per law.
@@ -164,7 +162,7 @@ Protocol 0R was frozen at 0ad1896c. A first run stalled, and addendum 1 of the p
 
 What changes in the plan:
 - The real-data claim is weaker than the synthetic one. The fits are poor (validation error 0.89 training sd) and the witnesses sit where there is no data. State it as "unconstrained fits break stated laws outside the data", not as a finding about hares and lynx.
-- Gate R is passed on one series. A second real series (epidemic, chat 5) is what would make it a claim.
+- Gate R is passed on one series. A second real series (epidemic, block 5) is what would make it a claim.
 - Next: the law taxonomy per law and structure, then the epidemic series.
 
 ## Addendum 7, 2026-11-26: law taxonomy
@@ -190,7 +188,7 @@ What changes in the plan:
 - Two real series now show the same thing for unconstrained fits: they break the stated laws, mostly where there is no data. Both fits are poor, so say it that way.
 - The fix has a cost on real data that the synthetic runs did not show. Report the validation ratio per country, not only a pooled median.
 - The claim to carry forward is the one in `docs/law_taxonomy.md`: structure enforces what it contains and nothing else, and a structure that does not contain the truth can make other laws worse.
-- Next: robustness checks and the board demo (chat 6). Competition category still follows the headline demo.
+- Next: robustness checks and the board demo (block 6). Competition category still follows the headline demo.
 
 ## Addendum 9, 2026-11-27: protocol 0C run (robustness)
 

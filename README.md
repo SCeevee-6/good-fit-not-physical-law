@@ -4,7 +4,7 @@ If an equation found from data predicts held-out data as well as the best one, c
 
 Short answer so far: yes, very often, on simulated and real data. The violations sit almost entirely in states the data never visited. Building the law into the model's form fixes only the laws that form contains, and can make other laws worse. On systems with two to four variables a dense grid or random sampling finds and fixes what occurs, so an exact solver is not needed for search. Its value is the certificate and the small number of constraints.
 
-Where this goes next is in [`docs/ROADMAP_v3.md`](docs/ROADMAP_v3.md): working out exactly where the data decide whether a law holds, and which new measurement settles the rest.
+Where this goes next is in [`docs/ROADMAP_v3.md`](docs/ROADMAP_v3.md): working out exactly where the data decide whether a law holds, and which new measurement settles the rest. The first map of this (F0) is below.
 
 Every experiment below had its protocol and pass rules committed before it ran. Failed rules stay in the tables.
 
@@ -26,12 +26,17 @@ Systems: logistic predator-prey (A), SIR with varying population (B), A with the
 | 0C | robustness: soft penalty, noise, independent sampling | 2109feba | Soft penalty on a dense grid verifies 320/320, same as C, so the loop is not needed at <= 3 states. Outcome 3 holds at 0.5% and 5% noise. 0/2871 accepted models fail 200k-point sampling. At 0.5% noise with a wrong library, repair costs accuracy (1.42-1.49) | [gate_C](docs/gate_C_result.md) |
 | 0D | four states (E4) | frozen 3cbcb2e9, run 3641866a | Fine grid 80/80 (5148 rows), loop 69/80 (15 rows), pilot-budget grid 64/80, random loop 51/80, structure 7/80. **R-D1 not supported** (no coverage edge over a grid). C-Rnd grows to 0.225 | [gate_D](docs/gate_D_result.md) |
 | S1 | Navier-Stokes closure energy test | frozen, not run | side track, parked | [protocol_S1](docs/protocol_S1.md) |
+| F0 | where the data decide a law (zones over all equally good fits) | exploratory, no gates | Away from the data almost every law is undecided (hare-lynx 100%, SEIR 99%). Certified share is higher near data (SIR 0.58 vs 0.17). A refuted zone appears only when the truth is outside the library (Holling 0.35). A larger library decides less (A: 0.33 at degree 2, 0 at degrees 3 and 4) | [F0_result](docs/F0_result.md) |
 
 ![Share of accuracy-equivalent models that break a law, by noise and by model size (pilot).](figures/fig4_gap.png)
 
 *Pilot. Left: share of accuracy-equivalent models that break a law, by noise level, for all candidates and for parsimonious ones. Right: the share rises with the number of terms beyond the true model.*
 
 ![Counterexample-guided repair in the pilot: success, constraint rows and accuracy cost.](figures/fig3_ceg_repair.png)
+
+![Law zones: where the data certify, refute or leave a law undecided (F0).](figures/fig_F0_zones.png)
+
+*F0. a-d: the half-width of x' over all equally good fits (grey scale, log10) with the training data in black and each law's domain coloured by zone (blue certified, orange refuted, grey undecided). e: share of each law domain in each zone at the lowest library degree. f: certified share over the whole domain and near the data.*
 
 *Pilot repair. Counterexample-guided repair (CEG) fixes almost every violator with a few constraint rows. A dense grid needs about 300-450 rows. Random points at the same row budget fix 10-27%. The median accuracy cost is nil.*
 
@@ -60,7 +65,6 @@ Systems: logistic predator-prey (A), SIR with varying population (B), A with the
 | `data_raw/` | hare-lynx pelts (CRAN tsibbledata 0.4.1), JHU CSSE COVID files with sha256 in `docs/protocol_0E.md` |
 | `tools/` | Kaggle launcher (`kaggle_launch.py`, `kaggle_0*.py`), GitHub push (`gh_push.py`), checks (`check_holling.py`, `check_mask.py`, `check_lawmap_math.py`), `law_table.py` |
 | `tests/` | checker tests on hand-built good and bad models |
-| `skills/` | write-ups of the verification, repair, sandbox and preregistration workflows |
 
 ## Run
 
@@ -76,7 +80,3 @@ python src/analyze_0D.py
 ```
 
 Heavy runs go to Kaggle CPU kernels, which pull the frozen commit from this repo. Gate thresholds are compared as exact fractions. `src/savgol_np.py` replaces `scipy.signal`, which was blocked on the machine this was developed on.
-
-## AI use
-
-See `AI_USE.md`.

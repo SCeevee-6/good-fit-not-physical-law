@@ -1,0 +1,7 @@
+zone rows 419, summary rows 77
+max member ratio over all rows 0.7060 (must be <= 1)
+contradictions 0 (must be 0)
+stored equivalent models inside E 13913 / 14425 (law rows, counted once per law)
+rows with near-data grid points 171 / 419
+witnesses 29; of candidates in E 10; zones of in-E witnesses: {1: 0, 0: 10, -1: 0} (1 must be 0)
+witness zones, all: {1: 0, 0: 28, -1: 1}

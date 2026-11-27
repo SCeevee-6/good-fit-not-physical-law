@@ -29,11 +29,13 @@
 ## Next
 - Direction changed to `docs/ROADMAP_v3.md`: law zones over the data-consistent set, region certificate, law horizon, measurement design. v2 results are the motivation and controls.
 - Identities used by v3 are checked in `tools/check_lawmap_math.py` (`results/check_lawmap_math.txt`, ALL_OK True).
-- First unit: F0 zone maps for stored fits (local, Rashomon version), then write and freeze `docs/protocol_0F.md` before any 0F run.
+- F0 done (`docs/F0_result.md`, ROADMAP_v3 Addendum 1): zone maps for all stored fits; checks pass (member ratio <= 0.706, 0 contradictions).
+- Next: write and freeze `docs/protocol_0F.md` with the Addendum 1 changes, then 0F-1 and 0F-2 on Kaggle. Finish target 2027-01-15, freeze 2027-01-03.
 - README rewritten as a summary of every unit and its outcome.
 
 ## Resume
 - Law-map checks: `python tools/check_lawmap_math.py` (about 20 s).
+- F0: `python src/run_F0.py 5` (about 13 min locally), `python src/run_F0_plane.py`, `python src/analyze_F0.py`.
 - 0D on Kaggle: `python tools/kaggle_launch.py push D <commit> <user> [test]`, then `status D <user>` and `fetch D <user> <dir>`. Unzip into the repo, then `python src/analyze_0D.py`. The full run takes about 15 minutes on 4 CPUs.
 - 0C on Kaggle: `python tools/kaggle_launch.py push C <commit> <user> [test]`, then `status C <user>` and `fetch C <user> <dir>`. Unzip into the repo, then `python src/analyze_0C.py`. The full run takes about 20 minutes on 4 CPUs.
 - 0E on Kaggle: `python tools/kaggle_launch.py push E <commit> <user> [test]`, then `status E <user>` and `fetch E <user> <dir>`. Unzip into the repo, then `python src/analyze_0E.py`. 30 configs take about 30 minutes on 4 CPUs.
