@@ -68,6 +68,10 @@ def run():
                     schedules.append(('trace',s,phase,trace @ white))
                     schedules.append(('repeat',s,phase,trace[:,1:2]*2/SIGMA))
             rng = np.random.default_rng(20261127)
+            # Select a single trace on the full development grid before any trial data.
+            fixed_index = max((i for i,item in enumerate(schedules) if item[0]=='trace'),
+                              key=lambda i: detector(schedules[i][3],POS & (np.arange(len(PARAMS))<GRID_SIZE),
+                                                     NEG & (np.arange(len(PARAMS))<GRID_SIZE))[0])
             for trial in range(240):
                 population = (np.arange(len(PARAMS)) < GRID_SIZE) == (trial < 120)
                 truth = rng.choice(np.flatnonzero(population & (POS if trial%2 else NEG)))
@@ -77,9 +81,9 @@ def run():
                 admitted[GRID_SIZE:] = False
                 pos,neg = admitted & POS, admitted & NEG
                 common = [coupling,rho,trial,truth,covered,pos.sum(),neg.sum()]
-                for policy in ('fixed_repeat','fixed_trace','repeat','trace','choose'):
+                for policy in ('fixed_repeat','fixed_trace','development_trace','repeat','trace','choose'):
                     indices = [i for i,(kind,s,p,_) in enumerate(schedules)
-                               if policy=='choose' or policy==kind or
+                               if (policy=='development_trace' and i==fixed_index) or policy=='choose' or policy==kind or
                                (policy=='fixed_'+kind and s==2 and p==0)]
                     if pos.any() and neg.any():
                         options = [(detector(schedules[i][3],pos,neg),i) for i in indices]
