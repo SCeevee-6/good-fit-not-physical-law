@@ -5,7 +5,7 @@ Exploratory simulation, independent of the frozen 0F gates. Reproduce from the r
     python exploratory/study.py
     python exploratory/summarize.py
 
-The first command writes 7,200 policy evaluations in trials.csv; the second reproduces the committed summary.csv. Seeds are fixed. These are simulated experiments.
+The first command writes 8,640 policy evaluations in trials.csv; the second reproduces the committed summary.csv. Seeds are fixed. These are simulated experiments.
 
 ## Physics and observation
 
@@ -19,4 +19,4 @@ The design compares three initial energies, eight phases and two schedules. One 
 
 At k=0.6 and rho=0.6 on off-grid trials, mean accuracy was 0.570741 for a fixed four-reading trace, 0.967432 for a designed four-reading trace, 0.974994 for four fixed repeats, and 0.974998 for unrestricted design. The fixed protocols start at maximum speed at the largest allowed energy. In 113 of 114 still-ambiguous trials the unrestricted policy selected repeats. Across all twelve reported strata its largest absolute gain or loss versus fixed repeats was below 0.001. The absolute comparison depends on the chosen detector, dynamics, allowed starts and noise model.
 
-The positive result concerns phase selection when resets are expensive. The negative result is equally important: adaptive schedule selection has no material average advantage over a well-chosen fixed repeat policy here. The simulation uses specified coefficient ranges, a known coupling, known noise and a finite grid. Coverage of an individual grid truth is a training-set property; off-grid calibration and worst-case continuous-family guarantees require different tests. An appropriate next challenge is a disjoint model family, unknown meter drift shared across resets, and explicit reset cost. Compare against a single best fixed phase selected on development data before interpreting a benefit as adaptation.
+The positive result concerns phase selection when resets are expensive. The negative result is equally important: adaptive schedule selection has no material average advantage over a well-chosen fixed repeat policy here. The simulation uses specified coefficient ranges, a known coupling, known noise and a finite grid. Coverage of an individual grid truth is a training-set property; off-grid calibration and worst-case continuous-family guarantees require different tests. An appropriate next challenge is a disjoint model family, unknown meter drift shared across resets, and explicit reset cost. A follow-up control (development_trace) fixes the trace schedule maximizing the detector floor on the full development grid before observing any training readings. At k=0.6 and rho=0.6 it reaches 0.967415 off-grid, effectively matching the adaptive trace. This control selects for worst-case performance; additional fixed policies tuned for average accuracy deserve comparison.
