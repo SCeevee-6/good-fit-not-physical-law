@@ -176,6 +176,14 @@ def design_run(job):
     return design_job(*job)
 
 
+def _np_json(o):
+    if isinstance(o, np.generic):
+        return o.item()
+    if isinstance(o, np.ndarray):
+        return o.tolist()
+    raise TypeError(type(o))
+
+
 def _worker(args):
     phase, job = args
     name = {'calib': lambda j: f'{j[0]}_n{j[1]}_s{j[2]}', 'real': lambda j: j, 'horizon': lambda j: f'{j[0]}_s{j[1]}', 'design': lambda j: f'{j[0]}_s{j[1]}'}[phase](job)
@@ -195,7 +203,7 @@ def _worker(args):
         if hasattr(signal, 'SIGALRM'):
             signal.alarm(0)
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    json.dump(rec, open(path, 'w'))
+    json.dump(rec, open(path, 'w'), default=_np_json)
     return path, st
 
 

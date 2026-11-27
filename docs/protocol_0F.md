@@ -148,3 +148,7 @@ Changes:
 
 Nothing else changes.
 
+## Addendum 3 (2026-11-27)
+
+The first 0F-3 run (Kaggle, commit c0261c6d) failed when writing each job's JSON: a numpy integer in the record could not be serialised. It produced no output files, so no 0F-3 result existed or was seen. The JSON writer now converts numpy scalars. 0F-3 counts only from the rerun at the fix commit. The 0F-4 run started at d03fa24a was replaced by a run at the same fix commit after a few minutes, before any job finished, because it uses the same writer.
+
