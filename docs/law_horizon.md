@@ -147,6 +147,8 @@ What this unit does not do: it does not apply Corollary 6 to the 0F-3 runs. Thos
 
 ---
 
+Note (2026-11-27, after the first run, before H4b ran). H4 found only 9 usable points, all with z > 0 (0.77 to 3.75), not 20 points over [-4, 4]. So the refuted formula Phi(-z - sqrt q) was only tested where it is close to 0. Addendum H4b (`tools/check_law_horizon_addendum.py`, seed 20261128) repeats H4 with the truth negated so that z < 0. Same n, sigma and replicates, candidates drawn out to g = 6, one point per 0.4-wide bin of z in [-4, 0). Pass rule: at least 8 points, and every zone frequency within 4 binomial SE + 0.001 of the formula.
+
 ## Results
 
 (to be filled in after the run)
