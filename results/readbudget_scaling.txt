@@ -1,0 +1,4 @@
+p = 0.9; margins [0.4, 0.2, 0.1, 0.05]
+fixed library: needed [57.08, 228.3, 913.2, 3652.8], log-log slope -2.000, cost of halving the margin x4.00
+slope-bounded, readout noise: needed [0.16, 2.57, 41.06, 656.95], log-log slope -4.000, cost of halving the margin x16.00
+slope-bounded, accumulating noise: needed [0.05, 0.38, 3.08, 24.64], log-log slope -3.000, cost of halving the margin x8.00
