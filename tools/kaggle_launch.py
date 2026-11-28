@@ -1,5 +1,5 @@
 """Push tools/kaggle_0B.py as a private Kaggle script kernel, or fetch its output.
-usage: python tools/kaggle_launch.py push <mode> <commit> <user>    (mode: main | needles | R | E | C | D | F | F3 | F4 | G | H | S1 | F3B)
+usage: python tools/kaggle_launch.py push <mode> <commit> <user>    (mode: main | needles | R | E | C | D | F | F3 | F4 | G | H | S1 | F3B | E5)
        python tools/kaggle_launch.py status <mode> <user>
        python tools/kaggle_launch.py fetch <mode> <user> <outdir>
 Needs the kaggle CLI and its token in the environment.
@@ -10,7 +10,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 
 def slug(mode):
-    return {'R': 'ceg-0r', 'E': 'ceg-0e', 'C': 'ceg-0c', 'D': 'ceg-0d', 'F': 'ceg-0f', 'F3': 'ceg-0f3', 'F4': 'ceg-0f4', 'G': 'ceg-0g', 'H': 'ceg-0h', 'S1': 'ceg-s1', 'F3B': 'ceg-0f3b'}.get(mode, f'ceg-0b-{mode}')
+    return {'R': 'ceg-0r', 'E': 'ceg-0e', 'C': 'ceg-0c', 'D': 'ceg-0d', 'F': 'ceg-0f', 'F3': 'ceg-0f3', 'F4': 'ceg-0f4', 'G': 'ceg-0g', 'H': 'ceg-0h', 'S1': 'ceg-s1', 'F3B': 'ceg-0f3b', 'E5': 'ceg-0e5'}.get(mode, f'ceg-0b-{mode}')
 
 
 def kg(*a):
@@ -24,8 +24,8 @@ def main():
     if cmd == 'push':
         commit, user = sys.argv[3], sys.argv[4]
         d = tempfile.mkdtemp()
-        if mode in ('C', 'D', 'F', 'F3', 'F4', 'G', 'H', 'S1', 'F3B'):
-            src = open(os.path.join(HERE, {'S1': 'kaggle_S1.py', 'F3B': 'kaggle_0F3b.py'}.get(mode, f'kaggle_0{mode[0]}.py')), encoding='utf-8').read().replace("COMMIT = 'REPLACE'", f"COMMIT = '{commit}'")
+        if mode in ('C', 'D', 'F', 'F3', 'F4', 'G', 'H', 'S1', 'F3B', 'E5'):
+            src = open(os.path.join(HERE, {'S1': 'kaggle_S1.py', 'F3B': 'kaggle_0F3b.py', 'E5': 'kaggle_0E5.py'}.get(mode, f'kaggle_0{mode[0]}.py')), encoding='utf-8').read().replace("COMMIT = 'REPLACE'", f"COMMIT = '{commit}'")
             if mode in ('F3', 'F4'):
                 src = src.replace("PHASES = ('calib', 'real')", "PHASES = ('horizon',)" if mode == 'F3' else "PHASES = ('design',)")
             if len(sys.argv) > 5 and sys.argv[5] == 'test':

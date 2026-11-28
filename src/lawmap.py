@@ -80,10 +80,10 @@ def member_ratio(ds, Xi, c, X):
     return float(np.nanmax(q))
 
 
-def law_grid(spec, n1=2001, n2=201, n3=41, n4=15):
-    """States on the law's domain: uniform grid in the query variables u, filtered by the domain."""
+def law_grid(spec, n1=2001, n2=201, n3=41, n4=15, n5=7):
+    """States on the law's domain: uniform grid in the query variables u, filtered by the domain (n5 added for 0E5)."""
     from systems import K_FLOAT, in_domain
-    k = len(spec.u_box); nper = {1: n1, 2: n2, 3: n3, 4: n4}[k]
+    k = len(spec.u_box); nper = {1: n1, 2: n2, 3: n3, 4: n4, 5: n5}[k]
     axes = [np.linspace(a, b, nper) for a, b in spec.u_box]
     U = [g.ravel() for g in np.meshgrid(*axes, indexing='ij')]
     ok = in_domain(spec, U)
