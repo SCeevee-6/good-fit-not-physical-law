@@ -1,0 +1,5 @@
+C1/C2 symbolic: {'same_ode': True, 'port_current_is_v_over_R': True, 'energy_is_tau_x2_over_R': True, 'rate_is_2x_v_minus_x_over_R': True}
+C3 tau=0.2: x(1)=1.986524, storage rate at 1+ closed form -3.9195 W, separate-branch integration -3.9195 W, port current 1.0000000000 A, port power 1.0000000000 W
+C3 tau=3.0: x(1)=0.566937, storage rate at 1+ closed form 0.4910 W, separate-branch integration 0.4910 W, port current 1.0000000000 A, port power 1.0000000000 W
+C3 sign change at tau* = 1/ln 2 = 1.442695: tau < tau* releases energy, tau > tau* stores it
+ALL_OK True
