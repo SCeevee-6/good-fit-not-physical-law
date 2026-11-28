@@ -1,0 +1,25 @@
+{
+ "N": 64,
+ "nu": 0.02,
+ "dt": 0.001,
+ "seed": 0,
+ "t_spin": 50.0,
+ "t_sample": 100.0,
+ "n_samples": 1000,
+ "budget_residual_whole": 2.385848322592928e-10,
+ "budget_residual_max_window": 1.0313309974125184e-07,
+ "E_mean_sampling": 0.08535326780253102,
+ "P_mean_sampling": 0.03512846605188648,
+ "D_mean_sampling": 0.03511122546246583,
+ "advection_neutrality_max_rel": {
+  "1": 5.805398805300017e-16,
+  "2": 1.4241592213709687e-16,
+  "3": 1.726445720810123e-16
+ },
+ "energy_coord_rel_err": {
+  "1": 2.1795912398592271e-16,
+  "2": 0.0,
+  "3": 0.0
+ },
+ "seconds": 285.8
+}

@@ -1,0 +1,7 @@
+rule,value,threshold,result
+"S-G1 energy budget relative residual (whole run, worst 1-unit window)","2.39e-10, 1.03e-07",< 1e-3,pass
+"S-G2 truncated advection energy rate, worst relative over 1000 states per K",5.81e-16,< 1e-10,pass
+S-G3 exact LDL and eigenvalue test agree on every K,"K=1: exact False, eig False; K=2: exact False, eig False; K=3: exact False, eig False",agree,pass
+outcome K=1: closure energy-stable (Q <= 0),False; lambda_max 3.591e-01; 5 of 8 eigenvalues > 0; fit R2 0.464,report,
+outcome K=2: closure energy-stable (Q <= 0),False; lambda_max 1.243e+00; 14 of 24 eigenvalues > 0; fit R2 0.960,report,
+outcome K=3: closure energy-stable (Q <= 0),False; lambda_max 5.023e+00; 29 of 48 eigenvalues > 0; fit R2 0.999,report,
