@@ -87,12 +87,12 @@ def figure(rows):
                          'legend.fontsize': 7, 'axes.spines.top': False, 'axes.spines.right': False})
     fig, ax = plt.subplots(1, 2, figsize=(5.2, 2.3), constrained_layout=True, sharey=True)
     cols = {'certified': '#2c6fb3', 'refuted': '#e08214', 'undecided': '0.75'}
-    for a, where, title in ((ax[0], 'data', 'At observed resolved states'), (ax[1], 'sphere', 'At random directions on the energy shell')):
+    for a, where, title in ((ax[0], 'data', 'At observed resolved states'), (ax[1], 'sphere', 'At random directions')):
         sel = [r for r in rows if r['where'] == where and r['lag'] == LAG]; x = np.arange(len(sel)); bottom = np.zeros(len(sel))
         for zname in ('certified', 'refuted', 'undecided'):
             v = np.array([r[zname] for r in sel]); a.bar(x, v, 0.6, bottom=bottom, color=cols[zname], label=zname if where == 'data' else None); bottom += v
         a.set_xticks(x); a.set_xticklabels([f"K = {r['K']}" for r in sel]); a.set_title(title, loc='left')
-    ax[0].set_ylabel('share of states'); ax[0].legend(frameon=False, loc='lower left', fontsize=6)
+    ax[0].set_ylabel('share of states'); fig.legend(*ax[0].get_legend_handles_labels(), frameon=False, loc='outside right center', fontsize=7)
     for a, l in zip(ax, 'ab'):
         a.text(-0.18, 1.08, l, transform=a.transAxes, fontweight='bold', fontsize=9, va='bottom')
     fig.savefig(os.path.join(ROOT, 'figures', 'fig_S1b.png'), dpi=300)

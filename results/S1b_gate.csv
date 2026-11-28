@@ -1,0 +1,13 @@
+rule,value,threshold,result
+K=1: sampled closures contradicting the zone map (200 boundary closures),0,0,pass
+"K=1: region certificate, every closure dissipates everywhere",lambda_max(sym C_hat) 0.359; bound 2.582,bound <= 0,impossible (centre already indefinite)
+K=2: sampled closures contradicting the zone map (200 boundary closures),0,0,pass
+"K=2: region certificate, every closure dissipates everywhere",lambda_max(sym C_hat) 1.243; bound 10.553,bound <= 0,impossible (centre already indefinite)
+K=3: sampled closures contradicting the zone map (200 boundary closures),0,0,pass
+"K=3: region certificate, every closure dissipates everywhere",lambda_max(sym C_hat) 5.023; bound 47.664,bound <= 0,impossible (centre already indefinite)
+"K=1, sphere: zone shares (predicted: undecided >= 1/2)","certified 0.000, refuted 0.000, undecided 1.000",report,held
+"K=1, data: zone shares (predicted: refuted >= 1/2)","certified 0.000, refuted 0.252, undecided 0.748",report,did not hold
+"K=2, sphere: zone shares (predicted: undecided >= 1/2)","certified 0.000, refuted 0.004, undecided 0.996",report,held
+"K=2, data: zone shares (predicted: refuted >= 1/2)","certified 0.000, refuted 0.754, undecided 0.246",report,held
+"K=3, sphere: zone shares (predicted: undecided >= 1/2)","certified 0.000, refuted 0.002, undecided 0.998",report,held
+"K=3, data: zone shares (predicted: refuted >= 1/2)","certified 0.000, refuted 1.000, undecided 0.000",report,held
