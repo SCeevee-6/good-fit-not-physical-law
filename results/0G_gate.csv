@@ -1,0 +1,40 @@
+rule,value,threshold,result,note
+G-G1 E4 degree 2 coverage,95/100,>= 9/10,pass,median stat/rank 0.974
+G-G2 A degree 2 coverage,90/100,>= 9/10,pass,0F 95/100; median stat/rank 0.980
+G-G2 A degree 3 coverage,95/100,>= 9/10,pass,0F 96/100; median stat/rank 0.956
+G-G2 A degree 4 coverage,95/100,>= 9/10,pass,0F 94/100; median stat/rank 0.968
+G-G2 B degree 2 coverage,97/100,>= 9/10,pass,0F 93/100; median stat/rank 0.964
+G-G2 B degree 3 coverage,97/100,>= 9/10,pass,0F 92/100; median stat/rank 0.968
+G-G3 sampled models contradicting the zone map,0,0,pass,780 system x degree x law checks
+R-G1 E4 degree 3 coverage (predicted < 9/10),2/100,report,held,0F 0/100; median stat/rank 3.405
+R-G2 E4 degree 2 mean certified share,0.265,report,,0F 0.409
+R-G2 E4 degree 3 mean certified share,0.002,report,,0F 0.054
+R-G2 A degree 2 mean certified share,0.609,report,,0F 0.699
+R-G2 A degree 3 mean certified share,0.371,report,,0F 0.429
+R-G2 A degree 4 mean certified share,0.011,report,,0F 0.026
+R-G2 B degree 2 mean certified share,0.894,report,,0F 0.953
+R-G2 B degree 3 mean certified share,0.489,report,,0F 0.641
+"R-G3 E4 degree 2 coverage, noise index 0",93/100,report,,0F 74/100
+"R-G3 E4 degree 3 coverage, noise index 0",38/100,report,,0F 0/100
+"R-G3 A degree 2 coverage, noise index 0",82/100,report,,0F 75/100
+"R-G3 A degree 3 coverage, noise index 0",86/100,report,,0F 73/100
+"R-G3 A degree 4 coverage, noise index 0",89/100,report,,0F 79/100
+"R-G3 B degree 2 coverage, noise index 0",98/100,report,,0F 98/100
+"R-G3 B degree 3 coverage, noise index 0",96/100,report,,0F 97/100
+"R-G3 E4 degree 2 coverage, noise index 2",85/100,report,,0F 0/100
+"R-G3 E4 degree 3 coverage, noise index 2",7/100,report,,0F 0/100
+"R-G3 A degree 2 coverage, noise index 2",92/100,report,,0F 94/100
+"R-G3 A degree 3 coverage, noise index 2",97/100,report,,0F 97/100
+"R-G3 A degree 4 coverage, noise index 2",94/100,report,,0F 92/100
+"R-G3 B degree 2 coverage, noise index 2",96/100,report,,0F 92/100
+"R-G3 B degree 3 coverage, noise index 2",98/100,report,,0F 81/100
+"R-G3 E4 degree 2 coverage, known sigma",94/100,report,,
+"R-G3 E4 degree 3 coverage, known sigma",3/100,report,,
+"R-G3 A degree 2 coverage, known sigma",90/100,report,,
+"R-G3 A degree 3 coverage, known sigma",95/100,report,,
+"R-G3 A degree 4 coverage, known sigma",96/100,report,,
+"R-G3 B degree 2 coverage, known sigma",98/100,report,,
+"R-G3 B degree 3 coverage, known sigma",96/100,report,,
+R-G4 COVID degree 2 median refuted share (predicted >= 0.10 at degree 2),0.153,report,held,10 countries; 0F 0.247
+R-G4 COVID degree 3 median refuted share (predicted >= 0.10 at degree 2),0.086,report,,10 countries; 0F 0.089
+jobs with errors or time limits,"0 calib, 0 real",report,,

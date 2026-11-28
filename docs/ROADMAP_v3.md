@@ -152,3 +152,12 @@ Item 7 is written out with proofs in `docs/law_horizon.md`, frozen at c94c85d9 b
 - Not done: applying Corollary 6 to the 0F-3 runs. They used the errors-in-variables set and their data are already seen, so it can only be a labelled post-hoc section.
 
 Left before the 2027-01-03 freeze: the optional bias-corrected E4 unit, then figures and write-up from Jan 4.
+
+## Addendum 4 (2026-11-28): 0G result
+
+0G is in `docs/gate_G_result.md` (frozen 115fdf22, run on Kaggle the same day).
+- G-G1, G-G2 and G-G3 pass. E4 at degree 2 calibrates under the corrected-score set (95/100, from 0/100), with no loss on A and B. Probability wording now covers A, B and E4 at degree 2, at 2 % noise.
+- E4 at degree 3 still fails (2/100), as predicted. Some directions have reliability near or below 0 there.
+- Real series: hare-lynx becomes fully undecided, so the 0F refutation there does not survive. COVID at degree 2 keeps a smaller refuted zone (median 0.153 from 0.247).
+
+Left before the 2027-01-03 freeze: figures and write-up from Jan 4. No further units are planned.

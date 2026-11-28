@@ -1,4 +1,4 @@
-# STATUS (2026-11-27)
+# STATUS (2026-11-28)
 
 ## Decided
 - Gate A: protocol 0A2, outcome 3 (`docs/gate_A2_result.md`). Replicated over 20 seeds in 0B-3.
@@ -32,12 +32,14 @@
 - F0 done (`docs/F0_result.md`, ROADMAP_v3 Addendum 1): zone maps for all stored fits; checks pass (member ratio <= 0.706, 0 contradictions).
 - 0F done (`docs/gate_F_result.md`, ROADMAP_v3 Addendum 2): G-F0 pass, G-F1 pass on A and B, fail on E4, G-F2 hare-lynx held, COVID did not, G-F3 pass, G-F4 fail.
 - T done (`docs/law_horizon.md`, ROADMAP_v3 Addendum 3): item 7 proved, (i)-(iii) settled, a projected lower bound added; 7/7 checks pass plus addendum H4b (frozen c94c85d9, H4b 9dbe3826).
-- Next: optional bias-corrected set for E4 as a new frozen unit, then the write-up. Finish target 2027-01-15, freeze 2027-01-03.
+- 0G done (`docs/gate_G_result.md`, ROADMAP_v3 Addendum 4): corrected-score set, frozen 115fdf22. G-G1 pass (E4 degree 2 95/100), G-G2 pass, G-G3 pass; E4 degree 3 still fails (2/100); hare-lynx refutation withdrawn, COVID degree 2 refuted share 0.153.
+- Next: figures and write-up from Jan 4. Results freeze 2027-01-03. Finish target 2027-01-15, freeze 2027-01-03.
 - README rewritten as a summary of every unit and its outcome.
 
 ## Resume
 - Law-map checks: `python tools/check_lawmap_math.py` (about 20 s).
 - Horizon checks: `python tools/check_law_horizon.py` (about 80 s), then `python tools/check_law_horizon_addendum.py` with `tools` on PYTHONPATH.
+- 0G on Kaggle: `python tools/kaggle_launch.py push G <commit> <user>` (Kaggle CLI is in the sandbox `python` env), then `status G` and `fetch G`. Unzip 0G.zip into the repo, then `python src/analyze_0G.py`. About 55 min on 4 CPUs. Local pipeline test: `OG_QUICK=1` (the local multiprocessing pool is blocked, so call `run_0G._worker` in-process).
 - 0F on Kaggle: `python tools/kaggle_launch.py push F|F3|F4 <commit> <user>`, then `status` and `fetch` with the same mode. Unzip 0F.zip into the repo, then `python src/analyze_0F.py`. Times: calib + real 3.1 h, horizon 2.6 h, design 9.9 h.
 - F0: `python src/run_F0.py 5` (about 13 min locally), `python src/run_F0_plane.py`, `python src/analyze_F0.py`.
 - 0D on Kaggle: `python tools/kaggle_launch.py push D <commit> <user> [test]`, then `status D <user>` and `fetch D <user> <dir>`. Unzip into the repo, then `python src/analyze_0D.py`. The full run takes about 15 minutes on 4 CPUs.

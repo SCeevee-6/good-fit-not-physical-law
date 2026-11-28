@@ -41,6 +41,7 @@ Systems: logistic predator-prey (A), SIR with varying population (B), A with the
 | F0 | where the data decide a law (zones over all equally good fits) | exploratory, no gates | Away from the data almost every law is undecided (hare-lynx 100%, SEIR 99%). Certified share is higher near data (SIR 0.58 vs 0.17). A refuted zone appears only when the truth is outside the library (Holling 0.35). A larger library decides less (A: 0.33 at degree 2, 0 at degrees 3 and 4) | [F0_result](docs/F0_result.md) |
 | 0F | confidence set over all equally good fits: calibration, exact region certificates, real series, horizon bound, measurement design | frozen 01a24e87, addenda 1-3 at 04350905 | Calibrated on 2- and 3-state systems (coverage 92-96% at 95%); **fails on the 4-state system** (0/100). 93/93 region certificates verified exactly. COVID at degree 2: a quarter of each law domain refuted. The horizon bound holds at 680,000/680,000 points but is one-sided. **Design gate fails** (median ratio 1.42, needed 2); law design roughly halves trajectories only where the law starts fully undecided | [gate_F](docs/gate_F_result.md) |
 | T | proofs for the horizon bound (item 7) and its open points | frozen c94c85d9, addendum 9dbe3826 | All 7 checks pass. Exact zone probabilities with the noise written in, a closed-form horizon bracket that grows like (n/sigma^2)^(1/2d), a finite horizon whenever the library degree is above the law's, and a projected lower bound that cuts the gap to the exact value from 2.4-2.9x to 1.1-1.4x | [law_horizon](docs/law_horizon.md) |
+| 0G | bias-corrected set for noisy states (corrected-score estimate) | frozen 115fdf22 | E4 at degree 2 now calibrated (95/100, was 0/100); no loss on A and B (90-97). **Degree 3 still fails** (2/100). Hare-lynx: every law undecided, so the 0F refutation does not survive. COVID degree 2 refuted share 0.15 (0F 0.25) | [gate_G](docs/gate_G_result.md) |
 
 ![Share of accuracy-equivalent models that break a law, by noise and by model size (pilot).](figures/fig4_gap.png)
 
@@ -73,7 +74,7 @@ Systems: logistic predator-prey (A), SIR with varying population (B), A with the
 - Synthetic systems have at most four states.
 - The horizon band (ROADMAP_v3 item 7) is now proved, along with exact zone probabilities under exact regressors. The closed-form radius is a bracket, not a point prediction, and it does not cover the errors-in-variables case (E4).
 - The exploratory branch adds mathematical theorems about law identifiability and measurement limits. They do not yet constitute a general theorem for all physical systems, and the original law-zone research remains open.
-- The confidence set loses calibration when noise in the regressors dominates (4-state system, low noise).
+- The 0F confidence set loses calibration when noise in the regressors dominates. The corrected set (0G) fixes this for the 4-state system at degree 2, but not at degree 3, and not for A at 0.5 % noise.
 
 ## Layout
 
