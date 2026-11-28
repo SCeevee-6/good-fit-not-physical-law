@@ -1,0 +1,2 @@
+H4b zone probs, z < 0: {'points': 9, 'z_range': [-3.83, -0.75], 'refuted_freq_range': [0.0027, 0.6064], 'worst_scaled_dev': 0.345, 'ok': True}
+ALL_OK True

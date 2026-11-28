@@ -142,3 +142,13 @@ What is left before the 2027-01-03 freeze:
 - E5 is dropped. Not enough time, and 0F-4 showed nothing for it to build on.
 - Figures and write-up from Jan 4.
 
+## Addendum 3 (2026-11-27): unit T
+
+Item 7 is written out with proofs in `docs/law_horizon.md`, frozen at c94c85d9 before its checks ran. All 7 checks pass, plus the H4b addendum.
+- (i) With exact regressors and Gaussian noise the zone probabilities are exact: P(certified) = Phi(z - sqrt q), P(refuted) = Phi(-z - sqrt q), with z = mu / sqrt K. Combined with the band this gives a closed-form horizon bracket, T_d^-1(R / sqrt N2) <= g_med <= T_d^-1(R), R = mu0 sqrt(n) / (sigma sqrt q). The radius grows like (n / sigma^2)^(1 / (2d)).
+- (ii) Yes: a library degree above the margin's degree always gives a finite horizon, with an explicit (loose) radius. With equal degrees it depends on the top-degree signal-to-noise ratio.
+- (iii) For a library that is not full degree, the degree that counts along a direction is its line degree. For A-mis on the prey axis this is 1.
+- The tighter lower bound asked for in Addendum 2 is the Christoffel function of the data projected onto one direction. No data-free test polynomial beats T_d(l) (Lemma 2).
+- Not done: applying Corollary 6 to the 0F-3 runs. They used the errors-in-variables set and their data are already seen, so it can only be a labelled post-hoc section.
+
+Left before the 2027-01-03 freeze: the optional bias-corrected E4 unit, then figures and write-up from Jan 4.

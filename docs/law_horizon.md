@@ -151,4 +151,22 @@ Note (2026-11-27, after the first run, before H4b ran). H4 found only 9 usable p
 
 ## Results
 
-(to be filled in after the run)
+First run 2026-11-27 from the frozen commit c94c85d9, 76 s locally. Output: `results/check_law_horizon.txt`. ALL_OK True, 7 of 7 checks pass. The H4b addendum (frozen at 9dbe3826) also passes: `results/check_law_horizon_addendum.txt`.
+
+| check | result |
+|---|---|
+| H1 Lemma 1 | largest random ratio 0.865 (bound 1); attainment error 3e-15 |
+| H2 Lemma 2 | LP / T_d(g) between 1.000 and 1.007 over disk and square, d = 1..5 |
+| H3 Theorems 3, 4 | 0 chain violations at d = 2, 3, 4. N2 = 18.1, 40.5, 87.0 against p = 6, 10, 15. Median Kbar / projected bound 1.11, 1.22, 1.37; median Kbar / T_d test bound 2.38, 2.61, 2.94. 1-D equality to 1e-14 |
+| H4 Theorem 5 | 9 points, z from 0.77 to 3.75, worst deviation 0.31 of the allowed band (see the note above) |
+| H4b (addendum) | 9 points, z from -3.83 to -0.75, refuted frequency 0.003 to 0.606, worst deviation 0.35 of the allowed band |
+| H5 Corollary 6 | Kbar = 1 + 2 sum T_k^2 holds exactly; g_med inside the bracket in all 18 cases |
+| H6 Proposition 7 | d = 1: limit z = 100.0, relative error 4e-5 at t = 10^4. d = 2: bound radius 70.8, actual crossing 18.3. d = 3: bound radius 5.71, actual crossing 3.13 |
+| H7 Proposition 8 | monotone in the library; line-degree bound holds on the prey axis while the full library exceeds it at 400 of 400 points; lower bound holds. N2 = 16.0 restricted, 19.4 full |
+
+What I take from it:
+- Every statement holds where it was tested. Nothing has to be narrowed.
+- The projected bound in section 4 closes most of the gap the 0F-3 test bound left. In the disk test the remaining factor to the exact Kbar is 1.1 to 1.4, against 2.4 to 2.9 before.
+- N2 is 3 to 6 times p for uniform data in a disk. So the upper side, not the lower, is now the wider part of the bracket.
+- Corollary 6's scaling shows up once R is large. Going from n = 50 to 800 (16 times) moves the d = 2, mu0 = 0.3 horizon from 2.39 to 4.67, a factor 1.95 against the asymptotic 16^(1/4) = 2. At d = 4 the factor is 1.29 against 16^(1/8) = 1.41, because R is still small there.
+- The radius in Proposition 7(a) is safe but loose: 3.9 times the actual crossing at d = 2 and 1.8 times at d = 3. It answers the existence question in (ii). It is not a predictor.
